@@ -36,6 +36,31 @@ export function PwaController() {
     if (!("serviceWorker" in navigator)) return;
 
     const register = async () => {
+      // Force-unregister any old service worker first to clear stale cache.
+      // This is critical during dev / right after pushing fixes.
+      const existingRegs = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(
+        existingRegs.map(async (reg) => {
+          // If the active SW script URL is different from current, unregister
+          const swUrl = reg.active?.scriptURL ?? reg.installing?.scriptURL ?? "";
+          if (swUrl && !swUrl.endsWith("/sw.js")) {
+            await reg.unregister();
+            console.log("[PWA] Unregistered old SW:", swUrl);
+          }
+        }),
+      );
+
+      // Clear ALL old caches (any cache not matching current version)
+      const cacheKeys = await caches.keys();
+      await Promise.all(
+        cacheKeys
+          .filter((k) => k.startsWith("omdc-") && !k.includes("v1.1.0"))
+          .map((k) => {
+            console.log("[PWA] Deleting old cache:", k);
+            return caches.delete(k);
+          }),
+      );
+
       try {
         const reg = await navigator.serviceWorker.register("/sw.js", {
           scope: "/",
@@ -47,13 +72,16 @@ export function PwaController() {
           if (!newWorker) return;
           newWorker.addEventListener("statechange", () => {
             if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+              // Auto-apply update immediately to avoid stale content
+              newWorker.postMessage("SKIP_WAITING");
               setUpdateWaiting(true);
             }
           });
         });
 
-        // Periodic check for updates every hour
-        setInterval(() => reg.update(), 60 * 60 * 1000);
+        // Check for updates more aggressively during dev (every 5 min)
+        const intervalMs = process.env.NODE_ENV === "production" ? 60 * 60 * 1000 : 5 * 60 * 1000;
+        setInterval(() => reg.update(), intervalMs);
       } catch (err) {
         console.warn("[PWA] SW registration failed:", err);
       }
@@ -61,7 +89,7 @@ export function PwaController() {
 
     register();
 
-    // Listen for controller change (new SW took over)
+    // Listen for controller change (new SW took over) — auto reload
     navigator.serviceWorker.addEventListener("controllerchange", () => {
       window.location.reload();
     });

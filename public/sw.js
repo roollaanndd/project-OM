@@ -8,7 +8,7 @@
  * - Fonts: cache-first (long-lived)
  */
 
-const VERSION = "v1.0.0";
+const VERSION = "v1.1.0";
 const APP_SHELL_CACHE = `omdc-shell-${VERSION}`;
 const ASSETS_CACHE = `omdc-assets-${VERSION}`;
 const API_CACHE = `omdc-api-${VERSION}`;
