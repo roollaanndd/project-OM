@@ -55,10 +55,9 @@ if (typeof globalThis !== "undefined") {
 // ============ Security headers ============
 function buildSecurityHeaders(req: NextRequest) {
   const isDev = process.env.NODE_ENV === "development";
-  const proto = req.headers.get("x-forwarded-proto") ?? "https";
   const cspDirectives = [
     `default-src 'self'`,
-    `script-src 'self' 'unsafe-inline' 'unsafe-eval'${isDev ? " 'unsafe-hashes'" : ""}`,
+    `script-src 'self' 'unsafe-inline' 'unsafe-eval' 'unsafe-hashes'`,
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`,
     `font-src 'self' https://fonts.gstatic.com data:`,
     `img-src 'self' data: blob: https:`,
@@ -69,7 +68,8 @@ function buildSecurityHeaders(req: NextRequest) {
     `base-uri 'self'`,
     `object-src 'none'`,
     `upgrade-insecure-requests`,
-    isDev ? "" : `require-trusted-types-for 'script'`,
+    // NOTE: 'require-trusted-types-for' would block Next.js script injection.
+    // Re-enable in production only after setting up a Trusted Types policy.
   ]
     .filter(Boolean)
     .join("; ");
