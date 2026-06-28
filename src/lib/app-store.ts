@@ -271,7 +271,7 @@ let queueCounter = 6;
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
-  view: "hub",
+  view: "website",
   isAuthenticated: false,
   activeTab: "home",
   previousTab: null,
@@ -383,7 +383,7 @@ export const useAppStore = create<AppState>()(
 
   reset: () =>
     set({
-      view: "hub",
+      view: "website",
       isAuthenticated: false,
       activeTab: "home",
       previousTab: null,
@@ -427,7 +427,14 @@ export const useAppStore = create<AppState>()(
         user: state.user,
         records: state.records,
       }),
-      version: 1,
+      version: 2,
+      // Migrate from v1: reset view to website (was 'hub' in v1)
+      migrate: (persistedState: any, version: number) => {
+        if (version < 2 && persistedState) {
+          persistedState.view = "website";
+        }
+        return persistedState;
+      },
     },
   ),
 );

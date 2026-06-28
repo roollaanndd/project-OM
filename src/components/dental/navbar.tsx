@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Menu, X, Phone, CalendarCheck } from "lucide-react";
+import { Menu, X, Phone, CalendarCheck, Smartphone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useAppStore } from "@/lib/app-store";
 import { OmdcLogo } from "./logo";
 
 const NAV_ITEMS = [
@@ -63,6 +64,13 @@ export function Navbar() {
             <Phone className="h-4 w-4" />
             +62 812-3456-7890
           </a>
+          <button
+            onClick={() => useAppStore.getState().setView("app")}
+            className="inline-flex items-center gap-1.5 rounded-full border border-fuchsia-200 bg-fuchsia-50/80 px-4 py-2 text-sm font-semibold text-fuchsia-700 transition-colors hover:bg-fuchsia-100"
+          >
+            <Smartphone className="h-4 w-4" />
+            Patient App
+          </button>
           <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-pink-600 to-pink-500 px-5 text-white shadow-soft-pink hover:from-pink-700 hover:to-pink-600">
             <a href="#booking">
               <CalendarCheck className="mr-1.5 h-4 w-4" />
@@ -125,6 +133,16 @@ export function Navbar() {
             ))}
           </ul>
           <div className="mt-2 space-y-2 px-4">
+            <button
+              onClick={() => {
+                useAppStore.getState().setView("app");
+                setOpen(false);
+              }}
+              className="flex w-full items-center justify-center gap-2 rounded-2xl border border-fuchsia-200 bg-fuchsia-50/80 px-4 py-3 text-sm font-semibold text-fuchsia-700"
+            >
+              <Smartphone className="h-4 w-4" />
+              Buka Patient App
+            </button>
             <a
               href="tel:+6281234567890"
               className="flex items-center justify-center gap-2 rounded-2xl border border-pink-200 px-4 py-3 text-sm font-semibold text-primary"
