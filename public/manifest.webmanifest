@@ -1,0 +1,67 @@
+{
+  "name": "OMDC — Oktri Manessa Dental Clinic",
+  "short_name": "OMDC",
+  "description": "Your Smile, Our Passion. Booking online, rekam medis digital, pembayaran, dan loyalty rewards untuk OMDC.",
+  "id": "/",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FCE7F3",
+  "theme_color": "#DB2777",
+  "categories": ["health", "medical", "lifestyle"],
+  "lang": "id",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Buat Janji Temu",
+      "short_name": "Booking",
+      "description": "Buat janji temu baru dengan dokter gigi",
+      "url": "/?source=pwa-shortcut&action=booking",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Rekam Medis",
+      "short_name": "Rekam",
+      "description": "Lihat riwayat rekam medis Anda",
+      "url": "/?source=pwa-shortcut&action=records",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Pembayaran",
+      "short_name": "Bayar",
+      "description": "Bayar tagihan perawatan",
+      "url": "/?source=pwa-shortcut&action=payments",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
