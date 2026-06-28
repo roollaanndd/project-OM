@@ -1,6 +1,7 @@
 "use client";
 
 import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 import type {
   User,
   Appointment,
@@ -267,7 +268,9 @@ const INITIAL_SETTINGS: ClinicSettings = {
 
 let queueCounter = 6;
 
-export const useAppStore = create<AppState>((set, get) => ({
+export const useAppStore = create<AppState>()(
+  persist(
+    (set, get) => ({
   view: "hub",
   isAuthenticated: false,
   activeTab: "home",
@@ -398,4 +401,33 @@ export const useAppStore = create<AppState>((set, get) => ({
       clinicSettings: INITIAL_SETTINGS,
       selectedPatientId: "u-001",
     }),
-}));
+    }),
+    {
+      name: "omdc-store-v1",
+      storage: createJSONStorage(() => {
+        // Guard for SSR — return a noop storage on server
+        if (typeof window === "undefined") {
+          return {
+            getItem: () => null,
+            setItem: () => {},
+            removeItem: () => {},
+          };
+        }
+        return window.localStorage;
+      }),
+      // Only persist data, not transient UI state
+      partialize: (state) => ({
+        appointments: state.appointments,
+        bills: state.bills,
+        transactions: state.transactions,
+        queue: state.queue,
+        walkInPatients: state.walkInPatients,
+        doctors: state.doctors,
+        clinicSettings: state.clinicSettings,
+        user: state.user,
+        records: state.records,
+      }),
+      version: 1,
+    },
+  ),
+);

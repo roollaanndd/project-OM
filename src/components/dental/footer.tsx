@@ -20,21 +20,21 @@ import { useToast } from "@/hooks/use-toast";
 
 const NAV = [
   { label: "Beranda", href: "#home" },
-  { label: "Tentang", href: "#about" },
-  { label: "Layanan", href: "#services" },
-  { label: "Dokter", href: "#doctors" },
+  { label: "Tentang", href: "/tentang" },
+  { label: "Layanan", href: "/layanan" },
+  { label: "Dokter", href: "/dokter" },
   { label: "Harga", href: "#pricing" },
-  { label: "Kontak", href: "#booking" },
+  { label: "Kontak", href: "/kontak" },
 ];
 
 const SERVICES_LIST = [
-  "Scaling & Polishing",
-  "Pemutihan Gigi",
-  "Kawat Gigi / Behel",
-  "Mahkota & Gigi Palsu",
-  "Root Canal",
-  "Dental Kids",
-  "Implant Gigi",
+  { label: "Scaling & Polishing", href: "/layanan/scaling-polishing" },
+  { label: "Pemutihan Gigi", href: "/layanan/pemutihan-gigi" },
+  { label: "Kawat Gigi / Behel", href: "/layanan/kawat-gigi-behel" },
+  { label: "Mahkota & Gigi Palsu", href: "/layanan" },
+  { label: "Root Canal", href: "/layanan" },
+  { label: "Dental Kids", href: "/layanan" },
+  { label: "Implant Gigi", href: "/layanan" },
 ];
 
 const HOURS = [
@@ -156,12 +156,12 @@ export function Footer() {
             <h4 className="text-sm font-bold uppercase tracking-wide text-white">Layanan</h4>
             <ul className="mt-4 space-y-2.5">
               {SERVICES_LIST.map((s) => (
-                <li key={s}>
+                <li key={s.label}>
                   <a
-                    href="#services"
+                    href={s.href}
                     className="text-sm text-pink-200/80 transition-colors hover:text-white"
                   >
-                    {s}
+                    {s.label}
                   </a>
                 </li>
               ))}

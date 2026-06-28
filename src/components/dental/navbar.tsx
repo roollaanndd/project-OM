@@ -8,12 +8,12 @@ import { OmdcLogo } from "./logo";
 
 const NAV_ITEMS = [
   { label: "Beranda", href: "#home" },
-  { label: "Tentang", href: "#about" },
-  { label: "Layanan", href: "#services" },
-  { label: "Dokter", href: "#doctors" },
-  { label: "Galeri", href: "#gallery" },
+  { label: "Tentang", href: "/tentang" },
+  { label: "Layanan", href: "/layanan" },
+  { label: "Dokter", href: "/dokter" },
   { label: "Harga", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
+  { label: "Kontak", href: "/kontak" },
 ];
 
 export function Navbar() {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { StatusBar } from "./status-bar";
@@ -21,6 +21,12 @@ export function AppShell({
   activeTab: string;
 }) {
   const { isAuthenticated, setAuthenticated } = useAppStore();
+  const [hydrated, setHydrated] = useState(false);
+
+  // Skip first render to avoid hydration mismatch (Zustand persist is async)
+  useEffect(() => {
+    Promise.resolve().then(() => setHydrated(true));
+  }, []);
 
   // Lock body scroll while in app mode (we manage scroll inside the app frame)
   useEffect(() => {
@@ -30,6 +36,14 @@ export function AppShell({
       document.body.style.overflow = prev;
     };
   }, []);
+
+  if (!hydrated) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-pink-100 via-rose-50 to-pink-50">
+        <div className="h-12 w-12 animate-spin rounded-full border-4 border-pink-200 border-t-pink-600" />
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-pink-100 via-rose-50 to-pink-50 px-0 py-0 sm:p-6 lg:p-8">

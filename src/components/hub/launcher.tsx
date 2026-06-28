@@ -82,18 +82,20 @@ export function HubLauncher() {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100">
+    <div className="relative min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100">
       {/* Decorative blobs */}
-      <motion.div
-        className="absolute -left-20 top-20 h-72 w-72 rounded-full bg-pink-300/30 blur-3xl"
-        animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -right-20 bottom-20 h-80 w-80 rounded-full bg-rose-300/30 blur-3xl"
-        animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-      />
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <motion.div
+          className="absolute -left-20 top-20 h-72 w-72 rounded-full bg-pink-300/30 blur-3xl"
+          animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute -right-20 bottom-20 h-80 w-80 rounded-full bg-rose-300/30 blur-3xl"
+          animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
 
       <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-5 py-8 lg:px-8 lg:py-12">
         {/* Header */}
