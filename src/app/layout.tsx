@@ -214,7 +214,9 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <head>
-        <link rel="manifest" href="/manifest.webmanifest" />
+        {/* PWA manifest kept for installability, but service worker is disabled
+            during development to prevent stale cache issues. */}
+        {/* <link rel="manifest" href="/manifest.webmanifest" /> */}
         <meta name="application-name" content="OMDC" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
