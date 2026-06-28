@@ -75,6 +75,8 @@ export interface Doctor {
   avail: string[];
   status: "available" | "busy" | "off";
   patientsToday: number;
+  photo?: string;
+  branchIds?: string[];
 }
 
 export interface ClinicSettings {
@@ -87,6 +89,31 @@ export interface ClinicSettings {
   primaryColor: string;
   openHours: string;
   totalCounter: number;
+}
+
+export interface Branch {
+  id: string;
+  name: string;
+  area: string;
+  address: string;
+  phone: string;
+  openHours: string;
+  mapUrl?: string;
+  isPrimary?: boolean;
+}
+
+export interface DoctorWithPhoto {
+  id: string;
+  name: string;
+  specialty: string;
+  initials: string;
+  gradient: string;
+  rating: number;
+  avail: string[];
+  status: "available" | "busy" | "off";
+  patientsToday: number;
+  photo?: string; // URL to doctor photo
+  branchIds?: string[]; // which branches this doctor works at
 }
 
 interface AppState {
@@ -115,11 +142,13 @@ interface AppState {
   queue: QueueEntry[];
   walkInPatients: WalkInPatient[];
   doctors: Doctor[];
+  branches: Branch[];
   cmsUsers: CmsUser[];
   clinicSettings: ClinicSettings;
 
   // Selected patient (for booking)
   selectedPatientId: string;
+  selectedBranchId: string;
 
   // Toast notification system (global)
   toasts: { id: string; title: string; desc?: string; variant: "default" | "success" | "error" }[];
@@ -129,6 +158,7 @@ interface AppState {
   setAuthenticated: (v: boolean) => void;
   setActiveTab: (t: AppState["activeTab"]) => void;
   setSelectedPatientId: (id: string) => void;
+  setSelectedBranchId: (id: string) => void;
 
   addAppointment: (a: Appointment) => void;
   cancelAppointment: (id: string) => void;
@@ -147,7 +177,9 @@ interface AppState {
   // CMS
   setCmsAuth: (v: boolean, user?: CmsUser) => void;
   updateDoctorStatus: (id: string, status: Doctor["status"]) => void;
+  updateDoctor: (id: string, updates: Partial<Doctor>) => void;
   updateClinicSettings: (s: Partial<ClinicSettings>) => void;
+  updateBranch: (id: string, updates: Partial<Branch>) => void;
 
   // Toasts
   pushToast: (t: { title: string; desc?: string; variant?: "default" | "success" | "error" }) => void;
@@ -157,12 +189,40 @@ interface AppState {
 }
 
 const INITIAL_DOCTORS: Doctor[] = [
-  { id: "d1", name: "drg. Oktri Manessa, Sp.Ort", specialty: "Orthodontist", initials: "OM", gradient: "from-pink-500 to-fuchsia-600", rating: 4.9, avail: ["Sen", "Rab", "Jum"], status: "available", patientsToday: 8 },
-  { id: "d2", name: "drg. Adelia Putri, Sp.KGA", specialty: "Gigi Anak", initials: "AP", gradient: "from-rose-500 to-amber-400", rating: 4.9, avail: ["Sel", "Kam", "Sab"], status: "busy", patientsToday: 6 },
-  { id: "d3", name: "drg. Reza Mahendra, Sp.Perio", specialty: "Gusi & Implant", initials: "RM", gradient: "from-fuchsia-500 to-rose-700", rating: 4.8, avail: ["Sen", "Sel", "Kam"], status: "available", patientsToday: 5 },
-  { id: "d4", name: "drg. Salsabila Karim, Sp.Pros", specialty: "Gigi Palsu & Estetik", initials: "SK", gradient: "from-pink-600 to-fuchsia-700", rating: 5.0, avail: ["Rab", "Jum", "Sab"], status: "off", patientsToday: 0 },
-  { id: "d5", name: "drg. Bayu Pratama", specialty: "Dokter Gigi Umum", initials: "BP", gradient: "from-rose-500 to-pink-600", rating: 4.7, avail: ["Sen", "Sel", "Rab", "Kam", "Jum"], status: "available", patientsToday: 12 },
-  { id: "d6", name: "drg. Intan Permata", specialty: "Dokter Gigi Umum", initials: "IP", gradient: "from-fuchsia-500 to-pink-600", rating: 4.8, avail: ["Sel", "Rab", "Kam", "Jum", "Sab"], status: "available", patientsToday: 9 },
+  { id: "d1", name: "drg. Oktri Manessa, Sp.Ort", specialty: "Orthodontist", initials: "OM", gradient: "from-pink-500 to-fuchsia-600", rating: 4.9, avail: ["Sen", "Rab", "Jum"], status: "available", patientsToday: 8, photo: "/doctors/doctor-1.jpg", branchIds: ["b1", "b2"] },
+  { id: "d2", name: "drg. Adelia Putri, Sp.KGA", specialty: "Gigi Anak", initials: "AP", gradient: "from-rose-500 to-amber-400", rating: 4.9, avail: ["Sel", "Kam", "Sab"], status: "busy", patientsToday: 6, photo: "/doctors/doctor-2.jpg", branchIds: ["b1", "b3"] },
+  { id: "d3", name: "drg. Reza Mahendra, Sp.Perio", specialty: "Gusi & Implant", initials: "RM", gradient: "from-fuchsia-500 to-rose-700", rating: 4.8, avail: ["Sen", "Sel", "Kam"], status: "available", patientsToday: 5, photo: "/doctors/doctor-3.jpg", branchIds: ["b1"] },
+  { id: "d4", name: "drg. Salsabila Karim, Sp.Pros", specialty: "Gigi Palsu & Estetik", initials: "SK", gradient: "from-pink-600 to-fuchsia-700", rating: 5.0, avail: ["Rab", "Jum", "Sab"], status: "off", patientsToday: 0, photo: "/doctors/doctor-4.jpg", branchIds: ["b2", "b3"] },
+  { id: "d5", name: "drg. Bayu Pratama", specialty: "Dokter Gigi Umum", initials: "BP", gradient: "from-rose-500 to-pink-600", rating: 4.7, avail: ["Sen", "Sel", "Rab", "Kam", "Jum"], status: "available", patientsToday: 12, photo: "/doctors/doctor-3.jpg", branchIds: ["b1", "b2", "b3"] },
+  { id: "d6", name: "drg. Intan Permata", specialty: "Dokter Gigi Umum", initials: "IP", gradient: "from-fuchsia-500 to-pink-600", rating: 4.8, avail: ["Sel", "Rab", "Kam", "Jum", "Sab"], status: "available", patientsToday: 9, photo: "/doctors/doctor-2.jpg", branchIds: ["b1", "b2"] },
+];
+
+const INITIAL_BRANCHES: Branch[] = [
+  {
+    id: "b1",
+    name: "OMDC Bekasi Selatan",
+    area: "Bekasi Selatan",
+    address: "Jl. Melati Raya No. 17, Bekasi Selatan, Jawa Barat 17141",
+    phone: "+62 812-3456-7890",
+    openHours: "Senin – Sabtu: 09.00 – 21.00 · Minggu: 10.00 – 16.00",
+    isPrimary: true,
+  },
+  {
+    id: "b2",
+    name: "OMDC Jakarta Selatan",
+    area: "Jakarta Selatan",
+    address: "Jl. Kemang Raya No. 88, Jakarta Selatan, DKI Jakarta 12730",
+    phone: "+62 812-3456-7891",
+    openHours: "Senin – Sabtu: 09.00 – 21.00 · Minggu: 10.00 – 16.00",
+  },
+  {
+    id: "b3",
+    name: "OMDC Tangerang",
+    area: "Tangerang",
+    address: "Jl. Boulevard Raya No. 24, Tangerang, Banten 15158",
+    phone: "+62 812-3456-7892",
+    openHours: "Senin – Sabtu: 09.00 – 20.00 · Minggu: Tutup",
+  },
 ];
 
 const INITIAL_CMS_USERS: CmsUser[] = [
@@ -288,16 +348,19 @@ export const useAppStore = create<AppState>()(
   queue: INITIAL_QUEUE,
   walkInPatients: INITIAL_WALK_INS,
   doctors: INITIAL_DOCTORS,
+  branches: INITIAL_BRANCHES,
   cmsUsers: INITIAL_CMS_USERS,
   clinicSettings: INITIAL_SETTINGS,
 
   selectedPatientId: "u-001",
+  selectedBranchId: "b1",
   toasts: [],
 
   setView: (v) => set({ view: v }),
   setAuthenticated: (v) => set({ isAuthenticated: v }),
   setActiveTab: (t) => set((s) => ({ previousTab: s.activeTab, activeTab: t })),
   setSelectedPatientId: (id) => set({ selectedPatientId: id }),
+  setSelectedBranchId: (id) => set({ selectedBranchId: id }),
 
   addAppointment: (a) => set((s) => ({ appointments: [a, ...s.appointments] })),
   cancelAppointment: (id) =>
@@ -367,8 +430,16 @@ export const useAppStore = create<AppState>()(
     set((s) => ({
       doctors: s.doctors.map((d) => (d.id === id ? { ...d, status } : d)),
     })),
+  updateDoctor: (id, updates) =>
+    set((s) => ({
+      doctors: s.doctors.map((d) => (d.id === id ? { ...d, ...updates } : d)),
+    })),
   updateClinicSettings: (s) =>
     set((state) => ({ clinicSettings: { ...state.clinicSettings, ...s } })),
+  updateBranch: (id, updates) =>
+    set((s) => ({
+      branches: s.branches.map((b) => (b.id === id ? { ...b, ...updates } : b)),
+    })),
 
   pushToast: (t) => {
     const id = `toast-${Date.now()}-${Math.random()}`;
@@ -397,13 +468,15 @@ export const useAppStore = create<AppState>()(
       queue: INITIAL_QUEUE,
       walkInPatients: INITIAL_WALK_INS,
       doctors: INITIAL_DOCTORS,
+      branches: INITIAL_BRANCHES,
       cmsUsers: INITIAL_CMS_USERS,
       clinicSettings: INITIAL_SETTINGS,
       selectedPatientId: "u-001",
+      selectedBranchId: "b1",
     }),
     }),
     {
-      name: "omdc-store-v1",
+      name: "omdc-store-v3",
       storage: createJSONStorage(() => {
         // Guard for SSR — return a noop storage on server
         if (typeof window === "undefined") {
@@ -423,18 +496,26 @@ export const useAppStore = create<AppState>()(
         queue: state.queue,
         walkInPatients: state.walkInPatients,
         doctors: state.doctors,
+        branches: state.branches,
         clinicSettings: state.clinicSettings,
         user: state.user,
         records: state.records,
+        selectedBranchId: state.selectedBranchId,
       }),
-      version: 2,
+      version: 3,
       // Skip auto-hydration to prevent SSR mismatch.
       // Hydration is handled manually via useHasHydrated hook.
       skipHydration: true,
-      // Migrate from v1: reset view to website (was 'hub' in v1)
+      // Migrate from older versions
       migrate: (persistedState: any, version: number) => {
         if (version < 2 && persistedState) {
           persistedState.view = "website";
+        }
+        if (version < 3 && persistedState) {
+          // Reset doctors to include new photo & branchIds fields
+          persistedState.doctors = undefined;
+          persistedState.branches = undefined;
+          persistedState.selectedBranchId = "b1";
         }
         return persistedState;
       },

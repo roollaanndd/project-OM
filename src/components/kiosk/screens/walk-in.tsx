@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
+import { BranchSelector } from "@/components/shared/branch-selector";
 import { SERVICES, DOCTORS } from "@/components/mobile/mock-data";
 import { ServiceIcon } from "@/components/mobile/icons";
 import {
@@ -230,6 +231,11 @@ export function KioskWalkIn({ onComplete, onBack }: { onComplete: (ticket: any) 
                   <p className="mt-1 text-sm text-pink-950/55">
                     Sentuh layanan yang diinginkan
                   </p>
+                </div>
+
+                {/* Branch selector */}
+                <div className="mt-6">
+                  <BranchSelector variant="card" />
                 </div>
 
                 <div className="mt-6 grid grid-cols-4 gap-3">

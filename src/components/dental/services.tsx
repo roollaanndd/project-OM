@@ -82,10 +82,20 @@ const SERVICES = [
 
 export function Services() {
   return (
-    <section id="services" className="relative py-20 lg:py-28">
-      {/* soft background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-pink-50/40 to-white" />
+    <section id="services" className="relative overflow-hidden py-20 lg:py-28">
+      {/* Background variations: gradient + pattern + blobs */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-rose-50/40 via-white to-pink-50/40" />
       <div className="absolute top-1/4 left-1/2 -z-10 h-72 w-[90%] -translate-x-1/2 rounded-full bg-pink-200/20 blur-3xl" />
+      <div className="absolute right-0 top-0 -z-10 h-80 w-80 rounded-full bg-fuchsia-200/20 blur-3xl" />
+      <div className="absolute left-0 bottom-1/4 -z-10 h-72 w-72 rounded-full bg-rose-200/20 blur-3xl" />
+      {/* Diagonal stripe pattern */}
+      <div
+        className="absolute inset-0 -z-10 opacity-[0.025]"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(45deg, #9D174D 0, #9D174D 1px, transparent 1px, transparent 20px)",
+        }}
+      />
 
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         {/* Header */}

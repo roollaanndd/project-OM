@@ -12,7 +12,19 @@ const STATS = [
 
 export function About() {
   return (
-    <section id="about" className="relative py-20 lg:py-28">
+    <section id="about" className="relative overflow-hidden py-20 lg:py-28">
+      {/* Background variations */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-white via-pink-50/40 to-rose-50/30" />
+      <div className="absolute -right-32 top-0 -z-10 h-96 w-96 rounded-full bg-fuchsia-200/30 blur-3xl" />
+      <div className="absolute -left-32 bottom-0 -z-10 h-96 w-96 rounded-full bg-pink-200/30 blur-3xl" />
+      {/* Dot pattern */}
+      <div
+        className="absolute inset-0 -z-10 opacity-[0.03]"
+        style={{
+          backgroundImage: "radial-gradient(circle, #9D174D 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
+        }}
+      />
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Visual */}

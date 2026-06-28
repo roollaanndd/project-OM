@@ -16,6 +16,7 @@ type Doctor = {
   gradient: string;
   initials: string;
   avail: string;
+  photo?: string;
 };
 
 const DOCTORS: Doctor[] = [
@@ -30,6 +31,7 @@ const DOCTORS: Doctor[] = [
     gradient: "from-pink-500 via-rose-500 to-fuchsia-600",
     initials: "OM",
     avail: "Sen · Rab · Jum",
+    photo: "/doctors/doctor-1.jpg",
   },
   {
     name: "drg. Adelia Putri, Sp.KGA",
@@ -42,6 +44,7 @@ const DOCTORS: Doctor[] = [
     gradient: "from-rose-500 via-pink-500 to-amber-400",
     initials: "AP",
     avail: "Sel · Kam · Sab",
+    photo: "/doctors/doctor-2.jpg",
   },
   {
     name: "drg. Reza Mahendra, Sp.Perio",
@@ -53,6 +56,7 @@ const DOCTORS: Doctor[] = [
     gradient: "from-fuchsia-500 via-pink-600 to-rose-700",
     initials: "RM",
     avail: "Sen · Sel · Kam",
+    photo: "/doctors/doctor-3.jpg",
   },
   {
     name: "drg. Salsabila Karim, Sp.Pros",
@@ -65,6 +69,7 @@ const DOCTORS: Doctor[] = [
     gradient: "from-pink-600 via-rose-600 to-fuchsia-700",
     initials: "SK",
     avail: "Rab · Jum · Sab",
+    photo: "/doctors/doctor-4.jpg",
   },
 ];
 
@@ -111,13 +116,25 @@ export function Doctors() {
                       "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.6) 0%, transparent 40%), radial-gradient(circle at 70% 80%, rgba(0,0,0,0.15) 0%, transparent 50%)",
                   }}
                 />
-                {/* Soft circle behind initials */}
+                {/* Real photo or initials fallback */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-white/70 bg-white/20 backdrop-blur-sm">
-                    <span className="font-display text-3xl font-extrabold text-white drop-shadow">
-                      {doc.initials}
-                    </span>
-                  </div>
+                  {doc.photo ? (
+                    <div className="relative h-full w-full">
+                      <img
+                        src={doc.photo}
+                        alt={`Foto ${doc.name}`}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    </div>
+                  ) : (
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-white/70 bg-white/20 backdrop-blur-sm">
+                      <span className="font-display text-3xl font-extrabold text-white drop-shadow">
+                        {doc.initials}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Badge */}

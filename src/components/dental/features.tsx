@@ -57,7 +57,22 @@ const FEATURES = [
 
 export function Features() {
   return (
-    <section className="relative py-20 lg:py-28">
+    <section className="relative overflow-hidden py-20 lg:py-28">
+      {/* Background: gradient + grid + blobs */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-pink-50/60 via-white to-rose-50/40" />
+      <div className="absolute right-1/4 top-0 -z-10 h-80 w-80 rounded-full bg-fuchsia-200/25 blur-3xl" />
+      <div className="absolute left-1/4 bottom-0 -z-10 h-80 w-80 rounded-full bg-pink-200/25 blur-3xl" />
+      {/* Grid pattern */}
+      <div
+        className="absolute inset-0 -z-10 opacity-[0.04]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #DB2777 1px, transparent 1px), linear-gradient(to bottom, #DB2777 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          maskImage: "radial-gradient(circle at 50% 50%, black 30%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(circle at 50% 50%, black 30%, transparent 80%)",
+        }}
+      />
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           {/* Left copy */}

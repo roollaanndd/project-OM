@@ -10,6 +10,7 @@ import {
   Calendar,
   ListOrdered,
   Stethoscope,
+  Building2,
   Wallet,
   Globe,
   Settings,
@@ -29,6 +30,7 @@ export type CmsPage =
   | "appointments"
   | "queue"
   | "doctors"
+  | "branches"
   | "finance"
   | "website"
   | "settings";
@@ -40,6 +42,7 @@ const ROLE_PAGES: Record<CmsRole, { id: CmsPage; label: string; icon: typeof Use
     { id: "appointments", label: "Janji Temu", icon: Calendar },
     { id: "queue", label: "Antrian Live", icon: ListOrdered },
     { id: "doctors", label: "Dokter", icon: Stethoscope },
+    { id: "branches", label: "Cabang", icon: Building2 },
     { id: "finance", label: "Keuangan", icon: Wallet },
     { id: "website", label: "Website Editor", icon: Globe },
     { id: "settings", label: "Pengaturan", icon: Settings },

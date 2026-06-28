@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
+import { BranchSelector } from "@/components/shared/branch-selector";
 import { SERVICES, DOCTORS, TIME_SLOTS, formatCurrency, formatDate } from "../mock-data";
 import { ServiceIcon } from "../icons";
 import {
@@ -147,6 +148,11 @@ export function BookingScreen() {
               <p className="mt-1 text-xs text-pink-950/55">
                 Pilih layanan yang sesuai dengan kebutuhan gigi Anda
               </p>
+
+              {/* Branch selector */}
+              <div className="mt-4">
+                <BranchSelector variant="compact" />
+              </div>
 
               {/* Patient selector */}
               <div className="mt-4">

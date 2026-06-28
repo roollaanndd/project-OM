@@ -51,8 +51,12 @@ export function CmsDoctors() {
             className="rounded-2xl border border-pink-100 bg-white p-4 shadow-sm"
           >
             <div className="flex items-start gap-3">
-              <div className={`relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${doc.gradient} text-base font-bold text-white`}>
-                {doc.initials}
+              <div className={`relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br ${doc.gradient} text-base font-bold text-white`}>
+                {doc.photo ? (
+                  <img src={doc.photo} alt={doc.name} className="h-full w-full object-cover" />
+                ) : (
+                  doc.initials
+                )}
                 <span className={cn(
                   "absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full border-2 border-white",
                   doc.status === "available" ? "bg-emerald-500" : doc.status === "busy" ? "bg-amber-500" : "bg-pink-400",

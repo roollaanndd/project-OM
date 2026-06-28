@@ -28,6 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { BranchSelector } from "@/components/shared/branch-selector";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
@@ -319,6 +320,9 @@ export function Booking() {
                       autoComplete="email"
                     />
                   </Field>
+
+                  {/* Branch selector */}
+                  <BranchSelector variant="card" />
 
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <Field label="Layanan" icon={<Stethoscope className="h-4 w-4" />} required>

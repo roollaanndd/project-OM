@@ -54,7 +54,7 @@ export function PwaController() {
         }
 
         // Clear localStorage except auth state (to keep user logged in)
-        const keepKeys = ["omdc-store-v2"];
+        const keepKeys = ["omdc-store-v3"];
         const keysToRemove: string[] = [];
         for (let i = 0; i < localStorage.length; i++) {
           const k = localStorage.key(i);

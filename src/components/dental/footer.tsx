@@ -110,7 +110,7 @@ export function Footer() {
             <div className="rounded-2xl bg-white/5 p-4 backdrop-blur-sm ring-1 ring-white/10">
               <OmdcLogo className="[&_span]:text-white [&_span.text-gradient-pink]:!text-white" />
               <p className="mt-4 text-sm leading-relaxed text-pink-200/80">
-                Oktri Manessa Dental Clinic — klinik gigi terpercaya di Bekasi. Memberikan
+                Oktri Manessa Dental Clinic — klinik gigi terpercaya dengan 3 cabang di Jabodetabek. Memberikan
                 perawatan gigi modern, aman, dan ramah untuk seluruh keluarga Indonesia sejak 2015.
               </p>
               <div className="mt-5 flex gap-2">
@@ -174,7 +174,7 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-pink-200/80">
               <li className="flex items-start gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-pink-400" />
-                <span>Jl. Melati Raya No. 17, Bekasi Selatan, Jawa Barat 17141</span>
+                <span>Jl. Melati Raya No. 17, Bekasi Selatan, Jawa Barat 17141 (Cabang Utama)</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-pink-400" />
@@ -211,7 +211,7 @@ export function Footer() {
           <div className="flex items-center gap-1.5 text-xs text-pink-200/70">
             Dibuat dengan
             <Heart className="h-3.5 w-3.5 fill-pink-500 text-pink-500" />
-            di Bekasi, Indonesia
+            di Indonesia
           </div>
           <a
             href="#home"

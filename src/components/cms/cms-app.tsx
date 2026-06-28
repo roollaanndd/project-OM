@@ -9,6 +9,7 @@ import { CmsPatients } from "./screens/patients";
 import { CmsAppointments } from "./screens/appointments";
 import { CmsQueue } from "./screens/queue";
 import { CmsDoctors } from "./screens/doctors";
+import { CmsBranches } from "./screens/branches";
 import { CmsFinance } from "./screens/finance";
 import { CmsWebsiteEditor } from "./screens/website-editor";
 import { CmsSettings } from "./screens/settings";
@@ -28,6 +29,7 @@ export function CmsApp() {
       {page === "appointments" && <CmsAppointments />}
       {page === "queue" && <CmsQueue />}
       {page === "doctors" && <CmsDoctors />}
+      {page === "branches" && <CmsBranches />}
       {page === "finance" && <CmsFinance />}
       {page === "website" && <CmsWebsiteEditor />}
       {page === "settings" && <CmsSettings />}

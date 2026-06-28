@@ -11,6 +11,7 @@ type Review = {
   text: string;
   gradient: string;
   service: string;
+  photo?: string;
 };
 
 const REVIEWS: Review[] = [
@@ -21,6 +22,7 @@ const REVIEWS: Review[] = [
     rating: 5,
     gradient: "from-pink-500 to-rose-500",
     service: "Behel Keramik",
+    photo: "/testimonials/testimonial-1.jpg",
     text: "Saya pasang behel keramik di OMDC dan hasilnya benar-benar memuaskan. dr. Oktri sangat sabar menjelaskan tiap tahap. Klinikenya bersih, pegawai ramah, dan harganya transparan. Sekarang senyum saya jauh lebih percaya diri!",
   },
   {
@@ -30,6 +32,7 @@ const REVIEWS: Review[] = [
     rating: 5,
     gradient: "from-rose-500 to-fuchsia-600",
     service: "Scaling & Whitening",
+    photo: "/testimonials/testimonial-2.jpg",
     text: "Awalnya takut scaling, ternyata sama sekali tidak sakit. Dokternya komunikatif dan selalu menanyakan kondisi saya. Hasil whitening-nya juga natural, tidak terlalu putih. Recommended banget buat yang punya dental anxiety.",
   },
   {
@@ -39,6 +42,7 @@ const REVIEWS: Review[] = [
     rating: 5,
     gradient: "from-fuchsia-500 to-pink-600",
     service: "Dental Kids",
+    photo: "/testimonials/testimonial-3.jpg",
     text: "Anak saya (5 tahun) biasanya nangis ke dokter gigi, di OMDC malah betah. Ruang bermainnya membuatnya relaks, dokternya ramah sekali. Sekarang tiap kontrol gigi dia yang ingatkan. Terima kasih OMDC!",
   },
   {
@@ -48,6 +52,7 @@ const REVIEWS: Review[] = [
     rating: 5,
     gradient: "from-pink-600 to-rose-700",
     service: "Implant Gigi",
+    photo: "/testimonials/testimonial-4.jpg",
     text: "Saya pasang implant 2 gigi di OMDC setelah bandingkan dengan beberapa klinik lain. Harganya kompetitif, tapi yang lebih penting dokternya ahli dan hasilnya sangat natural. Garansi seumur hidup juga jadi nilai tambah.",
   },
   {
@@ -57,6 +62,7 @@ const REVIEWS: Review[] = [
     rating: 5,
     gradient: "from-rose-600 to-pink-700",
     service: "Root Canal",
+    photo: "/testimonials/testimonial-5.jpg",
     text: "Saya kira gigi saya harus dicabut, ternyata bisa di-root canal dengan mikroskop. Prosesnya 2 kunjungan dan tidak terlalu sakit. dr. Reza sabar sekali. Senang bisa selamatkan gigi asli saya.",
   },
   {
@@ -66,6 +72,7 @@ const REVIEWS: Review[] = [
     rating: 5,
     gradient: "from-fuchsia-600 to-rose-700",
     service: "Veneer Gigi",
+    photo: "/testimonials/testimonial-6.jpg",
     text: "Pengalaman pasang veneer di OMDC luar biasa. Konsultasi awalnya detail, simulasi hasilnya ditunjukkan sebelum treatment. Hasilnya natural dan sesuai ekspektasi. Worth every rupiah.",
   },
 ];
@@ -118,11 +125,20 @@ export function Testimonials() {
               </p>
 
               <div className="mt-5 flex items-center gap-3 border-t border-pink-100 pt-4">
-                <div
-                  className={`flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br ${r.gradient} text-sm font-bold text-white shadow-sm`}
-                >
-                  {r.initials}
-                </div>
+                {r.photo ? (
+                  <img
+                    src={r.photo}
+                    alt={`Foto ${r.name}`}
+                    className="h-11 w-11 rounded-full object-cover shadow-sm ring-2 ring-pink-100"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    className={`flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br ${r.gradient} text-sm font-bold text-white shadow-sm`}
+                  >
+                    {r.initials}
+                  </div>
+                )}
                 <div className="flex-1">
                   <div className="text-sm font-bold text-pink-950">{r.name}</div>
                   <div className="text-xs text-foreground/55">{r.role}</div>
