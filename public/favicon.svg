@@ -1,0 +1,19 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9D174D"/>
+      <stop offset="0.5" stop-color="#DB2777"/>
+      <stop offset="1" stop-color="#EC4899"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="20" y1="20" x2="48" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FCE7F3"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="url(#g1)"/>
+  <!-- Tooth shape -->
+  <path d="M32 14c-5 0-7 2-11 2-3 0-6 1.5-6 7 0 6 2 9 3.5 14 1.2 4 2 11 4.5 11 2.2 0 2.3-5 3.5-9 0.8-2.6 1.6-4 5.5-4s4.7 1.4 5.5 4c1.2 4 1.3 9 3.5 9 2.5 0 3.3-7 4.5-11C49 32 51 29 51 23c0-5.5-3-7-6-7-4 0-6-2-11-2z" fill="url(#g2)"/>
+  <path d="M32 14c-5 0-7 2-11 2-3 0-6 1.5-6 7 0 6 2 9 3.5 14 1.2 4 2 11 4.5 11 2.2 0 2.3-5 3.5-9 0.8-2.6 1.6-4 5.5-4s4.7 1.4 5.5 4c1.2 4 1.3 9 3.5 9 2.5 0 3.3-7 4.5-11C49 32 51 29 51 23c0-5.5-3-7-6-7-4 0-6-2-11-2z" stroke="#9D174D" stroke-width="1.2" fill="none"/>
+  <!-- sparkle -->
+  <path d="M44 18l1.2 3 3 1.2-3 1.2-1.2 3-1.2-3-3-1.2 3-1.2z" fill="#FBBF24"/>
+</svg>

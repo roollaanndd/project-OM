@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Desktop: 1) Yes, professional/clean. 2) No layout issues. 3) Polished.  \nMobile: 1) Yes, professional/clean. 2) No layout issues. 3) Polished.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782669322,
+  "id": "2026062901552042ca1ffa5c3b43ed",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "2026062901552042ca1ffa5c3b43ed",
+  "usage": {
+    "completion_tokens": 52,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1474,
+    "prompt_tokens_details": {
+      "cached_tokens": 6
+    },
+    "total_tokens": 1526
+  }
+}
