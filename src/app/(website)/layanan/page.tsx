@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
-import { SERVICES } from "./[service]/page";
+import { SERVICES } from "./services-data";
 
 export const metadata: Metadata = {
   title: "Layanan Klinik Gigi OMDC — Scaling, Behel, Implant, Whitening",
