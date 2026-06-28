@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion } from "framer-motion";
-import { AlertTriangle, RefreshCw, Home } from "lucide-react";
 
 export default function Error({
   error,
@@ -12,58 +10,127 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log to error tracking service (Sentry, etc.) in production
     console.error("[OMDC Error Boundary]", error);
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 p-6">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 12 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ type: "spring", stiffness: 220, damping: 22 }}
-        className="w-full max-w-md overflow-hidden rounded-3xl border border-pink-100 bg-white p-8 text-center shadow-soft-pink"
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "linear-gradient(135deg, #FCE7F3, #FBCFE8, #FCE7F3)",
+        padding: "1.5rem",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "28rem",
+          width: "100%",
+          background: "white",
+          borderRadius: "1.5rem",
+          padding: "2rem",
+          textAlign: "center",
+          boxShadow: "0 18px 40px -12px rgba(219,39,119,0.25)",
+          border: "1px solid #FBCFE8",
+        }}
       >
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.1, type: "spring", stiffness: 220, damping: 16 }}
-          className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-pink-500 text-white shadow-md"
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "4rem",
+            height: "4rem",
+            borderRadius: "1rem",
+            background: "linear-gradient(135deg, #FBBF24, #EC4899)",
+            color: "white",
+            fontSize: "2rem",
+            marginBottom: "1.25rem",
+          }}
         >
-          <AlertTriangle className="h-8 w-8" />
-        </motion.div>
-        <h1 className="mt-5 font-display text-2xl font-extrabold text-pink-950">
+          ⚠️
+        </div>
+        <h1
+          style={{
+            fontSize: "1.5rem",
+            fontWeight: 800,
+            color: "#831843",
+            margin: 0,
+          }}
+        >
           Oops! Ada yang salah
         </h1>
-        <p className="mt-2 text-sm leading-relaxed text-pink-950/65">
-          Maaf, terjadi kesalahan tak terduga. Tim kami sudah diberi notifikasi otomatis. Coba muat
-          ulang halaman, atau kembali ke beranda.
+        <p
+          style={{
+            marginTop: "0.5rem",
+            fontSize: "0.875rem",
+            lineHeight: 1.6,
+            color: "rgba(131,24,67,0.65)",
+          }}
+        >
+          Maaf, terjadi kesalahan tak terduga. Coba muat ulang halaman, atau
+          kembali ke beranda.
         </p>
 
         {process.env.NODE_ENV === "development" && (
-          <pre className="mt-4 overflow-x-auto rounded-xl bg-pink-50 p-3 text-left text-[11px] text-pink-950/70">
+          <pre
+            style={{
+              marginTop: "1rem",
+              padding: "0.75rem",
+              background: "#FDF2F8",
+              borderRadius: "0.75rem",
+              fontSize: "0.75rem",
+              textAlign: "left",
+              color: "rgba(131,24,67,0.7)",
+              overflowX: "auto",
+              whiteSpace: "pre-wrap",
+              wordBreak: "break-word",
+            }}
+          >
             {error.message}
             {error.digest ? `\nDigest: ${error.digest}` : ""}
           </pre>
         )}
 
-        <div className="mt-6 flex gap-2">
+        <div style={{ marginTop: "1.5rem", display: "flex", gap: "0.5rem" }}>
           <button
             onClick={reset}
-            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink-600 to-rose-500 px-5 py-3 text-sm font-bold text-white shadow-md"
+            style={{
+              flex: 1,
+              padding: "0.75rem",
+              borderRadius: "9999px",
+              border: "none",
+              background: "linear-gradient(to right, #DB2777, #F43F5E)",
+              color: "white",
+              fontSize: "0.875rem",
+              fontWeight: 700,
+              cursor: "pointer",
+            }}
           >
-            <RefreshCw className="h-4 w-4" />
-            Coba Lagi
+            🔄 Coba Lagi
           </button>
-          <a
-            href="/"
-            className="flex flex-1 items-center justify-center gap-2 rounded-full border border-pink-200 bg-white px-5 py-3 text-sm font-bold text-pink-700"
+          <button
+            onClick={() => {
+              window.location.href = "/";
+            }}
+            style={{
+              flex: 1,
+              padding: "0.75rem",
+              borderRadius: "9999px",
+              border: "1px solid #FBCFE8",
+              background: "white",
+              color: "#DB2777",
+              fontSize: "0.875rem",
+              fontWeight: 700,
+              cursor: "pointer",
+            }}
           >
-            <Home className="h-4 w-4" />
-            Beranda
-          </a>
+            🏠 Beranda
+          </button>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

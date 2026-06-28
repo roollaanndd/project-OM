@@ -428,6 +428,9 @@ export const useAppStore = create<AppState>()(
         records: state.records,
       }),
       version: 2,
+      // Skip auto-hydration to prevent SSR mismatch.
+      // Hydration is handled manually via useHasHydrated hook.
+      skipHydration: true,
       // Migrate from v1: reset view to website (was 'hub' in v1)
       migrate: (persistedState: any, version: number) => {
         if (version < 2 && persistedState) {
