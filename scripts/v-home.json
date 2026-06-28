@@ -1,0 +1,28 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Yes, it’s a mobile app home/dashboard screen. Visible elements: greeting (“Senyum sehat, genggam di tangan”), quick actions (Booking, Rekam Medis, Bayar, Chat Dokter), next appointment (Scaling & Polishing, 3 hari lagi), and a payment section (2 tagihan menunggu). No loyalty card is shown.",
+        "role": "assistant"
+      }
+    }
+  ],
+  "created": 1782672241,
+  "id": "20260629024354dee80d9eae884ba3",
+  "model": "glm-4.6v",
+  "object": "chat.completion",
+  "request_id": "20260629024354dee80d9eae884ba3",
+  "usage": {
+    "completion_tokens": 79,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 1011,
+    "prompt_tokens_details": {
+      "cached_tokens": 4
+    },
+    "total_tokens": 1090
+  }
+}

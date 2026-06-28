@@ -1,39 +1,51 @@
-import { Navbar } from "@/components/dental/navbar";
-import { Hero } from "@/components/dental/hero";
-import { About } from "@/components/dental/about";
-import { Services } from "@/components/dental/services";
-import { Features } from "@/components/dental/features";
-import { SmileGallery } from "@/components/dental/smile-gallery";
-import { Doctors } from "@/components/dental/doctors";
-import { Testimonials } from "@/components/dental/testimonials";
-import { Pricing } from "@/components/dental/pricing";
-import { FAQ } from "@/components/dental/faq";
-import { Booking } from "@/components/dental/booking";
-import { Footer } from "@/components/dental/footer";
-import { SplashScreen } from "@/components/dental/splash-screen";
-import { ScrollProgress } from "@/components/dental/loading";
-import { FloatingActions } from "@/components/dental/floating-actions";
+"use client";
+
+import { AnimatePresence, motion } from "framer-motion";
+import { useAppStore } from "@/lib/app-store";
+import { HubLauncher } from "@/components/hub/launcher";
+import { WebsiteView } from "@/components/hub/website-view";
+import { MobileApp } from "@/components/hub/mobile-app";
 
 export default function Home() {
+  const { view } = useAppStore();
+
   return (
-    <div className="relative flex min-h-screen flex-col bg-background">
-      <SplashScreen />
-      <ScrollProgress />
-      <Navbar />
-      <main className="flex-1">
-        <Hero />
-        <About />
-        <Services />
-        <Features />
-        <SmileGallery />
-        <Doctors />
-        <Testimonials />
-        <Pricing />
-        <FAQ />
-        <Booking />
-      </main>
-      <Footer />
-      <FloatingActions />
-    </div>
+    <AnimatePresence mode="wait">
+      {view === "hub" && (
+        <motion.div
+          key="hub"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <HubLauncher />
+        </motion.div>
+      )}
+
+      {view === "website" && (
+        <motion.div
+          key="website"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.98 }}
+          transition={{ duration: 0.3 }}
+        >
+          <WebsiteView />
+        </motion.div>
+      )}
+
+      {view === "app" && (
+        <motion.div
+          key="app"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.98 }}
+          transition={{ duration: 0.3 }}
+        >
+          <MobileApp />
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
