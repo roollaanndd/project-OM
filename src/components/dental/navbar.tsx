@@ -11,8 +11,9 @@ const NAV_ITEMS = [
   { label: "Tentang", href: "#about" },
   { label: "Layanan", href: "#services" },
   { label: "Dokter", href: "#doctors" },
+  { label: "Galeri", href: "#gallery" },
   { label: "Harga", href: "#pricing" },
-  { label: "Kontak", href: "#contact" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 export function Navbar() {

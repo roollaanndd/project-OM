@@ -4,6 +4,28 @@ import { motion } from "framer-motion";
 import { Star, ShieldCheck, Sparkles, Phone, CalendarCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroIllustration } from "./hero-illustration";
+import { useCountUp } from "./use-count-up";
+
+function StatItem({
+  value,
+  suffix,
+  label,
+}: {
+  value: number;
+  suffix: string;
+  label: string;
+}) {
+  const { ref, value: animated } = useCountUp(value);
+  return (
+    <div>
+      <dt className="text-2xl font-bold text-pink-700 sm:text-3xl">
+        <span ref={ref}>{animated.toLocaleString("id-ID")}</span>
+        <span>{suffix}</span>
+      </dt>
+      <dd className="mt-1 text-xs text-foreground/60 sm:text-sm">{label}</dd>
+    </div>
+  );
+}
 
 export function Hero() {
   return (
@@ -85,18 +107,9 @@ export function Hero() {
 
           {/* Trust stats */}
           <dl className="mt-10 grid grid-cols-3 gap-3 border-t border-pink-100 pt-6 text-center lg:text-left">
-            <div>
-              <dt className="text-2xl font-bold text-pink-700 sm:text-3xl">10rb+</dt>
-              <dd className="mt-1 text-xs text-foreground/60 sm:text-sm">Pasien Bahagia</dd>
-            </div>
-            <div>
-              <dt className="text-2xl font-bold text-pink-700 sm:text-3xl">9+</dt>
-              <dd className="mt-1 text-xs text-foreground/60 sm:text-sm">Tahun Pengalaman</dd>
-            </div>
-            <div>
-              <dt className="text-2xl font-bold text-pink-700 sm:text-3xl">12</dt>
-              <dd className="mt-1 text-xs text-foreground/60 sm:text-sm">Dokter Spesialis</dd>
-            </div>
+            <StatItem value={10} suffix="rb+" label="Pasien Bahagia" />
+            <StatItem value={9} suffix="+" label="Tahun Pengalaman" />
+            <StatItem value={12} suffix="" label="Dokter Spesialis" />
           </dl>
 
           {/* Inline trust row */}
