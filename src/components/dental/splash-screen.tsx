@@ -32,16 +32,26 @@ export function SplashScreen() {
     // Hide after the animation completes + a small breath
     const hideTimer = window.setTimeout(() => setVisible(false), 2200);
 
-    // Lock body scroll while splash is visible
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
     return () => {
       cancelAnimationFrame(raf);
       clearTimeout(hideTimer);
-      document.body.style.overflow = prev;
     };
   }, []);
+
+  // Ensure body scroll is never locked by splash (position:fixed overlay
+  // doesn't need body lock). This is a safety net in case any previous
+  // state left body overflow:hidden.
+  useEffect(() => {
+    const restore = () => {
+      if (document.body.style.overflow === "hidden") {
+        document.body.style.overflow = "";
+      }
+    };
+    // Restore immediately on mount
+    restore();
+    // Also restore when splash becomes invisible
+    if (!visible) restore();
+  }, [visible]);
 
   return (
     <AnimatePresence>
