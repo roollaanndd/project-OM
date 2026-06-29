@@ -161,8 +161,21 @@ export function proxy(req: NextRequest) {
   if (["POST", "PUT", "PATCH", "DELETE"].includes(req.method) && pathname.startsWith("/api/")) {
     const origin = req.headers.get("origin");
     const host = req.headers.get("host");
-    // Allow same-origin only (or when origin matches host)
-    if (origin && host && !origin.includes(host)) {
+
+    // Allowed origins for native apps (Capacitor)
+    const NATIVE_ORIGINS = [
+      "capacitor://", // iOS Capacitor
+      "http://localhost", // Android Capacitor webview
+      "ionic://", // Ionic
+    ];
+
+    // Allow if: same-origin, OR native app origin, OR no origin (mobile apps)
+    const isSameOrigin = !origin || !host || origin.includes(host);
+    const isNativeApp = origin
+      ? NATIVE_ORIGINS.some((o) => origin.startsWith(o))
+      : req.headers.get("x-omdc-platform") === "capacitor-app";
+
+    if (!isSameOrigin && !isNativeApp) {
       return NextResponse.json(
         { ok: false, error: "CSRF check failed", message: "Origin tidak valid" },
         { status: 403 },
