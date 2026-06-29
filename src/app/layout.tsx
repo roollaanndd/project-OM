@@ -3,6 +3,8 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { PwaController } from "@/components/pwa/pwa-controller";
+import { ThemeProvider } from "@/components/shared/theme-provider";
+import { AccessibilityHelpers } from "@/components/shared/accessibility";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -214,9 +216,7 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <head>
-        {/* PWA manifest kept for installability, but service worker is disabled
-            during development to prevent stale cache issues. */}
-        {/* <link rel="manifest" href="/manifest.webmanifest" /> */}
+        <link rel="manifest" href="/manifest.webmanifest" />
         <meta name="application-name" content="OMDC" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -238,7 +238,8 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} font-sans antialiased bg-background text-foreground`}
       >
-        {children}
+        <AccessibilityHelpers />
+        <ThemeProvider>{children}</ThemeProvider>
         <Toaster />
         <PwaController />
       </body>

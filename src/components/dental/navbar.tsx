@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useAppStore } from "@/lib/app-store";
 import { OmdcLogo } from "./logo";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
 
 const NAV_ITEMS = [
   { label: "Beranda", href: "#home" },
@@ -66,11 +67,12 @@ export function Navbar() {
           </a>
           <button
             onClick={() => useAppStore.getState().setView("app")}
-            className="inline-flex items-center gap-1.5 rounded-full border border-fuchsia-200 bg-fuchsia-50/80 px-4 py-2 text-sm font-semibold text-fuchsia-700 transition-colors hover:bg-fuchsia-100"
+            className="inline-flex items-center gap-1.5 rounded-full border border-fuchsia-200 bg-fuchsia-50/80 px-4 py-2 text-sm font-semibold text-fuchsia-700 transition-colors hover:bg-fuchsia-100 dark:border-fuchsia-800 dark:bg-fuchsia-950/40 dark:text-fuchsia-300"
           >
             <Smartphone className="h-4 w-4" />
             Patient App
           </button>
+          <ThemeToggle />
           <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-pink-600 to-pink-500 px-5 text-white shadow-soft-pink hover:from-pink-700 hover:to-pink-600">
             <a href="#booking">
               <CalendarCheck className="mr-1.5 h-4 w-4" />

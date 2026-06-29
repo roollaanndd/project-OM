@@ -30,45 +30,57 @@ export function PwaController() {
   const [notifPerm, setNotifPerm] = useState<PermissionStatus["state"] | "unsupported">("unsupported");
   const [showOffline, setShowOffline] = useState(false);
 
-  // 1. Force-unregister ALL service workers (disable PWA caching for now
-  //    to eliminate stale-cache issues that cause error boundary).
-  //    PWA will be re-enabled in production deployment.
+  // 1. Register service worker with proper cache-busting strategy.
+  //    PWA is now safe to enable because:
+  //    - SW version is bumped on every deploy
+  //    - Old caches are aggressively cleaned
+  //    - updateViaCache: 'none' ensures fresh SW script
+  //    - Auto-reload on controller change
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (!("serviceWorker" in navigator)) return;
 
-    const cleanup = async () => {
+    const setup = async () => {
       try {
-        // Unregister ALL service workers
-        const regs = await navigator.serviceWorker.getRegistrations();
-        for (const reg of regs) {
-          await reg.unregister();
-          console.log("[PWA] Unregistered SW:", reg.active?.scriptURL ?? "unknown");
-        }
-
-        // Delete ALL caches
+        // Clean up any stale caches from previous SW versions
         const cacheKeys = await caches.keys();
-        for (const key of cacheKeys) {
-          await caches.delete(key);
-          console.log("[PWA] Deleted cache:", key);
-        }
+        await Promise.all(
+          cacheKeys
+            .filter((k) => k.startsWith("omdc-") && !k.includes("v1.2.0"))
+            .map((k) => caches.delete(k)),
+        );
 
-        // Clear localStorage except auth state (to keep user logged in)
-        const keepKeys = ["omdc-store-v4"];
-        const keysToRemove: string[] = [];
-        for (let i = 0; i < localStorage.length; i++) {
-          const k = localStorage.key(i);
-          if (k && !keepKeys.includes(k)) keysToRemove.push(k);
-        }
-        keysToRemove.forEach((k) => localStorage.removeItem(k));
+        // Register SW with aggressive update settings
+        const reg = await navigator.serviceWorker.register("/sw.js", {
+          scope: "/",
+          updateViaCache: "none",
+        });
 
-        console.log("[PWA] Cleanup complete — SW disabled, caches cleared");
+        reg.addEventListener("updatefound", () => {
+          const newWorker = reg.installing;
+          if (!newWorker) return;
+          newWorker.addEventListener("statechange", () => {
+            if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+              // Auto-apply update immediately
+              newWorker.postMessage("SKIP_WAITING");
+              setUpdateWaiting(true);
+            }
+          });
+        });
+
+        // Check for updates every 10 minutes
+        setInterval(() => reg.update(), 10 * 60 * 1000);
       } catch (err) {
-        console.warn("[PWA] Cleanup failed:", err);
+        console.warn("[PWA] SW registration failed:", err);
       }
     };
 
-    cleanup();
+    setup();
+
+    // Auto-reload when new SW takes over
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      window.location.reload();
+    });
   }, []);
 
   // 2. Detect standalone mode (deferred to avoid synchronous setState in effect)

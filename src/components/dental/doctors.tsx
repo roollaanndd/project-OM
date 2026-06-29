@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { GraduationCap, Award, Star, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -120,11 +121,13 @@ export function Doctors() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   {doc.photo ? (
                     <div className="relative h-full w-full">
-                      <img
+                      <Image
                         src={doc.photo}
                         alt={`Foto ${doc.name}`}
-                        className="h-full w-full object-cover"
-                        loading="lazy"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                        priority={i < 2}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     </div>

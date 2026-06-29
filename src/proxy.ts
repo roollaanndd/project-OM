@@ -54,10 +54,12 @@ if (typeof globalThis !== "undefined") {
 
 // ============ Security headers ============
 function buildSecurityHeaders(req: NextRequest) {
-  const isDev = process.env.NODE_ENV === "development";
+  const isProd = process.env.NODE_ENV === "production";
   const cspDirectives = [
     `default-src 'self'`,
-    `script-src 'self' 'unsafe-inline' 'unsafe-eval' 'unsafe-hashes'`,
+    // Production: remove 'unsafe-eval' (Next.js prod doesn't need it)
+    // Dev: keep 'unsafe-eval' for HMR
+    `script-src 'self' 'unsafe-inline'${isProd ? "" : " 'unsafe-eval'"} 'unsafe-hashes'`,
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`,
     `font-src 'self' https://fonts.gstatic.com data:`,
     `img-src 'self' data: blob: https:`,
@@ -68,8 +70,8 @@ function buildSecurityHeaders(req: NextRequest) {
     `base-uri 'self'`,
     `object-src 'none'`,
     `upgrade-insecure-requests`,
-    // NOTE: 'require-trusted-types-for' would block Next.js script injection.
-    // Re-enable in production only after setting up a Trusted Types policy.
+    // Production only: additional restrictions
+    ...(isProd ? [`block-all-mixed-content`] : []),
   ]
     .filter(Boolean)
     .join("; ");

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import type { CmsRole } from "@/lib/app-store";
@@ -78,6 +78,33 @@ export function CmsShell({
   const { cmsUser, setCmsAuth, clinicSettings } = useAppStore();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+
+  // Session timeout: auto-logout after 30 minutes of inactivity
+  useEffect(() => {
+    if (!cmsUser) return;
+    const TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const resetTimeout = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        // Auto-logout on timeout
+        setCmsAuth(false);
+        useAppStore.getState().setView("website");
+        alert("Sesi Anda telah berakhir karena tidak ada aktivitas selama 30 menit. Silakan login kembali.");
+      }, TIMEOUT_MS);
+    };
+
+    // Activity events that reset the timer
+    const events = ["mousedown", "keydown", "scroll", "touchstart"];
+    events.forEach((e) => window.addEventListener(e, resetTimeout, { passive: true }));
+    resetTimeout();
+
+    return () => {
+      clearTimeout(timeoutId);
+      events.forEach((e) => window.removeEventListener(e, resetTimeout));
+    };
+  }, [cmsUser, setCmsAuth]);
 
   if (!cmsUser) return null;
 

@@ -117,6 +117,7 @@ export interface DoctorWithPhoto {
 }
 
 export type AppVersion = "v1.5.0" | "v2.0.0";
+export type ThemeMode = "light" | "dark";
 
 interface AppState {
   // Top-level view
@@ -124,6 +125,11 @@ interface AppState {
 
   // App version (for rollback capability)
   appVersion: AppVersion;
+
+  // Theme
+  theme: ThemeMode;
+  setTheme: (t: ThemeMode) => void;
+  toggleTheme: () => void;
 
   // App auth
   isAuthenticated: boolean;
@@ -339,6 +345,9 @@ export const useAppStore = create<AppState>()(
     (set, get) => ({
   view: "website",
   appVersion: "v2.0.0",
+  theme: "light",
+  setTheme: (t) => set({ theme: t }),
+  toggleTheme: () => set((s) => ({ theme: s.theme === "light" ? "dark" : "light" })),
   isAuthenticated: false,
   activeTab: "home",
   previousTab: null,
@@ -500,6 +509,7 @@ export const useAppStore = create<AppState>()(
       // Only persist data, not transient UI state
       partialize: (state) => ({
         appVersion: state.appVersion,
+        theme: state.theme,
         appointments: state.appointments,
         bills: state.bills,
         transactions: state.transactions,

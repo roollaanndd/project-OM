@@ -10,6 +10,7 @@ import { Services } from "@/components/dental/services";
 import { SplashScreen } from "@/components/dental/splash-screen";
 import { ScrollProgress } from "@/components/dental/loading";
 import { FloatingActions } from "@/components/dental/floating-actions";
+import { SectionSkeleton } from "@/components/shared/skeletons";
 
 // Lazy-load below-the-fold sections for faster initial render
 const Features = lazy(() => import("@/components/dental/features").then((m) => ({ default: m.Features })));
@@ -21,22 +22,6 @@ const FAQ = lazy(() => import("@/components/dental/faq").then((m) => ({ default:
 const Booking = lazy(() => import("@/components/dental/booking").then((m) => ({ default: m.Booking })));
 const Footer = lazy(() => import("@/components/dental/footer").then((m) => ({ default: m.Footer })));
 
-function SectionSkeleton() {
-  return (
-    <div className="py-20">
-      <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="mx-auto h-6 w-48 animate-pulse rounded-full bg-pink-100" />
-        <div className="mx-auto mt-4 h-10 w-72 animate-pulse rounded-full bg-pink-100" />
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[...Array(3)].map((_, i) => (
-            <div key={i} className="h-48 animate-pulse rounded-3xl bg-pink-100" />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function WebsiteView() {
   const { appVersion } = useAppStore();
   const isV2 = appVersion === "v2.0.0";
@@ -47,7 +32,7 @@ export function WebsiteView() {
       <ScrollProgress />
       <Navbar />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {isV2 ? <HeroV2 /> : <Hero />}
         <About />
         <Services />

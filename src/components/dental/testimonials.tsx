@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Star, Quote } from "lucide-react";
 
 type Review = {
@@ -126,12 +127,15 @@ export function Testimonials() {
 
               <div className="mt-5 flex items-center gap-3 border-t border-pink-100 pt-4">
                 {r.photo ? (
-                  <img
-                    src={r.photo}
-                    alt={`Foto ${r.name}`}
-                    className="h-11 w-11 rounded-full object-cover shadow-sm ring-2 ring-pink-100"
-                    loading="lazy"
-                  />
+                  <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full shadow-sm ring-2 ring-pink-100">
+                    <Image
+                      src={r.photo}
+                      alt={`Foto ${r.name}`}
+                      fill
+                      className="object-cover"
+                      sizes="44px"
+                    />
+                  </div>
                 ) : (
                   <div
                     className={`flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br ${r.gradient} text-sm font-bold text-white shadow-sm`}
