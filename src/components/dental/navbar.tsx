@@ -13,8 +13,8 @@ const NAV_ITEMS = [
   { label: "Tentang", href: "/tentang" },
   { label: "Layanan", href: "/layanan" },
   { label: "Dokter", href: "/dokter" },
+  { label: "Blog", href: "/blog" },
   { label: "Harga", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
   { label: "Kontak", href: "/kontak" },
 ];
 

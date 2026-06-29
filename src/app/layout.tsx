@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { PwaController } from "@/components/pwa/pwa-controller";
 import { ClientProviders } from "@/components/shared/client-providers";
+import { Analytics } from "@/components/shared/analytics";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -240,6 +241,7 @@ export default function RootLayout({
         <ClientProviders>{children}</ClientProviders>
         <Toaster />
         <PwaController />
+        <Analytics />
       </body>
     </html>
   );
