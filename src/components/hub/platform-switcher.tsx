@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAppStore } from "@/lib/app-store";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Globe,
   Smartphone,
@@ -22,6 +22,7 @@ const PLATFORMS: {
   desc: string;
   icon: typeof Globe;
   color: string;
+  route: string;
 }[] = [
   {
     id: "website",
@@ -29,6 +30,7 @@ const PLATFORMS: {
     desc: "Halaman marketing klinik",
     icon: Globe,
     color: "from-pink-500 to-rose-500",
+    route: "/",
   },
   {
     id: "app",
@@ -36,6 +38,7 @@ const PLATFORMS: {
     desc: "Aplikasi pasien (booking, rekam medis, bayar)",
     icon: Smartphone,
     color: "from-rose-500 to-fuchsia-600",
+    route: "/app",
   },
   {
     id: "kiosk",
@@ -43,6 +46,7 @@ const PLATFORMS: {
     desc: "Self-service kiosk di klinik",
     icon: Monitor,
     color: "from-fuchsia-500 to-pink-600",
+    route: "/kiosk",
   },
   {
     id: "cms",
@@ -50,14 +54,38 @@ const PLATFORMS: {
     desc: "Dashboard staff (login multi-role)",
     icon: LayoutDashboard,
     color: "from-pink-600 to-rose-700",
+    route: "/cms",
   },
 ];
 
 export function PlatformSwitcher() {
-  const { view, setView } = useAppStore();
+  const pathname = usePathname();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
 
-  const current = PLATFORMS.find((p) => p.id === view) ?? PLATFORMS[0];
+  // Determine current platform from URL
+  const currentPlatform: Platform = pathname.startsWith("/app")
+    ? "app"
+    : pathname.startsWith("/kiosk")
+      ? "kiosk"
+      : pathname.startsWith("/cms")
+        ? "cms"
+        : "website";
+
+  const current = PLATFORMS.find((p) => p.id === currentPlatform) ?? PLATFORMS[0];
+
+  // Hide on kiosk and CMS (full-screen experiences)
+  if (currentPlatform === "kiosk" || currentPlatform === "cms") {
+    return null;
+  }
+
+  const handleSwitch = (platform: Platform) => {
+    const target = PLATFORMS.find((p) => p.id === platform);
+    if (target) {
+      router.push(target.route);
+      setOpen(false);
+    }
+  };
 
   return (
     <>
@@ -71,7 +99,7 @@ export function PlatformSwitcher() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 16, scale: 0.95 }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="w-72 overflow-hidden rounded-3xl border border-pink-200 bg-white shadow-soft-pink"
+              className="w-72 overflow-hidden rounded-3xl border border-pink-200 bg-white shadow-soft-pink dark:border-pink-800 dark:bg-pink-950"
             >
               {/* Header */}
               <div className="flex items-center justify-between bg-gradient-to-r from-pink-600 to-rose-500 px-4 py-3 text-white">
@@ -93,17 +121,14 @@ export function PlatformSwitcher() {
               {/* Platform list */}
               <div className="p-2">
                 {PLATFORMS.map((p) => {
-                  const active = view === p.id;
+                  const active = currentPlatform === p.id;
                   return (
                     <button
                       key={p.id}
-                      onClick={() => {
-                        setView(p.id);
-                        setOpen(false);
-                      }}
+                      onClick={() => handleSwitch(p.id)}
                       className={cn(
                         "flex w-full items-center gap-3 rounded-2xl p-2.5 text-left transition-colors",
-                        active ? "bg-pink-50" : "hover:bg-pink-50/60",
+                        active ? "bg-pink-50 dark:bg-pink-900/40" : "hover:bg-pink-50/60 dark:hover:bg-pink-900/20",
                       )}
                     >
                       <div
@@ -116,17 +141,17 @@ export function PlatformSwitcher() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-sm font-bold text-pink-950">{p.label}</span>
+                          <span className="text-sm font-bold text-pink-950 dark:text-pink-100">{p.label}</span>
                           {active && (
                             <span className="rounded-full bg-pink-600 px-1.5 py-0.5 text-[9px] font-bold text-white">
                               AKTIF
                             </span>
                           )}
                         </div>
-                        <div className="truncate text-[11px] text-pink-950/55">{p.desc}</div>
+                        <div className="truncate text-[11px] text-pink-950/55 dark:text-pink-200/60">{p.desc}</div>
                       </div>
                       {!active && (
-                        <ArrowRight className="h-4 w-4 shrink-0 text-pink-950/30" />
+                        <ArrowRight className="h-4 w-4 shrink-0 text-pink-950/30 dark:text-pink-200/30" />
                       )}
                     </button>
                   );
@@ -134,7 +159,7 @@ export function PlatformSwitcher() {
               </div>
 
               {/* Footer hint */}
-              <div className="border-t border-pink-100 px-4 py-2 text-center text-[10px] text-pink-950/45">
+              <div className="border-t border-pink-100 px-4 py-2 text-center text-[10px] text-pink-950/45 dark:border-pink-900/40 dark:text-pink-200/40">
                 💡 Akses cepat semua platform dari sini
               </div>
             </motion.div>

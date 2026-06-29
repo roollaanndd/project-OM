@@ -74,13 +74,13 @@ export function KioskShell({ children }: { children: ReactNode }) {
         </div>
       </div>
 
-      {/* Back to hub button (floating, for demo navigation) */}
-      <button
-        onClick={() => useAppStore.getState().setView("hub")}
+      {/* Back to website button (floating, for demo navigation) */}
+      <a
+        href="/"
         className="fixed bottom-4 left-4 z-50 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white backdrop-blur-md hover:bg-white/20"
       >
-        ← Kembali ke Hub
-      </button>
+        ← Kembali ke Website
+      </a>
     </div>
   );
 }

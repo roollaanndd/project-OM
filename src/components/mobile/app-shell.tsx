@@ -106,15 +106,15 @@ export function AppShell({
           ))}
         </ul>
 
-        <button
-          onClick={() => useAppStore.getState().setView("hub")}
+        <a
+          href="/"
           className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-pink-300 bg-white/70 px-4 py-2 text-sm font-semibold text-pink-700 transition-colors hover:bg-pink-50"
         >
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M9 12L5 7l4-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          Kembali ke Hub
-        </button>
+          Kembali ke Website
+        </a>
       </aside>
 
       {/* Phone frame */}

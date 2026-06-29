@@ -107,13 +107,13 @@ export function CmsLogin() {
       </div>
 
       {/* Back button */}
-      <button
-        onClick={() => useAppStore.getState().setView("hub")}
+      <a
+        href="/"
         className="fixed left-4 top-4 z-50 flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white backdrop-blur-md hover:bg-white/20"
       >
         <ChevronLeft className="h-3.5 w-3.5" />
-        Kembali ke Hub
-      </button>
+        Kembali ke Website
+      </a>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}

@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Menu, X, Phone, CalendarCheck, Smartphone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useAppStore } from "@/lib/app-store";
 import { OmdcLogo } from "./logo";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 
@@ -19,6 +19,7 @@ const NAV_ITEMS = [
 ];
 
 export function Navbar() {
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -66,7 +67,7 @@ export function Navbar() {
             +62 812-3456-7890
           </a>
           <button
-            onClick={() => useAppStore.getState().setView("app")}
+            onClick={() => router.push("/app")}
             className="inline-flex items-center gap-1.5 rounded-full border border-fuchsia-200 bg-fuchsia-50/80 px-4 py-2 text-sm font-semibold text-fuchsia-700 transition-colors hover:bg-fuchsia-100 dark:border-fuchsia-800 dark:bg-fuchsia-950/40 dark:text-fuchsia-300"
           >
             <Smartphone className="h-4 w-4" />
@@ -137,7 +138,7 @@ export function Navbar() {
           <div className="mt-2 space-y-2 px-4">
             <button
               onClick={() => {
-                useAppStore.getState().setView("app");
+                router.push("/app");
                 setOpen(false);
               }}
               className="flex w-full items-center justify-center gap-2 rounded-2xl border border-fuchsia-200 bg-fuchsia-50/80 px-4 py-3 text-sm font-semibold text-fuchsia-700"

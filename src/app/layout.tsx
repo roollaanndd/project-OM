@@ -3,8 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { PwaController } from "@/components/pwa/pwa-controller";
-import { ThemeProvider } from "@/components/shared/theme-provider";
-import { AccessibilityHelpers } from "@/components/shared/accessibility";
+import { ClientProviders } from "@/components/shared/client-providers";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -238,8 +237,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} font-sans antialiased bg-background text-foreground`}
       >
-        <AccessibilityHelpers />
-        <ThemeProvider>{children}</ThemeProvider>
+        <ClientProviders>{children}</ClientProviders>
         <Toaster />
         <PwaController />
       </body>
