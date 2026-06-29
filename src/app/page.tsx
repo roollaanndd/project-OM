@@ -9,6 +9,7 @@ import { MobileApp } from "@/components/hub/mobile-app";
 import { KioskApp } from "@/components/kiosk/kiosk-app";
 import { CmsApp } from "@/components/cms/cms-app";
 import { PlatformSwitcher } from "@/components/hub/platform-switcher";
+import { VersionSwitcher } from "@/components/hub/version-switcher";
 
 function LoadingScreen() {
   return (
@@ -132,6 +133,9 @@ export default function Home() {
 
       {/* Global platform switcher — available on all views except CMS login & Kiosk */}
       {view !== "kiosk" && view !== "cms" && <PlatformSwitcher />}
+
+      {/* Version switcher with rollback capability */}
+      {view !== "kiosk" && view !== "cms" && <VersionSwitcher />}
     </>
   );
 }

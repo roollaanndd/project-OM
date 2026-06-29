@@ -116,9 +116,14 @@ export interface DoctorWithPhoto {
   branchIds?: string[]; // which branches this doctor works at
 }
 
+export type AppVersion = "v1.5.0" | "v2.0.0";
+
 interface AppState {
   // Top-level view
   view: ViewMode;
+
+  // App version (for rollback capability)
+  appVersion: AppVersion;
 
   // App auth
   isAuthenticated: boolean;
@@ -155,6 +160,7 @@ interface AppState {
 
   // Actions
   setView: (v: ViewMode) => void;
+  setAppVersion: (v: AppVersion) => void;
   setAuthenticated: (v: boolean) => void;
   setActiveTab: (t: AppState["activeTab"]) => void;
   setSelectedPatientId: (id: string) => void;
@@ -332,6 +338,7 @@ export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
   view: "website",
+  appVersion: "v2.0.0",
   isAuthenticated: false,
   activeTab: "home",
   previousTab: null,
@@ -357,6 +364,7 @@ export const useAppStore = create<AppState>()(
   toasts: [],
 
   setView: (v) => set({ view: v }),
+  setAppVersion: (v) => set({ appVersion: v }),
   setAuthenticated: (v) => set({ isAuthenticated: v }),
   setActiveTab: (t) => set((s) => ({ previousTab: s.activeTab, activeTab: t })),
   setSelectedPatientId: (id) => set({ selectedPatientId: id }),
@@ -455,6 +463,7 @@ export const useAppStore = create<AppState>()(
   reset: () =>
     set({
       view: "website",
+      appVersion: "v2.0.0",
       isAuthenticated: false,
       activeTab: "home",
       previousTab: null,
@@ -476,7 +485,7 @@ export const useAppStore = create<AppState>()(
     }),
     }),
     {
-      name: "omdc-store-v3",
+      name: "omdc-store-v4",
       storage: createJSONStorage(() => {
         // Guard for SSR — return a noop storage on server
         if (typeof window === "undefined") {
@@ -490,6 +499,7 @@ export const useAppStore = create<AppState>()(
       }),
       // Only persist data, not transient UI state
       partialize: (state) => ({
+        appVersion: state.appVersion,
         appointments: state.appointments,
         bills: state.bills,
         transactions: state.transactions,
@@ -502,7 +512,7 @@ export const useAppStore = create<AppState>()(
         records: state.records,
         selectedBranchId: state.selectedBranchId,
       }),
-      version: 3,
+      version: 4,
       // Skip auto-hydration to prevent SSR mismatch.
       // Hydration is handled manually via useHasHydrated hook.
       skipHydration: true,
@@ -512,10 +522,12 @@ export const useAppStore = create<AppState>()(
           persistedState.view = "website";
         }
         if (version < 3 && persistedState) {
-          // Reset doctors to include new photo & branchIds fields
           persistedState.doctors = undefined;
           persistedState.branches = undefined;
           persistedState.selectedBranchId = "b1";
+        }
+        if (version < 4 && persistedState) {
+          persistedState.appVersion = "v2.0.0";
         }
         return persistedState;
       },

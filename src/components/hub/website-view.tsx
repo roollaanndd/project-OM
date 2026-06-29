@@ -1,8 +1,10 @@
 "use client";
 
 import { lazy, Suspense } from "react";
+import { useAppStore } from "@/lib/app-store";
 import { Navbar } from "@/components/dental/navbar";
 import { Hero } from "@/components/dental/hero";
+import { HeroV2 } from "@/components/dental/hero-v2";
 import { About } from "@/components/dental/about";
 import { Services } from "@/components/dental/services";
 import { SplashScreen } from "@/components/dental/splash-screen";
@@ -36,14 +38,17 @@ function SectionSkeleton() {
 }
 
 export function WebsiteView() {
+  const { appVersion } = useAppStore();
+  const isV2 = appVersion === "v2.0.0";
+
   return (
-    <div className="relative flex min-h-screen flex-col bg-background">
+    <div className={isV2 ? "relative flex min-h-screen flex-col mesh-gradient-1" : "relative flex min-h-screen flex-col bg-background"}>
       <SplashScreen />
       <ScrollProgress />
       <Navbar />
 
       <main className="flex-1">
-        <Hero />
+        {isV2 ? <HeroV2 /> : <Hero />}
         <About />
         <Services />
         <Suspense fallback={<SectionSkeleton />}>
