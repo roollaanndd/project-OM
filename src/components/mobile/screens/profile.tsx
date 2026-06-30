@@ -349,7 +349,7 @@ function SubProfileView({ view, onBack }: { view: SubView; onBack: () => void })
                   </div>
                 </div>
 
-                {user.familyMembers.map((fam) => (
+                {user.familyMembers.map((fam, i) => (
                   <motion.div
                     key={fam.id}
                     initial={{ opacity: 0, x: 12 }}

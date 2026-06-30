@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { db } from "@/lib/db";
+import { checkAuth } from "@/lib/auth";
 
 // GET /api/payments — list transactions
 export async function GET(req: NextRequest) {
+  const auth = await checkAuth(req);
+  if (!auth.ok) return auth.response;
+
   try {
     const { searchParams } = new URL(req.url);
     const status = searchParams.get("status");
@@ -35,6 +39,9 @@ const PaymentSchema = z.object({
 
 // POST /api/payments — create payment
 export async function POST(req: NextRequest) {
+  const auth = await checkAuth(req);
+  if (!auth.ok) return auth.response;
+
   try {
     const body = await req.json();
     const parsed = PaymentSchema.safeParse(body);

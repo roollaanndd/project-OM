@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { checkAuth } from "@/lib/auth";
 
 // GET /api/patients/[id] — get patient by ID with bookings & payments
 export async function GET(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const auth = await checkAuth(req);
+  if (!auth.ok) return auth.response;
+
   try {
     const { id } = await params;
     const patient = await db.patient.findUnique({
@@ -29,9 +33,12 @@ export async function GET(
 
 // DELETE /api/patients/[id] — delete patient
 export async function DELETE(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
+  const auth = await checkAuth(req);
+  if (!auth.ok) return auth.response;
+
   try {
     const { id } = await params;
     await db.patient.delete({ where: { id } });

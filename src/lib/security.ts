@@ -189,13 +189,13 @@ export function auditLog(action: AuditAction, meta: Record<string, unknown> = {}
   };
   // Never include raw PII in logs — sanitize first
   if (process.env.NODE_ENV === "production") {
-    // In production, send to external logging service
-    // TODO: Replace with Sentry/Datadog when configured
+    // Production: structured logging to stdout (parseable by log aggregators)
+    // When Sentry/Datadog is configured, replace with their SDK calls
     if (typeof window === "undefined") {
-      // Server-side: use structured logging
       process.stdout.write(JSON.stringify({ level: "audit", ...entry }) + "\n");
     }
   } else {
+    // Development: human-readable console output
     console.log(`[audit] ${action}`, meta);
   }
 }

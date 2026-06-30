@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import type { CmsRole } from "@/lib/app-store";
+import { useFocusTrap, useEscapeKey } from "@/lib/hooks/use-a11y";
 import {
   LayoutDashboard,
   Users,
@@ -78,6 +79,11 @@ export function CmsShell({
   const { cmsUser, setCmsAuth, clinicSettings } = useAppStore();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+
+  // Accessibility: focus trap + escape for mobile sidebar
+  useFocusTrap(sidebarRef, sidebarOpen);
+  useEscapeKey(() => setSidebarOpen(false), sidebarOpen);
 
   // Session timeout: auto-logout after 30 minutes of inactivity
   useEffect(() => {
@@ -122,6 +128,9 @@ export function CmsShell({
     <div className="flex min-h-screen bg-pink-50/40">
       {/* Sidebar */}
       <aside
+        ref={sidebarRef}
+        role="navigation"
+        aria-label="Sidebar navigasi CMS"
         className={cn(
           "fixed inset-y-0 left-0 z-50 w-64 transform border-r border-pink-100 bg-white transition-transform duration-300 lg:static lg:translate-x-0",
           sidebarOpen ? "translate-x-0" : "-translate-x-full",

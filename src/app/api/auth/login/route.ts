@@ -32,10 +32,10 @@ export async function POST(req: NextRequest) {
     });
 
     if (cmsUser?.passwordHash) {
-      // Real auth: verify password hash
-      // TODO: Implement verifyPassword from security.ts when auth is fully set up
-      // For now, check if password matches a known dev password
-      if (password === "admin123" || password === cmsUser.passwordHash) {
+      // Real auth: verify password hash using PBKDF2
+      const { verifyPassword } = await import("@/lib/security");
+      const isValid = await verifyPassword(password, cmsUser.passwordHash);
+      if (isValid) {
         auditLog("auth.login", { userId: cmsUser.id, email });
         return NextResponse.json({
           ok: true,

@@ -240,6 +240,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        <noscript>
+          <meta httpEquiv="refresh" content="0;url=/noscript" />
+        </noscript>
       </head>
       <body
         className={`${inter.variable} ${poppins.variable} font-sans antialiased bg-background text-foreground`}

@@ -185,7 +185,7 @@ export function proxy(req: NextRequest) {
 
   // 4. Build response with security headers
   const res = NextResponse.next();
-  const securityHeaders = buildSecurityHeaders(req);
+  const securityHeaders = buildSecurityHeaders();
 
   for (const [key, value] of Object.entries(securityHeaders)) {
     res.headers.set(key, value);

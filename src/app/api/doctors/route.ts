@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { checkAuth } from "@/lib/auth";
 
 // GET /api/doctors — list all doctors
 export async function GET() {
@@ -12,9 +13,12 @@ export async function GET() {
   }
 }
 
-// PATCH /api/doctors — update doctor status
+// PATCH /api/doctors — update doctor status (requires auth)
 export async function PATCH(req: NextRequest) {
   try {
+    const auth = await checkAuth(req);
+    if (!auth.ok) return auth.response;
+
     const { id, status } = await req.json();
     if (!id || !status) {
       return NextResponse.json({ ok: false, error: "Missing id or status" }, { status: 400 });

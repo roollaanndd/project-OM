@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { db } from "@/lib/db";
+import { checkAuth } from "@/lib/auth";
 
 // GET /api/patients — list with pagination
 export async function GET(req: NextRequest) {
+  const auth = await checkAuth(req);
+  if (!auth.ok) return auth.response;
+
   try {
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get("page") ?? "1");
@@ -43,6 +47,9 @@ const PatientSchema = z.object({
 
 // POST /api/patients — create new patient
 export async function POST(req: NextRequest) {
+  const auth = await checkAuth(req);
+  if (!auth.ok) return auth.response;
+
   try {
     const body = await req.json();
     const parsed = PatientSchema.safeParse(body);
