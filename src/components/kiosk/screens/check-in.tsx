@@ -222,15 +222,47 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                       </div>
                     </div>
                     <button
-                      onClick={() => {
-                        setCode("apt-001");
-                        setMode("code");
-                        setTimeout(handleLookup, 100);
+                      onClick={async () => {
+                        // Simulate QR scan by calling the verify API
+                        try {
+                          // In production, this would come from camera scan
+                          // For demo, we generate a test QR and verify it
+                          const genRes = await fetch("/api/qr/generate", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                              type: "booking",
+                              id: "apt-001",
+                              code: "OMD-20250615-A3F2",
+                              data: { service: "Scaling & Polishing", doctor: "drg. Oktri Manessa", date: "2025-07-15", time: "14:00" },
+                            }),
+                          });
+                          const genJson = await genRes.json();
+                          if (genJson.ok) {
+                            // Now verify it
+                            const verifyRes = await fetch("/api/qr/verify", {
+                              method: "POST",
+                              headers: { "Content-Type": "application/json" },
+                              body: JSON.stringify({ qr: JSON.stringify(genJson.data.payload) }),
+                            });
+                            const verifyJson = await verifyRes.json();
+                            if (verifyJson.ok) {
+                              setCode("apt-001");
+                              setMode("code");
+                              setTimeout(handleLookup, 100);
+                            }
+                          }
+                        } catch {
+                          // Fallback to direct lookup
+                          setCode("apt-001");
+                          setMode("code");
+                          setTimeout(handleLookup, 100);
+                        }
                       }}
                       className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-white py-3 text-sm font-bold text-pink-700 shadow-sm hover:bg-pink-50"
                     >
                       <Camera className="h-4 w-4" />
-                      Simulasi Scan QR (Demo)
+                      Scan QR Booking (Demo)
                     </button>
                   </motion.div>
                 )}

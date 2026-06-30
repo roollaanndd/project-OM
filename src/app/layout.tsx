@@ -50,7 +50,13 @@ export const metadata: Metadata = {
   applicationName: "OMDC",
   formatDetection: { telephone: false, address: false, email: false },
   manifest: "/manifest.webmanifest",
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    languages: {
+      "id-ID": "/",
+      "x-default": "/",
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -239,6 +245,8 @@ export default function RootLayout({
         className={`${inter.variable} ${poppins.variable} font-sans antialiased bg-background text-foreground`}
       >
         <ClientProviders>{children}</ClientProviders>
+        {/* ARIA live region for screen reader announcements */}
+        <div id="aria-live-region" aria-live="polite" className="sr-only" role="status" />
         <Toaster />
         <PwaController />
         <Analytics />

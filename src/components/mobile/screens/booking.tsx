@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { BranchSelector } from "@/components/shared/branch-selector";
+import { QRCodeDisplay } from "@/components/shared/qr-code-display";
 import { SERVICES, DOCTORS, TIME_SLOTS, formatCurrency, formatDate } from "../mock-data";
 import { ServiceIcon } from "../icons";
 import {
@@ -17,6 +18,7 @@ import {
   PartyPopper,
   ArrowRight,
   Users,
+  QrCode,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -518,6 +520,37 @@ export function BookingScreen() {
                   <Row label="Dokter" value={doctorId === "any" ? "Dokter Tersedia" : doctor?.name ?? ""} />
                   <Row label="Tanggal" value={date ? formatDate(date, { weekday: "long", day: "numeric", month: "long" }) : ""} />
                   <Row label="Waktu" value={time ? `${time} WIB` : ""} />
+                </div>
+              </motion.div>
+
+              {/* QR Code for check-in */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.65 }}
+                className="mt-4 flex flex-col items-center rounded-3xl border-2 border-pink-200 bg-pink-50/40 p-5"
+              >
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-pink-700">
+                  <QrCode className="h-3.5 w-3.5" />
+                  QR Check-in Kiosk
+                </div>
+                <p className="mt-1 text-[11px] text-pink-950/55">
+                  Tunjukkan QR ini di e-Kiosk OMDC untuk check-in cepat
+                </p>
+                <div className="mt-3">
+                  <QRCodeDisplay
+                    type="booking"
+                    id={`apt-${Date.now()}`}
+                    size={180}
+                    downloadable={false}
+                    data={{
+                      service: service?.name,
+                      doctor: doctorId === "any" ? "Dokter Tersedia" : doctor?.name,
+                      date,
+                      time,
+                      patientName: "Sarah Wijayanti",
+                    }}
+                  />
                 </div>
               </motion.div>
 
