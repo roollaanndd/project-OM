@@ -11,7 +11,7 @@ import { PaymentsScreen } from "@/components/mobile/screens/payments";
 import { ProfileScreen } from "@/components/mobile/screens/profile";
 
 export function MobileApp() {
-  const { isAuthenticated, activeTab } = useAppStore();
+  const { isAuthenticated, activeTab, setActiveTab } = useAppStore();
 
   return (
     <AppShell activeTab={isAuthenticated ? activeTab : "onboarding"}>
@@ -37,7 +37,7 @@ export function MobileApp() {
             className="h-full"
           >
             {activeTab === "home" && <HomeScreen />}
-            {activeTab === "booking" && <BookingScreen />}
+            {activeTab === "booking" && <BookingScreen onComplete={() => setActiveTab("home")} onBack={() => setActiveTab("home")} />}
             {activeTab === "records" && <RecordsScreen />}
             {activeTab === "payments" && <PaymentsScreen />}
             {activeTab === "profile" && <ProfileScreen />}
