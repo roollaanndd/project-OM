@@ -19,6 +19,7 @@ import {
   Bell,
   Search,
   ChevronDown,
+  FileText,
   Menu,
   X,
 
@@ -34,6 +35,7 @@ export type CmsPage =
   | "branches"
   | "finance"
   | "website"
+  | "content"
   | "settings";
 
 const ROLE_PAGES: Record<CmsRole, { id: CmsPage; label: string; icon: typeof Users }[]> = {
@@ -44,6 +46,7 @@ const ROLE_PAGES: Record<CmsRole, { id: CmsPage; label: string; icon: typeof Use
     { id: "queue", label: "Antrian Live", icon: ListOrdered },
     { id: "doctors", label: "Dokter", icon: Stethoscope },
     { id: "branches", label: "Cabang", icon: Building2 },
+    { id: "content", label: "Content Manager", icon: FileText },
     { id: "finance", label: "Keuangan", icon: Wallet },
     { id: "website", label: "Website Editor", icon: Globe },
     { id: "settings", label: "Pengaturan", icon: Settings },

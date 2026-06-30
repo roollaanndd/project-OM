@@ -12,6 +12,7 @@ import { CmsDoctors } from "./screens/doctors";
 import { CmsBranches } from "./screens/branches";
 import { CmsFinance } from "./screens/finance";
 import { CmsWebsiteEditor } from "./screens/website-editor";
+import { CmsContentManager } from "./screens/content-manager";
 import { CmsSettings } from "./screens/settings";
 
 export function CmsApp() {
@@ -32,6 +33,7 @@ export function CmsApp() {
       {page === "branches" && <CmsBranches />}
       {page === "finance" && <CmsFinance />}
       {page === "website" && <CmsWebsiteEditor />}
+      {page === "content" && <CmsContentManager />}
       {page === "settings" && <CmsSettings />}
     </CmsShell>
   );

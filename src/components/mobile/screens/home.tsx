@@ -220,10 +220,10 @@ export function HomeScreen() {
         </div>
         <div className="-mx-0 flex gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {[
-            { icon: "🪥", title: "Sikat Gigi Benar", desc: "2x sehari, 2 menit", color: "from-pink-400 to-rose-500" },
-            { icon: "🦷", title: "Benang Gigi", desc: "Setiap hari, sebelum tidur", color: "from-rose-400 to-fuchsia-500" },
-            { icon: "🥗", title: "Makanan Sehat", desc: "Kurangi gula & asam", color: "from-amber-400 to-pink-500" },
-            { icon: "💧", title: "Air Putih", desc: "Bilas sisa makanan", color: "from-cyan-400 to-blue-500" },
+            { img: "/tips/tip-brush.jpg", title: "Sikat Gigi Benar", desc: "2x sehari, 2 menit", color: "from-pink-400 to-rose-500" },
+            { img: "/tips/tip-floss.jpg", title: "Benang Gigi", desc: "Setiap hari, sebelum tidur", color: "from-rose-400 to-fuchsia-500" },
+            { img: "/tips/tip-food.jpg", title: "Makanan Sehat", desc: "Kurangi gula & asam", color: "from-amber-400 to-pink-500" },
+            { img: "/tips/tip-water.jpg", title: "Air Putih", desc: "Bilas sisa makanan", color: "from-cyan-400 to-blue-500" },
           ].map((tip, i) => (
             <m.div
               key={i}
@@ -232,8 +232,13 @@ export function HomeScreen() {
               transition={{ delay: i * 0.05 }}
               className="min-w-[160px] max-w-[160px] overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm"
             >
-              <div className={`flex h-20 items-center justify-center bg-gradient-to-br ${tip.color} text-4xl`}>
-                {tip.icon}
+              <div className="relative h-20 overflow-hidden">
+                <img
+                  src={tip.img}
+                  alt={tip.title}
+                  className="h-full w-full object-cover"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-t ${tip.color} opacity-30`} />
               </div>
               <div className="p-3">
                 <div className="text-xs font-bold text-gray-900">{tip.title}</div>

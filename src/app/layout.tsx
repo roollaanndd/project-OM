@@ -1,22 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { PwaController } from "@/components/pwa/pwa-controller";
 import { ClientProviders } from "@/components/shared/client-providers";
 import { Analytics } from "@/components/shared/analytics";
 
-const inter = Inter({
+const jakarta = Plus_Jakarta_Sans({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const poppins = Poppins({
+const display = Plus_Jakarta_Sans({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
+  weight: ["700", "800"],
 });
 
 const SITE_URL = "https://omdc-dental.id";
@@ -245,7 +246,7 @@ export default function RootLayout({
         </noscript>
       </head>
       <body
-        className={`${inter.variable} ${poppins.variable} font-sans antialiased bg-background text-foreground`}
+        className={`${jakarta.variable} ${display.variable} font-sans antialiased bg-background text-foreground`}
       >
         <ClientProviders>{children}</ClientProviders>
         {/* ARIA live region for screen reader announcements */}
