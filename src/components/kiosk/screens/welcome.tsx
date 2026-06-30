@@ -26,9 +26,9 @@ export function KioskWelcome({ onSelect }: { onSelect: (mode: KioskMode) => void
       subtitle: "Pasien baru atau tanpa booking",
       desc: "Daftar langsung di kiosk dan ambil nomor antrian",
       icon: UserPlus,
-      color: "from-pink-500 to-rose-500",
-      bg: "from-pink-50 to-rose-50",
-      ring: "ring-pink-200",
+      color: "from-gray-500 to-gray-500",
+      bg: "from-gray-50 to-gray-50",
+      ring: "ring-gray-200",
     },
     {
       id: "check-in" as const,
@@ -37,7 +37,7 @@ export function KioskWelcome({ onSelect }: { onSelect: (mode: KioskMode) => void
       desc: "Scan QR atau masukkan kode booking",
       icon: QrCode,
       color: "from-fuchsia-500 to-pink-600",
-      bg: "from-fuchsia-50 to-pink-50",
+      bg: "from-fuchsia-50 to-gray-50",
       ring: "ring-fuchsia-200",
     },
     {
@@ -46,8 +46,8 @@ export function KioskWelcome({ onSelect }: { onSelect: (mode: KioskMode) => void
       subtitle: "Bayar tagihan perawatan",
       desc: "Bayar tunai, kartu, atau QRIS",
       icon: CreditCard,
-      color: "from-rose-500 to-pink-700",
-      bg: "from-rose-50 to-pink-50",
+      color: "from-blue-500 to-indigo-600",
+      bg: "from-gray-50 to-gray-50",
       ring: "ring-rose-200",
     },
   ];
@@ -61,14 +61,14 @@ export function KioskWelcome({ onSelect }: { onSelect: (mode: KioskMode) => void
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="flex items-center gap-2 text-pink-600">
+          <div className="flex items-center gap-2 text-gray-600">
             <Sparkles className="h-4 w-4" />
             <span className="text-xs font-bold uppercase tracking-widest">Selamat Datang</span>
           </div>
-          <h1 className="mt-1 font-display text-3xl font-extrabold text-pink-950 lg:text-4xl">
+          <h1 className="mt-1 font-display text-3xl font-extrabold text-gray-900 lg:text-4xl">
             Senyum sehat dimulai dari sini
           </h1>
-          <p className="mt-1 text-sm text-pink-950/60">
+          <p className="mt-1 text-sm text-gray-900/60">
             Sentuh salah satu opsi di bawah untuk memulai
           </p>
         </m.div>
@@ -81,20 +81,20 @@ export function KioskWelcome({ onSelect }: { onSelect: (mode: KioskMode) => void
           className="flex gap-3"
         >
           <div className="rounded-2xl bg-white px-5 py-3 text-center shadow-sm">
-            <div className="flex items-center gap-1.5 text-xs font-semibold text-pink-950/55">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-900/55">
               <Clock className="h-3 w-3" />
               Antrian Sekarang
             </div>
-            <div className="mt-1 font-display text-2xl font-extrabold text-pink-700">{servingCount}</div>
-            <div className="text-[10px] text-pink-950/50">sedang dilayani</div>
+            <div className="mt-1 font-display text-2xl font-extrabold text-gray-700">{servingCount}</div>
+            <div className="text-[10px] text-gray-900/50">sedang dilayani</div>
           </div>
           <div className="rounded-2xl bg-white px-5 py-3 text-center shadow-sm">
-            <div className="flex items-center gap-1.5 text-xs font-semibold text-pink-950/55">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-900/55">
               <Users className="h-3 w-3" />
               Menunggu
             </div>
             <div className="mt-1 font-display text-2xl font-extrabold text-amber-600">{waitingCount}</div>
-            <div className="text-[10px] text-pink-950/50">dalam antrian</div>
+            <div className="text-[10px] text-gray-900/50">dalam antrian</div>
           </div>
         </m.div>
       </div>
@@ -136,8 +136,8 @@ export function KioskWelcome({ onSelect }: { onSelect: (mode: KioskMode) => void
       </div>
 
       {/* Footer info bar */}
-      <div className="border-t border-pink-200/50 bg-white/70 px-10 py-3 backdrop-blur">
-        <div className="flex items-center justify-between text-xs text-pink-950/60">
+      <div className="border-t border-gray-200/50 bg-white/70 px-10 py-3 backdrop-blur">
+        <div className="flex items-center justify-between text-xs text-gray-900/60">
           <div className="flex items-center gap-4">
             <span>📍 {clinicSettings.address}</span>
             <span>📞 {clinicSettings.phone}</span>

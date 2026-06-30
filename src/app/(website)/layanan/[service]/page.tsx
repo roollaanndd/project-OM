@@ -64,12 +64,12 @@ export default async function ServiceDetailPage({
 
       {/* Breadcrumb */}
       <nav className="mx-auto max-w-5xl px-5 pt-6 lg:px-8" aria-label="Breadcrumb">
-        <ol className="flex flex-wrap items-center gap-2 text-xs text-pink-950/55">
-          <li><Link href="/" className="hover:text-pink-700">Beranda</Link></li>
+        <ol className="flex flex-wrap items-center gap-2 text-xs text-gray-900/55">
+          <li><Link href="/" className="hover:text-gray-700">Beranda</Link></li>
           <li>›</li>
-          <li><Link href="/#services" className="hover:text-pink-700">Layanan</Link></li>
+          <li><Link href="/#services" className="hover:text-gray-700">Layanan</Link></li>
           <li>›</li>
-          <li className="font-bold text-pink-700">{service.name}</li>
+          <li className="font-bold text-gray-700">{service.name}</li>
         </ol>
       </nav>
 
@@ -80,33 +80,33 @@ export default async function ServiceDetailPage({
             <div className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${service.color} text-white shadow-md`}>
               <Star className="h-7 w-7" />
             </div>
-            <h1 className="mt-5 font-display text-4xl font-extrabold leading-tight text-pink-950 sm:text-5xl">
+            <h1 className="mt-5 font-display text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">
               {service.name}
             </h1>
-            <p className="mt-3 text-lg italic text-pink-700">{service.tagline}</p>
+            <p className="mt-3 text-lg italic text-gray-700">{service.tagline}</p>
             <p className="mt-5 text-base leading-relaxed text-foreground/70">
               {service.description}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <div className="rounded-2xl border border-pink-200 bg-white px-5 py-3">
-                <div className="text-xs font-semibold text-pink-950/55">Harga</div>
-                <div className="font-display text-lg font-bold text-pink-700">{service.price}</div>
+              <div className="rounded-2xl border border-gray-200 bg-white px-5 py-3">
+                <div className="text-xs font-semibold text-gray-900/55">Harga</div>
+                <div className="font-display text-lg font-bold text-gray-700">{service.price}</div>
               </div>
-              <div className="rounded-2xl border border-pink-200 bg-white px-5 py-3">
-                <div className="text-xs font-semibold text-pink-950/55">Durasi</div>
-                <div className="font-display text-lg font-bold text-pink-700">{service.duration}</div>
+              <div className="rounded-2xl border border-gray-200 bg-white px-5 py-3">
+                <div className="text-xs font-semibold text-gray-900/55">Durasi</div>
+                <div className="font-display text-lg font-bold text-gray-700">{service.duration}</div>
               </div>
             </div>
             <Link
               href="/#booking"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-600 to-rose-500 px-6 py-3 text-sm font-bold text-white shadow-soft-pink"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-600 to-gray-500 px-6 py-3 text-sm font-bold text-white shadow-soft-pink"
             >
               Buat Janji Sekarang
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="rounded-3xl border border-pink-100 bg-white p-6 shadow-soft-pink">
-            <h2 className="font-display text-lg font-bold text-pink-950">Manfaat</h2>
+          <div className="rounded-3xl border border-gray-100 bg-white p-6 shadow-soft-pink">
+            <h2 className="font-display text-lg font-bold text-gray-900">Manfaat</h2>
             <ul className="mt-3 space-y-2">
               {service.benefits.map((b) => (
                 <li key={b} className="flex items-start gap-2 text-sm text-foreground/75">
@@ -122,16 +122,16 @@ export default async function ServiceDetailPage({
       {/* Process */}
       <section className="bg-white py-16">
         <div className="mx-auto max-w-5xl px-5 lg:px-8">
-          <h2 className="text-center font-display text-3xl font-extrabold text-pink-950">
+          <h2 className="text-center font-display text-3xl font-extrabold text-gray-900">
             Proses Perawatan
           </h2>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {service.process.map((p) => (
-              <div key={p.step} className="rounded-2xl border border-pink-100 bg-pink-50/40 p-5">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 font-display text-base font-extrabold text-white">
+              <div key={p.step} className="rounded-2xl border border-gray-100 bg-gray-50/40 p-5">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-gray-500 to-gray-500 font-display text-base font-extrabold text-white">
                   {p.step}
                 </div>
-                <h3 className="mt-3 font-bold text-pink-950">{p.title}</h3>
+                <h3 className="mt-3 font-bold text-gray-900">{p.title}</h3>
                 <p className="mt-1 text-xs leading-relaxed text-foreground/65">{p.desc}</p>
               </div>
             ))}
@@ -142,13 +142,13 @@ export default async function ServiceDetailPage({
       {/* FAQ */}
       <section className="py-16">
         <div className="mx-auto max-w-3xl px-5 lg:px-8">
-          <h2 className="text-center font-display text-3xl font-extrabold text-pink-950">
+          <h2 className="text-center font-display text-3xl font-extrabold text-gray-900">
             Pertanyaan Umum
           </h2>
           <div className="mt-8 space-y-3">
             {service.faqs.map((faq) => (
-              <details key={faq.q} className="group rounded-2xl border border-pink-100 bg-white p-5">
-                <summary className="cursor-pointer font-bold text-pink-950 marker:content-none">
+              <details key={faq.q} className="group rounded-2xl border border-gray-100 bg-white p-5">
+                <summary className="cursor-pointer font-bold text-gray-900 marker:content-none">
                   {faq.q}
                 </summary>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/70">{faq.a}</p>
@@ -159,7 +159,7 @@ export default async function ServiceDetailPage({
       </section>
 
       {/* Trust strip */}
-      <section className="bg-gradient-to-r from-pink-600 to-rose-500 py-10 text-white">
+      <section className="bg-gradient-to-r from-pink-600 to-gray-500 py-10 text-white">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-6 px-5 text-sm font-semibold lg:px-8">
           <span className="flex items-center gap-2"><ShieldCheck className="h-5 w-5" /> Sterilisasi Kelas RS</span>
           <span className="flex items-center gap-2"><Clock className="h-5 w-5" /> Buka 7 Hari</span>

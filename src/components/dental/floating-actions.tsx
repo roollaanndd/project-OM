@@ -31,7 +31,7 @@ export function FloatingActions() {
             key="scroll-top"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label="Kembali ke atas"
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-pink-700 shadow-soft-pink ring-1 ring-pink-200 transition-colors hover:bg-pink-50"
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-gray-700 shadow-soft-pink ring-1 ring-gray-200 transition-colors hover:bg-gray-50"
             initial={{ opacity: 0, scale: 0.5, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.5, y: 10 }}
@@ -49,7 +49,7 @@ export function FloatingActions() {
           {expanded && (
             <m.div
               key="wa-card"
-              className="absolute bottom-16 right-0 w-64 origin-bottom-right overflow-hidden rounded-2xl border border-pink-100 bg-white shadow-soft-pink"
+              className="absolute bottom-16 right-0 w-64 origin-bottom-right overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-soft-pink"
               initial={{ opacity: 0, scale: 0.7, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.7, y: 10 }}

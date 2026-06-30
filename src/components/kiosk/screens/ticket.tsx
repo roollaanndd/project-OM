@@ -48,10 +48,10 @@ export function KioskTicket({ data, onDone }: { data: TicketData; onDone: () => 
             >
               <Check className="h-9 w-9" strokeWidth={3} />
             </m.div>
-            <h2 className="mt-3 font-display text-2xl font-extrabold text-pink-950">
+            <h2 className="mt-3 font-display text-2xl font-extrabold text-gray-900">
               {data.bookingId ? "Check-in Berhasil!" : "Pendaftaran Berhasil!"}
             </h2>
-            <p className="mt-1 text-sm text-pink-950/55">
+            <p className="mt-1 text-sm text-gray-900/55">
               Simpan nomor antrian Anda. Tim kami akan memanggil sesuai urutan.
             </p>
           </m.div>
@@ -61,14 +61,14 @@ export function KioskTicket({ data, onDone }: { data: TicketData; onDone: () => 
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ delay: 0.3, type: "spring", stiffness: 200, damping: 18 }}
-            className="relative mt-6 overflow-hidden rounded-3xl border-2 border-dashed border-pink-300 bg-white shadow-lg"
+            className="relative mt-6 overflow-hidden rounded-3xl border-2 border-dashed border-gray-300 bg-white shadow-lg"
           >
             {/* Perforation top */}
-            <div className="absolute -left-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-pink-50" />
-            <div className="absolute -right-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-pink-50" />
+            <div className="absolute -left-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-gray-50" />
+            <div className="absolute -right-3 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-gray-50" />
 
             {/* Top section */}
-            <div className="bg-gradient-to-r from-pink-600 to-rose-500 px-6 py-5 text-white">
+            <div className="bg-gradient-to-r from-pink-600 to-gray-500 px-6 py-5 text-white">
               <div className="flex items-center justify-between">
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-wider text-white/80">Klinik Gigi OMDC</div>
@@ -96,48 +96,48 @@ export function KioskTicket({ data, onDone }: { data: TicketData; onDone: () => 
             <div className="p-6">
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div className="flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-pink-100 text-pink-600">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 text-gray-600">
                     <User className="h-4 w-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] uppercase tracking-wider text-pink-950/45">Pasien</div>
-                    <div className="font-bold text-pink-950">{data.patientName}</div>
+                    <div className="text-[10px] uppercase tracking-wider text-gray-900/45">Pasien</div>
+                    <div className="font-bold text-gray-900">{data.patientName}</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-pink-100 text-pink-600">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 text-gray-600">
                     <Sparkles className="h-4 w-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] uppercase tracking-wider text-pink-950/45">Layanan</div>
-                    <div className="font-bold text-pink-950">{data.service}</div>
+                    <div className="text-[10px] uppercase tracking-wider text-gray-900/45">Layanan</div>
+                    <div className="font-bold text-gray-900">{data.service}</div>
                   </div>
                 </div>
                 {data.doctor && (
                   <div className="flex items-center gap-2 col-span-2">
-                    <div className={`flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br ${data.doctorGradient ?? "from-pink-500 to-rose-500"} text-white`}>
+                    <div className={`flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br ${data.doctorGradient ?? "from-gray-500 to-gray-500"} text-white`}>
                       <span className="text-[10px] font-bold">{data.doctorInitials}</span>
                     </div>
                     <div>
-                      <div className="text-[10px] uppercase tracking-wider text-pink-950/45">Dokter</div>
-                      <div className="font-bold text-pink-950">{data.doctor}</div>
+                      <div className="text-[10px] uppercase tracking-wider text-gray-900/45">Dokter</div>
+                      <div className="font-bold text-gray-900">{data.doctor}</div>
                     </div>
                   </div>
                 )}
               </div>
 
               {/* Queue info */}
-              <div className="mt-4 grid grid-cols-3 gap-2 border-t border-pink-100 pt-4 text-center">
-                <div className="rounded-xl bg-pink-50 p-2">
-                  <div className="text-[10px] uppercase tracking-wider text-pink-950/45">Sedang Dilayani</div>
-                  <div className="font-display text-xl font-extrabold text-pink-700">{nowServing?.number ?? "-"}</div>
+              <div className="mt-4 grid grid-cols-3 gap-2 border-t border-gray-100 pt-4 text-center">
+                <div className="rounded-xl bg-gray-50 p-2">
+                  <div className="text-[10px] uppercase tracking-wider text-gray-900/45">Sedang Dilayani</div>
+                  <div className="font-display text-xl font-extrabold text-gray-700">{nowServing?.number ?? "-"}</div>
                 </div>
                 <div className="rounded-xl bg-amber-50 p-2">
-                  <div className="text-[10px] uppercase tracking-wider text-pink-950/45">Antrian di Depan</div>
+                  <div className="text-[10px] uppercase tracking-wider text-gray-900/45">Antrian di Depan</div>
                   <div className="font-display text-xl font-extrabold text-amber-600">{waitingAhead}</div>
                 </div>
                 <div className="rounded-xl bg-emerald-50 p-2">
-                  <div className="text-[10px] uppercase tracking-wider text-pink-950/45">Estimasi</div>
+                  <div className="text-[10px] uppercase tracking-wider text-gray-900/45">Estimasi</div>
                   <div className="font-display text-xl font-extrabold text-emerald-600">{data.estimatedWait}m</div>
                 </div>
               </div>
@@ -148,19 +148,19 @@ export function KioskTicket({ data, onDone }: { data: TicketData; onDone: () => 
                 </div>
               )}
 
-              <div className="mt-3 flex items-center justify-center gap-1.5 text-[10px] text-pink-950/45">
+              <div className="mt-3 flex items-center justify-center gap-1.5 text-[10px] text-gray-900/45">
                 <Clock className="h-3 w-3" />
                 Dicetak: {new Date().toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" })}
               </div>
             </div>
 
             {/* Barcode */}
-            <div className="border-t border-dashed border-pink-200 bg-pink-50/40 px-6 py-3">
+            <div className="border-t border-dashed border-gray-200 bg-gray-50/40 px-6 py-3">
               <div className="flex h-8 items-center justify-center gap-px">
                 {Array.from({ length: 50 }).map((_, i) => (
                   <div
                     key={i}
-                    className="bg-pink-950"
+                    className="bg-gray-900"
                     style={{
                       width: i % 3 === 0 ? "3px" : i % 2 === 0 ? "2px" : "1px",
                       height: "100%",
@@ -168,17 +168,17 @@ export function KioskTicket({ data, onDone }: { data: TicketData; onDone: () => 
                   />
                 ))}
               </div>
-              <div className="mt-1 text-center font-mono text-[10px] font-bold tracking-widest text-pink-950/70">
+              <div className="mt-1 text-center font-mono text-[10px] font-bold tracking-widest text-gray-900/70">
                 {data.ticketNumber} · {data.patientName.toUpperCase().substring(0, 10)} · {new Date().getTime().toString().slice(-6)}
               </div>
             </div>
           </m.div>
 
           {/* Info notice */}
-          <div className="mt-4 flex items-start gap-2 rounded-2xl border border-pink-200 bg-white p-3 text-xs text-pink-950/65">
-            <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-pink-500" />
+          <div className="mt-4 flex items-start gap-2 rounded-2xl border border-gray-200 bg-white p-3 text-xs text-gray-900/65">
+            <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
             <div>
-              <span className="font-bold text-pink-950">Mohon tunggu di ruang tunggu.</span> Nomor antrian
+              <span className="font-bold text-gray-900">Mohon tunggu di ruang tunggu.</span> Nomor antrian
               Anda akan ditampilkan di layar monitor dan dipanggil oleh resepsionis. Estimasi waktu tunggu
               dapat berubah sesuai kondisi.
             </div>
@@ -186,13 +186,13 @@ export function KioskTicket({ data, onDone }: { data: TicketData; onDone: () => 
 
           {/* Action buttons */}
           <div className="mt-5 flex gap-3">
-            <button className="flex flex-1 items-center justify-center gap-2 rounded-2xl border border-pink-200 bg-white py-3 text-sm font-bold text-pink-700 hover:bg-pink-50">
+            <button className="flex flex-1 items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white py-3 text-sm font-bold text-gray-700 hover:bg-gray-50">
               <Printer className="h-4 w-4" />
               Cetak Ulang
             </button>
             <button
               onClick={onDone}
-              className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-pink-600 to-rose-500 py-3 text-sm font-bold text-white shadow-md active:scale-95"
+              className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-pink-600 to-gray-500 py-3 text-sm font-bold text-white shadow-md active:scale-95"
             >
               <HomeIcon className="h-4 w-4" />
               Selesai

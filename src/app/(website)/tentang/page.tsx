@@ -13,17 +13,17 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <section className="mx-auto max-w-4xl px-5 py-14 lg:px-8 lg:py-20">
-        <nav aria-label="Breadcrumb" className="mb-6 text-xs text-pink-950/55">
-          <Link href="/" className="hover:text-pink-700">Beranda</Link>
+        <nav aria-label="Breadcrumb" className="mb-6 text-xs text-gray-900/55">
+          <Link href="/" className="hover:text-gray-700">Beranda</Link>
           <span className="mx-2">›</span>
-          <span className="font-bold text-pink-700">Tentang</span>
+          <span className="font-bold text-gray-700">Tentang</span>
         </nav>
 
         <div className="text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-pink-700">
+          <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-gray-700">
             Tentang Kami
           </span>
-          <h1 className="mt-4 font-display text-4xl font-extrabold leading-tight text-pink-950 sm:text-5xl">
+          <h1 className="mt-4 font-display text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">
             Klinik gigi yang menempatkan
             <br />
             <span className="text-gradient-pink">kenyamanan Anda di atas segalanya</span>
@@ -58,17 +58,17 @@ export default function AboutPage() {
             { icon: ShieldCheck, value: "ISO 9001", label: "Tersertifikasi" },
             { icon: Heart, value: "98%", label: "Tingkat Kepuasan" },
           ].map((s) => (
-            <div key={s.label} className="rounded-2xl border border-pink-100 bg-white p-5 text-center shadow-sm">
-              <s.icon className="mx-auto h-6 w-6 text-pink-500" />
-              <div className="mt-2 font-display text-2xl font-extrabold text-pink-950">{s.value}</div>
+            <div key={s.label} className="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-sm">
+              <s.icon className="mx-auto h-6 w-6 text-gray-500" />
+              <div className="mt-2 font-display text-2xl font-extrabold text-gray-900">{s.value}</div>
               <div className="mt-0.5 text-xs text-foreground/55">{s.label}</div>
             </div>
           ))}
         </div>
 
-        <div className="mt-10 rounded-3xl border border-pink-100 bg-white p-6 shadow-soft-pink">
-          <h2 className="flex items-center gap-2 font-display text-xl font-bold text-pink-950">
-            <Sparkles className="h-5 w-5 text-pink-500" />
+        <div className="mt-10 rounded-3xl border border-gray-100 bg-white p-6 shadow-soft-pink">
+          <h2 className="flex items-center gap-2 font-display text-xl font-bold text-gray-900">
+            <Sparkles className="h-5 w-5 text-gray-500" />
             Visi & Misi
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-foreground/70">

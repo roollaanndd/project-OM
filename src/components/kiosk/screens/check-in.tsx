@@ -100,15 +100,15 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
   return (
     <div className="flex h-full flex-col bg-gray-50">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-pink-200 bg-white px-8 py-3">
+      <div className="flex items-center justify-between border-b border-gray-200 bg-white px-8 py-3">
         <button
           onClick={onBack}
-          className="flex items-center gap-1.5 rounded-full bg-pink-100 px-4 py-2 text-sm font-bold text-pink-700 hover:bg-pink-200"
+          className="flex items-center gap-1.5 rounded-full bg-gray-100 px-4 py-2 text-sm font-bold text-gray-700 hover:bg-gray-200"
         >
           <ChevronLeft className="h-4 w-4" />
           Kembali
         </button>
-        <div className="font-display text-base font-bold text-pink-950">Check-in Booking</div>
+        <div className="font-display text-base font-bold text-gray-900">Check-in Booking</div>
         <div className="w-24" />
       </div>
 
@@ -126,21 +126,21 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                   <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-fuchsia-500 to-pink-600 text-white shadow-md">
                     <QrCode className="h-7 w-7" />
                   </div>
-                  <h2 className="mt-3 font-display text-2xl font-extrabold text-pink-950">
+                  <h2 className="mt-3 font-display text-2xl font-extrabold text-gray-900">
                     Check-in Janji Temu
                   </h2>
-                  <p className="mt-1 text-sm text-pink-950/55">
+                  <p className="mt-1 text-sm text-gray-900/55">
                     Pilih metode check-in di bawah ini
                   </p>
                 </div>
 
                 {/* Mode toggle */}
-                <div className="mt-6 flex gap-2 rounded-2xl bg-pink-100 p-1.5">
+                <div className="mt-6 flex gap-2 rounded-2xl bg-gray-100 p-1.5">
                   <button
                     onClick={() => setMode("code")}
                     className={cn(
                       "flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-bold transition-all",
-                      mode === "code" ? "bg-white text-pink-700 shadow-sm" : "text-pink-950/50",
+                      mode === "code" ? "bg-white text-gray-700 shadow-sm" : "text-gray-900/50",
                     )}
                   >
                     <Search className="h-4 w-4" />
@@ -150,7 +150,7 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                     onClick={() => setMode("scan")}
                     className={cn(
                       "flex flex-1 items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-bold transition-all",
-                      mode === "scan" ? "bg-white text-pink-700 shadow-sm" : "text-pink-950/50",
+                      mode === "scan" ? "bg-white text-gray-700 shadow-sm" : "text-gray-900/50",
                     )}
                   >
                     <Camera className="h-4 w-4" />
@@ -164,13 +164,13 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                     animate={{ opacity: 1 }}
                     className="mt-6"
                   >
-                    <label className="text-xs font-bold text-pink-950">Kode Booking atau No. Telepon</label>
+                    <label className="text-xs font-bold text-gray-900">Kode Booking atau No. Telepon</label>
                     <input
                       value={code}
                       onChange={(e) => setCode(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && handleLookup()}
                       placeholder="cth. apt-001 atau 081234567890"
-                      className="mt-1.5 w-full rounded-2xl border-2 border-pink-200 bg-white px-5 py-4 text-center font-mono text-lg font-bold text-pink-950 placeholder:text-pink-950/30 focus:border-pink-500 focus:outline-none focus:ring-4 focus:ring-pink-200"
+                      className="mt-1.5 w-full rounded-2xl border-2 border-gray-200 bg-white px-5 py-4 text-center font-mono text-lg font-bold text-gray-900 placeholder:text-gray-900/30 focus:border-gray-500 focus:outline-none focus:ring-4 focus:ring-gray-200"
                     />
                     <button
                       onClick={handleLookup}
@@ -178,8 +178,8 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                       className={cn(
                         "mt-4 flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-base font-bold transition-all",
                         code.trim()
-                          ? "bg-gradient-to-r from-pink-600 to-rose-500 text-white shadow-md active:scale-95"
-                          : "cursor-not-allowed bg-pink-100 text-pink-950/30",
+                          ? "bg-gradient-to-r from-pink-600 to-gray-500 text-white shadow-md active:scale-95"
+                          : "cursor-not-allowed bg-gray-100 text-gray-900/30",
                       )}
                     >
                       <Search className="h-5 w-5" />
@@ -187,8 +187,8 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                     </button>
 
                     {/* Demo hints */}
-                    <div className="mt-4 rounded-2xl border border-pink-200 bg-pink-50 p-3 text-center text-xs text-pink-950/65">
-                      💡 <span className="font-bold">Demo:</span> Coba kode <code className="rounded bg-white px-1.5 py-0.5 font-mono font-bold text-pink-700">apt-001</code> atau <code className="rounded bg-white px-1.5 py-0.5 font-mono font-bold text-pink-700">001</code>
+                    <div className="mt-4 rounded-2xl border border-gray-200 bg-gray-50 p-3 text-center text-xs text-gray-900/65">
+                      💡 <span className="font-bold">Demo:</span> Coba kode <code className="rounded bg-white px-1.5 py-0.5 font-mono font-bold text-gray-700">apt-001</code> atau <code className="rounded bg-white px-1.5 py-0.5 font-mono font-bold text-gray-700">001</code>
                     </div>
                   </m.div>
                 ) : (
@@ -197,15 +197,15 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                     animate={{ opacity: 1 }}
                     className="mt-6"
                   >
-                    <div className="relative mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-3xl border-4 border-pink-300 bg-pink-950">
+                    <div className="relative mx-auto aspect-square w-full max-w-xs overflow-hidden rounded-3xl border-4 border-gray-300 bg-gray-900">
                       {/* Mock camera viewfinder */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="relative h-3/4 w-3/4">
                           {/* Corner brackets */}
-                          <div className="absolute left-0 top-0 h-8 w-8 border-l-4 border-t-4 border-pink-400" />
-                          <div className="absolute right-0 top-0 h-8 w-8 border-r-4 border-t-4 border-pink-400" />
-                          <div className="absolute bottom-0 left-0 h-8 w-8 border-b-4 border-l-4 border-pink-400" />
-                          <div className="absolute bottom-0 right-0 h-8 w-8 border-b-4 border-r-4 border-pink-400" />
+                          <div className="absolute left-0 top-0 h-8 w-8 border-l-4 border-t-4 border-gray-400" />
+                          <div className="absolute right-0 top-0 h-8 w-8 border-r-4 border-t-4 border-gray-400" />
+                          <div className="absolute bottom-0 left-0 h-8 w-8 border-b-4 border-l-4 border-gray-400" />
+                          <div className="absolute bottom-0 right-0 h-8 w-8 border-b-4 border-r-4 border-gray-400" />
                           {/* Scanning line */}
                           <m.div
                             className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-transparent"
@@ -213,7 +213,7 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                           />
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <QrCode className="h-20 w-20 text-pink-400/40" />
+                            <QrCode className="h-20 w-20 text-gray-400/40" />
                           </div>
                         </div>
                       </div>
@@ -259,7 +259,7 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                           setTimeout(handleLookup, 100);
                         }
                       }}
-                      className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-white py-3 text-sm font-bold text-pink-700 shadow-sm hover:bg-pink-50"
+                      className="mt-4 flex w-full items-center justify-center gap-2 rounded-2xl bg-white py-3 text-sm font-bold text-gray-700 shadow-sm hover:bg-gray-50"
                     >
                       <Camera className="h-4 w-4" />
                       Scan QR Booking (Demo)
@@ -284,16 +284,16 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                   >
                     <Check className="h-7 w-7" strokeWidth={3} />
                   </m.div>
-                  <h2 className="mt-3 font-display text-2xl font-extrabold text-pink-950">
+                  <h2 className="mt-3 font-display text-2xl font-extrabold text-gray-900">
                     Booking Ditemukan!
                   </h2>
-                  <p className="mt-1 text-sm text-pink-950/55">
+                  <p className="mt-1 text-sm text-gray-900/55">
                     Konfirmasi data booking Anda di bawah
                   </p>
                 </div>
 
-                <div className="mt-6 overflow-hidden rounded-3xl border border-pink-200 bg-white shadow-md">
-                  <div className="bg-gradient-to-r from-pink-600 to-rose-500 px-6 py-4 text-white">
+                <div className="mt-6 overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-md">
+                  <div className="bg-gradient-to-r from-pink-600 to-gray-500 px-6 py-4 text-white">
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="text-xs font-semibold uppercase tracking-wider text-white/80">Kode Booking</div>
@@ -304,21 +304,21 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                   </div>
                   <div className="divide-y divide-pink-50">
                     <div className="flex items-center gap-3 p-4">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-pink-100 text-pink-600">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 text-gray-600">
                         <User className="h-4 w-4" />
                       </div>
                       <div className="flex-1">
-                        <div className="text-xs text-pink-950/55">Pasien</div>
-                        <div className="text-sm font-bold text-pink-950">Sarah Wijayanti</div>
+                        <div className="text-xs text-gray-900/55">Pasien</div>
+                        <div className="text-sm font-bold text-gray-900">Sarah Wijayanti</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-4">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-pink-100 text-pink-600">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 text-gray-600">
                         <Sparkles className="h-4 w-4" />
                       </div>
                       <div className="flex-1">
-                        <div className="text-xs text-pink-950/55">Layanan</div>
-                        <div className="text-sm font-bold text-pink-950">{foundApt.service}</div>
+                        <div className="text-xs text-gray-900/55">Layanan</div>
+                        <div className="text-sm font-bold text-gray-900">{foundApt.service}</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-4">
@@ -326,17 +326,17 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                         <span className="text-xs font-bold">{foundApt.doctorInitials}</span>
                       </div>
                       <div className="flex-1">
-                        <div className="text-xs text-pink-950/55">Dokter</div>
-                        <div className="text-sm font-bold text-pink-950">{foundApt.doctor}</div>
+                        <div className="text-xs text-gray-900/55">Dokter</div>
+                        <div className="text-sm font-bold text-gray-900">{foundApt.doctor}</div>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-4">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-pink-100 text-pink-600">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 text-gray-600">
                         <Calendar className="h-4 w-4" />
                       </div>
                       <div className="flex-1">
-                        <div className="text-xs text-pink-950/55">Jadwal</div>
-                        <div className="text-sm font-bold text-pink-950">
+                        <div className="text-xs text-gray-900/55">Jadwal</div>
+                        <div className="text-sm font-bold text-gray-900">
                           {new Date(foundApt.date).toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long" })} · {foundApt.time}
                         </div>
                       </div>
@@ -346,7 +346,7 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
 
                 <button
                   onClick={handleConfirm}
-                  className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-pink-600 to-rose-500 py-4 text-base font-bold text-white shadow-md active:scale-95"
+                  className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-pink-600 to-gray-500 py-4 text-base font-bold text-white shadow-md active:scale-95"
                 >
                   <Check className="h-5 w-5" strokeWidth={3} />
                   Konfirmasi & Ambil Nomor Antrian
@@ -364,10 +364,10 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                 <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-red-100 text-red-600">
                   <X className="h-7 w-7" />
                 </div>
-                <h2 className="mt-3 font-display text-2xl font-extrabold text-pink-950">
+                <h2 className="mt-3 font-display text-2xl font-extrabold text-gray-900">
                   Booking Tidak Ditemukan
                 </h2>
-                <p className="mt-1 text-sm text-pink-950/55">
+                <p className="mt-1 text-sm text-gray-900/55">
                   Kode booking salah atau janji temu telah berlalu
                 </p>
                 <button
@@ -375,7 +375,7 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                     setStep("input");
                     setCode("");
                   }}
-                  className="mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-600 to-rose-500 px-6 py-3 text-sm font-bold text-white shadow-md"
+                  className="mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-600 to-gray-500 px-6 py-3 text-sm font-bold text-white shadow-md"
                 >
                   Coba Lagi
                 </button>

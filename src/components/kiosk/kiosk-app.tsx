@@ -114,7 +114,7 @@ export function KioskApp() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 z-[60] flex items-center justify-center bg-pink-950/70 backdrop-blur-sm"
+            className="absolute inset-0 z-[60] flex items-center justify-center bg-gray-900/70 backdrop-blur-sm"
             onClick={recordActivity}
           >
             <m.div
@@ -126,15 +126,15 @@ export function KioskApp() {
               <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-100 text-2xl">
                 ⏰
               </div>
-              <h3 className="font-display text-lg font-bold text-pink-950">
+              <h3 className="font-display text-lg font-bold text-gray-900">
                 Apakah Anda masih di sini?
               </h3>
-              <p className="mt-1.5 text-sm text-pink-950/65">
+              <p className="mt-1.5 text-sm text-gray-900/65">
                 Kiosk akan kembali ke beranda dalam 15 detik jika tidak ada aktivitas.
               </p>
               <button
                 onClick={recordActivity}
-                className="mt-4 w-full rounded-full bg-gradient-to-r from-pink-600 to-rose-500 py-2.5 text-sm font-bold text-white"
+                className="mt-4 w-full rounded-full bg-gradient-to-r from-pink-600 to-gray-500 py-2.5 text-sm font-bold text-white"
               >
                 Saya masih di sini
               </button>

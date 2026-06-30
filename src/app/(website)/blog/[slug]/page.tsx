@@ -89,12 +89,12 @@ export default async function BlogDetailPage({
 
       {/* Breadcrumb */}
       <nav className="mx-auto max-w-3xl px-5 pt-24 lg:px-8" aria-label="Breadcrumb">
-        <ol className="flex flex-wrap items-center gap-2 text-xs text-pink-950/55">
-          <li><Link href="/" className="hover:text-pink-700">Beranda</Link></li>
+        <ol className="flex flex-wrap items-center gap-2 text-xs text-gray-900/55">
+          <li><Link href="/" className="hover:text-gray-700">Beranda</Link></li>
           <li><ChevronRight className="h-3 w-3" /></li>
-          <li><Link href="/blog" className="hover:text-pink-700">Blog</Link></li>
+          <li><Link href="/blog" className="hover:text-gray-700">Blog</Link></li>
           <li><ChevronRight className="h-3 w-3" /></li>
-          <li className="font-bold text-pink-700">{post.category}</li>
+          <li className="font-bold text-gray-700">{post.category}</li>
         </ol>
       </nav>
 
@@ -102,24 +102,24 @@ export default async function BlogDetailPage({
       <article className="mx-auto max-w-3xl px-5 py-8 lg:px-8">
         <div className="flex items-center gap-3 text-xs">
           <span className="rounded-full bg-pink-600 px-3 py-1 font-bold text-white">{post.category}</span>
-          <span className="flex items-center gap-1 text-pink-950/55"><Calendar className="h-3 w-3" />{new Date(post.date).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}</span>
-          <span className="flex items-center gap-1 text-pink-950/55"><Clock className="h-3 w-3" />{post.readingTime}</span>
+          <span className="flex items-center gap-1 text-gray-900/55"><Calendar className="h-3 w-3" />{new Date(post.date).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}</span>
+          <span className="flex items-center gap-1 text-gray-900/55"><Clock className="h-3 w-3" />{post.readingTime}</span>
         </div>
 
-        <h1 className="mt-4 font-display text-3xl font-extrabold leading-tight text-pink-950 sm:text-4xl lg:text-5xl">
+        <h1 className="mt-4 font-display text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">
           {post.title}
         </h1>
 
         <p className="mt-4 text-lg leading-relaxed text-foreground/70">{post.excerpt}</p>
 
         {/* Author */}
-        <div className="mt-6 flex items-center gap-3 border-y border-pink-100 py-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-rose-500 text-xs font-bold text-white">
+        <div className="mt-6 flex items-center gap-3 border-y border-gray-100 py-4">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-gray-500 to-gray-500 text-xs font-bold text-white">
             {post.author.split(" ").map(n => n[0]).join("").slice(0, 2)}
           </div>
           <div>
-            <div className="text-sm font-bold text-pink-950">{post.author}</div>
-            <div className="text-xs text-pink-600">{post.authorRole}</div>
+            <div className="text-sm font-bold text-gray-900">{post.author}</div>
+            <div className="text-xs text-gray-600">{post.authorRole}</div>
           </div>
         </div>
 
@@ -140,7 +140,7 @@ export default async function BlogDetailPage({
           {post.content.map((section, i) => {
             if (section.type === "h2") {
               return (
-                <h2 key={i} className="font-display text-2xl font-bold text-pink-950 lg:text-3xl">
+                <h2 key={i} className="font-display text-2xl font-bold text-gray-900 lg:text-3xl">
                   {section.text}
                 </h2>
               );
@@ -166,7 +166,7 @@ export default async function BlogDetailPage({
             }
             if (section.type === "quote") {
               return (
-                <blockquote key={i} className="border-l-4 border-pink-500 bg-pink-50/60 py-4 pl-5 pr-4 italic text-base text-pink-950/80">
+                <blockquote key={i} className="border-l-4 border-gray-500 bg-gray-50/60 py-4 pl-5 pr-4 italic text-base text-gray-900/80">
                   "{section.text}"
                 </blockquote>
               );
@@ -194,11 +194,11 @@ export default async function BlogDetailPage({
         {/* FAQ */}
         {post.faqs && post.faqs.length > 0 && (
           <div className="mt-10">
-            <h2 className="font-display text-2xl font-bold text-pink-950">Pertanyaan Umum</h2>
+            <h2 className="font-display text-2xl font-bold text-gray-900">Pertanyaan Umum</h2>
             <div className="mt-4 space-y-3">
               {post.faqs.map((faq, i) => (
-                <details key={i} className="group rounded-2xl border border-pink-100 bg-white p-5">
-                  <summary className="cursor-pointer font-bold text-pink-950 marker:content-none">
+                <details key={i} className="group rounded-2xl border border-gray-100 bg-white p-5">
+                  <summary className="cursor-pointer font-bold text-gray-900 marker:content-none">
                     {faq.q}
                   </summary>
                   <p className="mt-3 text-sm leading-relaxed text-foreground/70">{faq.a}</p>
@@ -211,7 +211,7 @@ export default async function BlogDetailPage({
         {/* Tags */}
         <div className="mt-8 flex flex-wrap gap-2">
           {post.tags.map((tag) => (
-            <span key={tag} className="inline-flex items-center gap-1 rounded-full bg-pink-100 px-3 py-1 text-xs font-medium text-pink-700">
+            <span key={tag} className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
               <Tag className="h-3 w-3" />
               {tag}
             </span>
@@ -219,12 +219,12 @@ export default async function BlogDetailPage({
         </div>
 
         {/* CTA */}
-        <div className="mt-10 overflow-hidden rounded-3xl bg-gradient-to-r from-pink-600 to-rose-500 p-6 text-center text-white shadow-soft-pink">
+        <div className="mt-10 overflow-hidden rounded-3xl bg-gradient-to-r from-pink-600 to-gray-500 p-6 text-center text-white shadow-soft-pink">
           <h3 className="font-display text-xl font-bold">Butuh konsultasi dengan dokter?</h3>
           <p className="mt-1 text-sm text-white/85">Tim spesialis OMDC siap membantu perawatan gigi Anda.</p>
           <Link
             href="/#booking"
-            className="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-pink-700 shadow-sm transition-transform hover:scale-105"
+            className="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-gray-700 shadow-sm transition-transform hover:scale-105"
           >
             Buat Janji Sekarang
             <ArrowRight className="h-4 w-4" />
@@ -235,13 +235,13 @@ export default async function BlogDetailPage({
       {/* Related posts */}
       {related.length > 0 && (
         <section className="mx-auto max-w-5xl px-5 py-12 lg:px-8">
-          <h2 className="mb-6 font-display text-2xl font-bold text-pink-950">Artikel Terkait</h2>
+          <h2 className="mb-6 font-display text-2xl font-bold text-gray-900">Artikel Terkait</h2>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             {related.map((rel) => (
               <Link
                 key={rel.slug}
                 href={`/blog/${rel.slug}`}
-                className="group flex flex-col overflow-hidden rounded-3xl border border-pink-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-soft-pink"
+                className="group flex flex-col overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-soft-pink"
               >
                 <div className="relative aspect-video overflow-hidden">
                   <Image
@@ -254,8 +254,8 @@ export default async function BlogDetailPage({
                   />
                 </div>
                 <div className="p-4">
-                  <div className="text-[11px] text-pink-600">{new Date(rel.date).toLocaleDateString("id-ID", { day: "numeric", month: "short" })}</div>
-                  <h3 className="mt-1 font-display text-sm font-bold leading-snug text-pink-950 line-clamp-2">{rel.title}</h3>
+                  <div className="text-[11px] text-gray-600">{new Date(rel.date).toLocaleDateString("id-ID", { day: "numeric", month: "short" })}</div>
+                  <h3 className="mt-1 font-display text-sm font-bold leading-snug text-gray-900 line-clamp-2">{rel.title}</h3>
                 </div>
               </Link>
             ))}
@@ -267,7 +267,7 @@ export default async function BlogDetailPage({
       <div className="mx-auto max-w-3xl px-5 pb-16 lg:px-8">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-white px-5 py-2.5 text-sm font-bold text-pink-700 hover:bg-pink-50"
+          className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-5 py-2.5 text-sm font-bold text-gray-700 hover:bg-gray-50"
         >
           <ArrowLeft className="h-4 w-4" />
           Kembali ke Blog

@@ -36,7 +36,7 @@ export default function WebsiteLayout({ children }: { children: React.ReactNode 
   const isV2 = appVersion === "v2.0.0";
 
   return (
-    <div className={isV2 ? "relative flex min-h-screen flex-col mesh-gradient-1" : "relative flex min-h-screen flex-col bg-background"}>
+    <div className={isV2 ? "relative flex min-h-screen flex-col bg-white" : "relative flex min-h-screen flex-col bg-background"}>
       <SplashScreen />
       <ScrollProgress />
       <Navbar />

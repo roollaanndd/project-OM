@@ -18,7 +18,7 @@ const DOCTORS = [
     rating: 4.9,
     reviews: 1240,
     badge: "Founder",
-    gradient: "from-pink-500 to-fuchsia-600",
+    gradient: "from-gray-500 to-fuchsia-600",
     initials: "OM",
     avail: "Sen · Rab · Jum",
     bio: "drg. Oktri adalah founder OMDC dengan pengalaman 12 tahun di bidang orthodonti. Beliau dikenal dengan pendekatan personal dan estetik, memastikan setiap pasien mendapatkan senyum terbaik sesuai struktur wajah.",
@@ -31,7 +31,7 @@ const DOCTORS = [
     rating: 4.9,
     reviews: 870,
     badge: "Kids Favorite",
-    gradient: "from-rose-500 to-amber-400",
+    gradient: "from-gray-500 to-amber-400",
     initials: "AP",
     avail: "Sel · Kam · Sab",
     bio: "drg. Adelia spesialis dalam menangani pasien anak dengan teknik minim trauma. Ruang perawatannya dilengkapi mainan dan kartun favorit anak, membuat kunjungan ke dokter gigi menjadi pengalaman menyenangkan.",
@@ -67,17 +67,17 @@ export default function DoctorsPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <section className="mx-auto max-w-6xl px-5 py-14 lg:px-8 lg:py-20">
-        <nav aria-label="Breadcrumb" className="mb-6 text-xs text-pink-950/55">
-          <Link href="/" className="hover:text-pink-700">Beranda</Link>
+        <nav aria-label="Breadcrumb" className="mb-6 text-xs text-gray-900/55">
+          <Link href="/" className="hover:text-gray-700">Beranda</Link>
           <span className="mx-2">›</span>
-          <span className="font-bold text-pink-700">Dokter</span>
+          <span className="font-bold text-gray-700">Dokter</span>
         </nav>
 
         <div className="text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-pink-700">
+          <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-gray-700">
             Tim Dokter Spesialis
           </span>
-          <h1 className="mt-4 font-display text-4xl font-extrabold leading-tight text-pink-950 sm:text-5xl">
+          <h1 className="mt-4 font-display text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">
             Dokter gigi yang
             <br />
             <span className="text-gradient-pink">Anda percayai</span>
@@ -92,7 +92,7 @@ export default function DoctorsPage() {
           {DOCTORS.map((doc) => (
             <article
               key={doc.name}
-              className="group relative overflow-hidden rounded-3xl border border-pink-100 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-soft-pink"
+              className="group relative overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-soft-pink"
             >
               <div className={`relative aspect-[4/2] bg-gradient-to-br ${doc.gradient}`}>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -103,7 +103,7 @@ export default function DoctorsPage() {
                   </div>
                 </div>
                 {doc.badge && (
-                  <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold text-pink-700 shadow-sm">
+                  <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold text-gray-700 shadow-sm">
                     <Award className="h-3 w-3" />
                     {doc.badge}
                   </span>
@@ -115,26 +115,26 @@ export default function DoctorsPage() {
                 </div>
               </div>
               <div className="p-6">
-                <h2 className="font-display text-lg font-bold text-pink-950">{doc.name}</h2>
-                <p className="mt-1 text-sm font-medium text-pink-600">{doc.specialty}</p>
+                <h2 className="font-display text-lg font-bold text-gray-900">{doc.name}</h2>
+                <p className="mt-1 text-sm font-medium text-gray-600">{doc.specialty}</p>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/65">{doc.bio}</p>
                 <div className="mt-4 space-y-1.5 text-xs text-foreground/65">
                   <p className="flex items-start gap-2">
-                    <GraduationCap className="mt-0.5 h-4 w-4 shrink-0 text-pink-500" />
+                    <GraduationCap className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
                     <span>{doc.education}</span>
                   </p>
                   <p className="flex items-start gap-2">
-                    <Award className="mt-0.5 h-4 w-4 shrink-0 text-pink-500" />
+                    <Award className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
                     <span>{doc.experience} pengalaman klinis</span>
                   </p>
                   <p className="flex items-start gap-2">
-                    <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-pink-500" />
+                    <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
                     <span>Praktik: {doc.avail}</span>
                   </p>
                 </div>
                 <Link
                   href="/#booking"
-                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-pink-200 bg-white py-2.5 text-sm font-bold text-pink-700 transition-colors hover:bg-pink-50"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full border border-gray-200 bg-white py-2.5 text-sm font-bold text-gray-700 transition-colors hover:bg-gray-50"
                 >
                   Buat Janji dengan {doc.initials}
                   <ArrowRight className="h-4 w-4" />

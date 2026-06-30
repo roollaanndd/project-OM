@@ -66,7 +66,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative mt-20 overflow-hidden bg-gradient-to-b from-pink-950 via-pink-950 to-rose-950 text-pink-100">
+    <footer className="relative mt-20 overflow-hidden bg-gradient-to-b from-gray-900 via-gray-900 to-gray-800 text-pink-100">
       {/* decorative blobs */}
       <div className="absolute -top-20 left-1/4 h-72 w-72 rounded-full bg-pink-600/20 blur-3xl" />
       <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-rose-600/20 blur-3xl" />
@@ -78,7 +78,7 @@ export function Footer() {
             <h3 className="font-display text-2xl font-bold text-white sm:text-3xl">
               Tips gigi sehat langsung ke inbox Anda
             </h3>
-            <p className="mt-2 text-sm text-pink-200/80">
+            <p className="mt-2 text-sm text-gray-200/80">
               Berlangganan newsletter OMDC — dapatkan panduan perawatan gigi, promo eksklusif, dan
               tips keluarga sehat.
             </p>
@@ -89,11 +89,11 @@ export function Footer() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="email@anda.com"
-              className="flex-1 rounded-full border-white/20 bg-white/10 px-5 py-6 text-white placeholder:text-pink-200/60 focus:border-pink-400 focus:bg-white/15"
+              className="flex-1 rounded-full border-white/20 bg-white/10 px-5 py-6 text-white placeholder:text-gray-200/60 focus:border-gray-400 focus:bg-white/15"
             />
             <Button
               type="submit"
-              className="rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-6 py-6 text-white shadow-soft-pink hover:from-pink-400 hover:to-rose-400"
+              className="rounded-full bg-gradient-to-r from-gray-500 to-gray-500 px-6 py-6 text-white shadow-soft-pink hover:from-pink-400 hover:to-rose-400"
             >
               <Send className="h-4 w-4" />
               <span className="ml-1.5 hidden sm:inline">Langganan</span>
@@ -109,7 +109,7 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-2">
             <div className="rounded-2xl bg-white/5 p-4 backdrop-blur-sm ring-1 ring-white/10">
               <OmdcLogo className="[&_span]:text-white [&_span.text-gradient-pink]:!text-white" />
-              <p className="mt-4 text-sm leading-relaxed text-pink-200/80">
+              <p className="mt-4 text-sm leading-relaxed text-gray-200/80">
                 Oktri Manessa Dental Clinic — klinik gigi terpercaya dengan 3 cabang di Jabodetabek. Memberikan
                 perawatan gigi modern, aman, dan ramah untuk seluruh keluarga Indonesia sejak 2015.
               </p>
@@ -125,7 +125,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-pink-100 transition-colors hover:bg-pink-500 hover:text-white"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-pink-100 transition-colors hover:bg-gray-500 hover:text-white"
                   >
                     <s.icon className="h-4 w-4" />
                   </a>
@@ -142,7 +142,7 @@ export function Footer() {
                 <li key={n.href}>
                   <a
                     href={n.href}
-                    className="text-sm text-pink-200/80 transition-colors hover:text-white"
+                    className="text-sm text-gray-200/80 transition-colors hover:text-white"
                   >
                     {n.label}
                   </a>
@@ -159,7 +159,7 @@ export function Footer() {
                 <li key={s.label}>
                   <a
                     href={s.href}
-                    className="text-sm text-pink-200/80 transition-colors hover:text-white"
+                    className="text-sm text-gray-200/80 transition-colors hover:text-white"
                   >
                     {s.label}
                   </a>
@@ -171,29 +171,29 @@ export function Footer() {
           {/* Contact + Hours */}
           <div className="col-span-2 md:col-span-1">
             <h4 className="text-sm font-bold uppercase tracking-wide text-white">Kontak &amp; Jam</h4>
-            <ul className="mt-4 space-y-3 text-sm text-pink-200/80">
+            <ul className="mt-4 space-y-3 text-sm text-gray-200/80">
               <li className="flex items-start gap-2.5">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-pink-400" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
                 <span>Jl. Melati Raya No. 17, Bekasi Selatan, Jawa Barat 17141 (Cabang Utama)</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 shrink-0 text-pink-400" />
+                <Phone className="h-4 w-4 shrink-0 text-gray-400" />
                 <a href="tel:+6281234567890" className="hover:text-white">
                   +62 812-3456-7890
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 shrink-0 text-pink-400" />
+                <Mail className="h-4 w-4 shrink-0 text-gray-400" />
                 <a href="mailto:halo@omdc-dental.id" className="hover:text-white">
                   halo@omdc-dental.id
                 </a>
               </li>
               <li className="mt-4 flex items-start gap-2.5">
-                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-pink-400" />
+                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
                 <div className="space-y-1">
                   {HOURS.map((h) => (
                     <div key={h.day} className="flex justify-between gap-3 text-xs">
-                      <span className="text-pink-200/70">{h.day}</span>
+                      <span className="text-gray-200/70">{h.day}</span>
                       <span className="font-medium text-white">{h.time}</span>
                     </div>
                   ))}
@@ -205,17 +205,17 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
-          <p className="text-xs text-pink-200/70">
+          <p className="text-xs text-gray-200/70">
             &copy; {new Date().getFullYear()} Oktri Manessa Dental Clinic (OMDC). All rights reserved.
           </p>
-          <div className="flex items-center gap-1.5 text-xs text-pink-200/70">
+          <div className="flex items-center gap-1.5 text-xs text-gray-200/70">
             Dibuat dengan
-            <Heart className="h-3.5 w-3.5 fill-pink-500 text-pink-500" />
+            <Heart className="h-3.5 w-3.5 fill-pink-500 text-gray-500" />
             di Indonesia
           </div>
           <a
             href="#home"
-            className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-pink-500"
+            className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-gray-500"
           >
             <ArrowUp className="h-3.5 w-3.5" />
             Kembali ke atas

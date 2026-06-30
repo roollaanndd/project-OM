@@ -186,16 +186,16 @@ export function SmileGallery() {
 
   return (
     <section id="gallery" className="relative py-20 lg:py-28">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-pink-50/40 via-white to-pink-50/40" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-gray-50/40 via-white to-gray-50/40" />
 
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-pink-700">
+          <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-gray-700">
             <Sparkles className="h-3.5 w-3.5" />
             Galeri Transformasi
           </span>
-          <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-pink-950 sm:text-5xl">
+          <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">
             Lihat transformasi senyum
             <br />
             <span className="text-gradient-pink">pasien kami</span>
@@ -215,15 +215,15 @@ export function SmileGallery() {
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative overflow-hidden rounded-3xl border border-pink-100 bg-white p-6 shadow-soft-pink sm:p-8"
+            className="relative overflow-hidden rounded-3xl border border-gray-100 bg-white p-6 shadow-soft-pink sm:p-8"
           >
             <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
               <div>
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-pink-100 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-pink-700">
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-gray-700">
                   <Wand2 className="h-3 w-3" />
                   {active.category}
                 </div>
-                <h3 className="mt-2 font-display text-xl font-bold text-pink-950">{active.title}</h3>
+                <h3 className="mt-2 font-display text-xl font-bold text-gray-900">{active.title}</h3>
               </div>
               <div className="flex items-center gap-1 rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-700">
                 <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
@@ -233,8 +233,8 @@ export function SmileGallery() {
 
             <div className="grid grid-cols-2 gap-3">
               {/* Before */}
-              <div className="overflow-hidden rounded-2xl border border-pink-100 bg-pink-50/40">
-                <div className="border-b border-pink-100 bg-pink-100/60 px-3 py-1.5 text-center text-xs font-bold uppercase tracking-wider text-pink-700">
+              <div className="overflow-hidden rounded-2xl border border-gray-100 bg-gray-50/40">
+                <div className="border-b border-gray-100 bg-gray-100/60 px-3 py-1.5 text-center text-xs font-bold uppercase tracking-wider text-gray-700">
                   Sebelum
                 </div>
                 <div className="aspect-[16/10]">
@@ -243,8 +243,8 @@ export function SmileGallery() {
               </div>
 
               {/* After */}
-              <div className="relative overflow-hidden rounded-2xl border-2 border-pink-300 bg-white shadow-glow-pink">
-                <div className="border-b border-pink-200 bg-gradient-to-r from-pink-500 to-rose-500 px-3 py-1.5 text-center text-xs font-bold uppercase tracking-wider text-white">
+              <div className="relative overflow-hidden rounded-2xl border-2 border-gray-300 bg-white shadow-glow-pink">
+                <div className="border-b border-gray-200 bg-gradient-to-r from-gray-500 to-gray-500 px-3 py-1.5 text-center text-xs font-bold uppercase tracking-wider text-white">
                   Sesudah
                 </div>
                 <div className="aspect-[16/10]">
@@ -265,10 +265,10 @@ export function SmileGallery() {
             <p className="mt-4 text-sm leading-relaxed text-foreground/70">{active.description}</p>
 
             {/* Navigation */}
-            <div className="mt-5 flex items-center justify-between border-t border-pink-100 pt-4">
+            <div className="mt-5 flex items-center justify-between border-t border-gray-100 pt-4">
               <button
                 onClick={goPrev}
-                className="inline-flex items-center gap-1.5 rounded-full border border-pink-200 bg-white px-3 py-1.5 text-xs font-semibold text-pink-700 transition-colors hover:bg-pink-50"
+                className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700 transition-colors hover:bg-gray-50"
                 aria-label="Sebelumnya"
               >
                 <ArrowLeft className="h-3.5 w-3.5" />
@@ -289,7 +289,7 @@ export function SmileGallery() {
               </div>
               <button
                 onClick={goNext}
-                className="inline-flex items-center gap-1.5 rounded-full border border-pink-200 bg-white px-3 py-1.5 text-xs font-semibold text-pink-700 transition-colors hover:bg-pink-50"
+                className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700 transition-colors hover:bg-gray-50"
                 aria-label="Selanjutnya"
               >
                 Next
@@ -300,7 +300,7 @@ export function SmileGallery() {
 
           {/* Thumbnails */}
           <div className="space-y-3">
-            <h3 className="font-display text-lg font-bold text-pink-950">Kasus Lainnya</h3>
+            <h3 className="font-display text-lg font-bold text-gray-900">Kasus Lainnya</h3>
             {CASES.map((c, i) => (
               <m.button
                 key={c.title}
@@ -313,26 +313,26 @@ export function SmileGallery() {
                 className={cn(
                   "flex w-full items-center gap-3 rounded-2xl border p-3 text-left transition-all",
                   i === activeIdx
-                    ? "border-pink-300 bg-white shadow-soft-pink"
-                    : "border-pink-100 bg-white/60 hover:border-pink-200 hover:bg-white",
+                    ? "border-gray-300 bg-white shadow-soft-pink"
+                    : "border-gray-100 bg-white/60 hover:border-gray-200 hover:bg-white",
                 )}
               >
-                <div className="h-14 w-20 shrink-0 overflow-hidden rounded-lg bg-pink-50">
+                <div className="h-14 w-20 shrink-0 overflow-hidden rounded-lg bg-gray-50">
                   <SmileSvg teethColor={c.after.teethColor} alignment={c.after.alignment} label={`thumb-${i}`} />
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="rounded-full bg-pink-100 px-2 py-0.5 text-[10px] font-bold uppercase text-pink-700">
+                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-bold uppercase text-gray-700">
                       {c.category}
                     </span>
                     <span className="text-[10px] text-foreground/50">· {c.duration}</span>
                   </div>
-                  <div className="mt-1 truncate text-sm font-bold text-pink-950">{c.title}</div>
+                  <div className="mt-1 truncate text-sm font-bold text-gray-900">{c.title}</div>
                 </div>
                 {i === activeIdx && (
                   <m.div
                     layoutId="active-case"
-                    className="h-8 w-1 rounded-full bg-gradient-to-b from-pink-500 to-rose-500"
+                    className="h-8 w-1 rounded-full bg-gradient-to-b from-gray-500 to-gray-500"
                   />
                 )}
               </m.button>
@@ -340,7 +340,7 @@ export function SmileGallery() {
 
             <Button
               asChild
-              className="w-full rounded-full bg-gradient-to-r from-pink-600 to-rose-500 text-white shadow-soft-pink hover:from-pink-700 hover:to-rose-600"
+              className="w-full rounded-full bg-gradient-to-r from-pink-600 to-gray-500 text-white shadow-soft-pink hover:from-pink-700 hover:to-rose-600"
             >
               <a href="#booking">
                 <Sparkles className="mr-2 h-4 w-4" />

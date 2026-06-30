@@ -41,7 +41,7 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "bg-white/85 backdrop-blur-xl shadow-[0_8px_30px_-12px_rgba(219,39,119,0.18)] border-b border-pink-100/80"
+          ? "bg-white/85 backdrop-blur-xl shadow-[0_8px_30px_-12px_rgba(219,39,119,0.18)] border-b border-gray-100/80"
           : "bg-transparent",
       )}
     >
@@ -56,7 +56,7 @@ export function Navbar() {
             <li key={item.href}>
               <a
                 href={item.href}
-                className="relative inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-foreground/75 transition-colors hover:text-primary hover:bg-primary/5"
+                className="relative inline-flex items-center rounded-full px-4 py-2 text-sm font-medium text-foreground/75 transition-colors hover:text-gray-700 hover:bg-primary/5"
               >
                 {item.label}
               </a>
@@ -67,7 +67,7 @@ export function Navbar() {
         <div className="hidden items-center gap-2 lg:flex">
           <a
             href="tel:+6281234567890"
-            className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-white/70 px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-pink-50"
+            className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/70 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50"
           >
             <Phone className="h-4 w-4" />
             +62 812-3456-7890
@@ -80,7 +80,7 @@ export function Navbar() {
             Patient App
           </button>
           <ThemeToggle />
-          <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-pink-600 to-pink-500 px-5 text-white shadow-soft-pink hover:from-pink-700 hover:to-pink-600">
+          <Button asChild size="sm" className="rounded-full bg-gradient-to-r from-pink-600 to-gray-500 px-5 text-white shadow-soft-pink hover:from-pink-700 hover:to-pink-600">
             <a href="#booking">
               <CalendarCheck className="mr-1.5 h-4 w-4" />
               Buat Janji
@@ -90,7 +90,7 @@ export function Navbar() {
 
         {/* Mobile menu trigger */}
         <button
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-pink-200 bg-white/80 text-primary lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white/80 text-gray-700 lg:hidden"
           onClick={() => setOpen(true)}
           aria-label="Buka menu"
         >
@@ -107,7 +107,7 @@ export function Navbar() {
       >
         <div
           className={cn(
-            "absolute inset-0 bg-pink-950/30 backdrop-blur-sm transition-opacity duration-300",
+            "absolute inset-0 bg-gray-900/30 backdrop-blur-sm transition-opacity duration-300",
             open ? "opacity-100" : "opacity-0",
           )}
           onClick={() => setOpen(false)}
@@ -122,10 +122,10 @@ export function Navbar() {
             open ? "translate-x-0" : "translate-x-full",
           )}
         >
-          <div className="flex items-center justify-between border-b border-pink-100 px-5 py-4">
+          <div className="flex items-center justify-between border-b border-gray-100 px-5 py-4">
             <OmdcLogo showSubtitle size="sm" />
             <button
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-pink-50 text-primary"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 text-gray-700"
               onClick={() => setOpen(false)}
               aria-label="Tutup menu"
             >
@@ -138,7 +138,7 @@ export function Navbar() {
                 <a
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-2xl px-4 py-3 text-base font-medium text-foreground/80 transition-colors hover:bg-pink-50 hover:text-primary"
+                  className="block rounded-2xl px-4 py-3 text-base font-medium text-foreground/80 transition-colors hover:bg-gray-50 hover:text-gray-700"
                 >
                   {item.label}
                 </a>
@@ -158,12 +158,12 @@ export function Navbar() {
             </button>
             <a
               href="tel:+6281234567890"
-              className="flex items-center justify-center gap-2 rounded-2xl border border-pink-200 px-4 py-3 text-sm font-semibold text-primary"
+              className="flex items-center justify-center gap-2 rounded-2xl border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-700"
             >
               <Phone className="h-4 w-4" />
               +62 812-3456-7890
             </a>
-            <Button asChild className="w-full rounded-2xl bg-gradient-to-r from-pink-600 to-pink-500 text-white shadow-soft-pink">
+            <Button asChild className="w-full rounded-2xl bg-gradient-to-r from-pink-600 to-gray-500 text-white shadow-soft-pink">
               <a href="#booking" onClick={() => setOpen(false)}>
                 <CalendarCheck className="mr-2 h-4 w-4" />
                 Buat Janji Sekarang

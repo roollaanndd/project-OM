@@ -163,8 +163,8 @@ export function Booking() {
 
   return (
     <section id="booking" className="relative py-20 lg:py-28">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-pink-50/50 to-white" />
-      <div className="absolute right-0 top-1/4 -z-10 h-72 w-72 rounded-full bg-pink-200/30 blur-3xl" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-50/50 to-white" />
+      <div className="absolute right-0 top-1/4 -z-10 h-72 w-72 rounded-full bg-gray-200/30 blur-3xl" />
       <div className="absolute left-0 bottom-1/4 -z-10 h-72 w-72 rounded-full bg-rose-200/30 blur-3xl" />
 
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
@@ -176,10 +176,10 @@ export function Booking() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-pink-700">
+            <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-gray-700">
               Buat Janji Temu
             </span>
-            <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-pink-950 sm:text-5xl">
+            <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">
               Mulai perjalanan
               <br />
               <span className="text-gradient-pink">senyum sehat Anda</span>
@@ -193,16 +193,16 @@ export function Booking() {
               {INFO.map((info) => (
                 <div
                   key={info.label}
-                  className="flex items-start gap-4 rounded-2xl border border-pink-100 bg-white p-4 shadow-sm transition-colors hover:border-pink-200"
+                  className="flex items-start gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-colors hover:border-gray-200"
                 >
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 text-white">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-gray-500 to-rose-600 text-white">
                     <info.icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold uppercase tracking-wide text-pink-600">
+                    <div className="text-xs font-semibold uppercase tracking-wide text-gray-600">
                       {info.label}
                     </div>
-                    <div className="mt-1 text-sm font-medium text-pink-950">{info.value}</div>
+                    <div className="mt-1 text-sm font-medium text-gray-900">{info.value}</div>
                   </div>
                 </div>
               ))}
@@ -221,7 +221,7 @@ export function Booking() {
               </a>
               <a
                 href="tel:+6281234567890"
-                className="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-white px-5 py-2.5 text-sm font-semibold text-pink-700 transition-colors hover:bg-pink-50"
+                className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50"
               >
                 <Phone className="h-4 w-4" />
                 Telepon Sekarang
@@ -237,19 +237,19 @@ export function Booking() {
             transition={{ duration: 0.7 }}
             className="relative"
           >
-            <div className="absolute -inset-3 -z-10 rounded-[36px] bg-gradient-to-br from-pink-200/60 to-rose-100/50 blur-2xl" />
-            <div className="rounded-[32px] border border-pink-100 bg-white p-6 shadow-soft-pink sm:p-8">
+            <div className="absolute -inset-3 -z-10 rounded-[36px] bg-gradient-to-br from-gray-200/60 to-gray-100/50 blur-2xl" />
+            <div className="rounded-[32px] border border-gray-100 bg-white p-6 shadow-soft-pink sm:p-8">
               {done ? (
                 <div className="flex flex-col items-center justify-center py-10 text-center">
                   <m.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 220, damping: 18 }}
-                    className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-rose-600 text-white shadow-glow-pink"
+                    className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-gray-500 to-rose-600 text-white shadow-glow-pink"
                   >
                     <CheckCircle2 className="h-10 w-10" />
                   </m.div>
-                  <h3 className="mt-6 font-display text-2xl font-bold text-pink-950">
+                  <h3 className="mt-6 font-display text-2xl font-bold text-gray-900">
                     Janji Temu Berhasil Dibuat!
                   </h3>
                   <p className="mt-2 max-w-md text-sm text-foreground/65">
@@ -259,19 +259,19 @@ export function Booking() {
                   <Button
                     onClick={() => setDone(false)}
                     variant="outline"
-                    className="mt-6 rounded-full border-pink-200 text-pink-700 hover:bg-pink-50"
+                    className="mt-6 rounded-full border-gray-200 text-gray-700 hover:bg-gray-50"
                   >
                     Buat Janji Lain
                   </Button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="flex items-center gap-3 border-b border-pink-100 pb-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pink-100 text-pink-700">
+                  <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 text-gray-700">
                       <CalendarCheck className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-display text-lg font-bold text-pink-950">
+                      <h3 className="font-display text-lg font-bold text-gray-900">
                         Formulir Janji Temu
                       </h3>
                       <p className="text-xs text-foreground/55">
@@ -290,7 +290,7 @@ export function Booking() {
                         value={form.name}
                         onChange={(e) => update("name", e.target.value)}
                         placeholder="cth. Sarah Wijayanti"
-                        className="rounded-xl border-pink-200 bg-white focus:border-pink-500 focus:ring-pink-500/30"
+                        className="rounded-xl border-gray-200 bg-white focus:border-gray-500 focus:ring-gray-500/30"
                         autoComplete="name"
                       />
                     </Field>
@@ -303,7 +303,7 @@ export function Booking() {
                         value={form.phone}
                         onChange={(e) => update("phone", e.target.value)}
                         placeholder="0812-3456-7890"
-                        className="rounded-xl border-pink-200 bg-white focus:border-pink-500 focus:ring-pink-500/30"
+                        className="rounded-xl border-gray-200 bg-white focus:border-gray-500 focus:ring-gray-500/30"
                         inputMode="tel"
                         autoComplete="tel"
                       />
@@ -316,7 +316,7 @@ export function Booking() {
                       onChange={(e) => update("email", e.target.value)}
                       placeholder="nama@email.com"
                       type="email"
-                      className="rounded-xl border-pink-200 bg-white focus:border-pink-500 focus:ring-pink-500/30"
+                      className="rounded-xl border-gray-200 bg-white focus:border-gray-500 focus:ring-gray-500/30"
                       autoComplete="email"
                     />
                   </Field>
@@ -327,7 +327,7 @@ export function Booking() {
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <Field label="Layanan" icon={<Stethoscope className="h-4 w-4" />} required>
                       <Select value={form.service} onValueChange={(v) => update("service", v)}>
-                        <SelectTrigger className="rounded-xl border-pink-200 bg-white focus:ring-pink-500/30">
+                        <SelectTrigger className="rounded-xl border-gray-200 bg-white focus:ring-gray-500/30">
                           <SelectValue placeholder="Pilih layanan" />
                         </SelectTrigger>
                         <SelectContent>
@@ -341,7 +341,7 @@ export function Booking() {
                     </Field>
                     <Field label="Dokter (opsional)" icon={<User className="h-4 w-4" />}>
                       <Select value={form.doctor} onValueChange={(v) => update("doctor", v)}>
-                        <SelectTrigger className="rounded-xl border-pink-200 bg-white focus:ring-pink-500/30">
+                        <SelectTrigger className="rounded-xl border-gray-200 bg-white focus:ring-gray-500/30">
                           <SelectValue placeholder="Pilih dokter" />
                         </SelectTrigger>
                         <SelectContent>
@@ -362,12 +362,12 @@ export function Booking() {
                         onChange={(e) => update("date", e.target.value)}
                         type="date"
                         min={today}
-                        className="rounded-xl border-pink-200 bg-white focus:border-pink-500 focus:ring-pink-500/30"
+                        className="rounded-xl border-gray-200 bg-white focus:border-gray-500 focus:ring-gray-500/30"
                       />
                     </Field>
                     <Field label="Waktu Janji" icon={<Clock className="h-4 w-4" />} required>
                       <Select value={form.time} onValueChange={(v) => update("time", v)}>
-                        <SelectTrigger className="rounded-xl border-pink-200 bg-white focus:ring-pink-500/30">
+                        <SelectTrigger className="rounded-xl border-gray-200 bg-white focus:ring-gray-500/30">
                           <SelectValue placeholder="Pilih jam" />
                         </SelectTrigger>
                         <SelectContent>
@@ -386,12 +386,12 @@ export function Booking() {
                       value={form.notes}
                       onChange={(e) => update("notes", e.target.value)}
                       placeholder="cth. Saya memiliki alergi tertentu / riwayat sakit gigi sebelumnya"
-                      className="min-h-[88px] resize-y rounded-xl border-pink-200 bg-white focus:border-pink-500 focus:ring-pink-500/30"
+                      className="min-h-[88px] resize-y rounded-xl border-gray-200 bg-white focus:border-gray-500 focus:ring-gray-500/30"
                     />
                   </Field>
 
-                  <div className="flex items-start gap-2 rounded-2xl bg-pink-50/60 p-3 text-xs text-foreground/60">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-pink-600" />
+                  <div className="flex items-start gap-2 rounded-2xl bg-gray-50/60 p-3 text-xs text-foreground/60">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-gray-600" />
                     Dengan mengirim form ini, Anda menyetujui Kebijakan Privasi OMDC. Data Anda
                     hanya digunakan untuk konfirmasi janji dan tidak dibagikan ke pihak ketiga.
                   </div>
@@ -400,7 +400,7 @@ export function Booking() {
                     type="submit"
                     disabled={submitting}
                     className={cn(
-                      "w-full rounded-full bg-gradient-to-r from-pink-600 to-rose-500 px-7 py-6 text-base font-semibold text-white shadow-soft-pink hover:from-pink-700 hover:to-rose-600",
+                      "w-full rounded-full bg-gradient-to-r from-pink-600 to-gray-500 px-7 py-6 text-base font-semibold text-white shadow-soft-pink hover:from-pink-700 hover:to-rose-600",
                       submitting && "opacity-80",
                     )}
                   >
@@ -439,10 +439,10 @@ function Field({
 }) {
   return (
     <div className="space-y-1.5">
-      <Label className="flex items-center gap-1.5 text-xs font-semibold text-pink-950">
-        {icon && <span className="text-pink-500">{icon}</span>}
+      <Label className="flex items-center gap-1.5 text-xs font-semibold text-gray-900">
+        {icon && <span className="text-gray-500">{icon}</span>}
         {label}
-        {required && <span className="text-pink-600">*</span>}
+        {required && <span className="text-gray-600">*</span>}
       </Label>
       {children}
     </div>

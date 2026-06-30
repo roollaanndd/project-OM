@@ -29,7 +29,7 @@ const DOCTORS: Doctor[] = [
     rating: 4.9,
     reviews: 1240,
     badge: "Founder",
-    gradient: "from-pink-500 via-rose-500 to-fuchsia-600",
+    gradient: "from-gray-500 via-gray-500 to-fuchsia-600",
     initials: "OM",
     avail: "Sen · Rab · Jum",
     photo: "/doctors/doctor-1.jpg",
@@ -42,7 +42,7 @@ const DOCTORS: Doctor[] = [
     rating: 4.9,
     reviews: 870,
     badge: "Kids Favorite",
-    gradient: "from-rose-500 via-pink-500 to-amber-400",
+    gradient: "from-gray-500 via-gray-500 to-amber-400",
     initials: "AP",
     avail: "Sel · Kam · Sab",
     photo: "/doctors/doctor-2.jpg",
@@ -77,15 +77,15 @@ const DOCTORS: Doctor[] = [
 export function Doctors() {
   return (
     <section id="doctors" className="relative py-20 lg:py-28">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-pink-50/60 via-white to-pink-50/40" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-gray-50/60 via-white to-gray-50/40" />
 
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-pink-700">
+          <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-gray-700">
             Tim Dokter Kami
           </span>
-          <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-pink-950 sm:text-5xl">
+          <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">
             Dokter gigi spesialis
             <br />
             <span className="text-gradient-pink">yang Anda percayai</span>
@@ -106,7 +106,7 @@ export function Doctors() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.55, delay: i * 0.08 }}
-              className="group relative flex flex-col overflow-hidden rounded-3xl border border-pink-100 bg-white shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-soft-pink"
+              className="group relative flex flex-col overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-soft-pink"
             >
               {/* Avatar block */}
               <div className={`relative aspect-[4/3] bg-gradient-to-br ${doc.gradient}`}>
@@ -142,7 +142,7 @@ export function Doctors() {
 
                 {/* Badge */}
                 {doc.badge && (
-                  <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold text-pink-700 shadow-sm backdrop-blur">
+                  <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold text-gray-700 shadow-sm backdrop-blur">
                     <Award className="h-3 w-3" />
                     {doc.badge}
                   </span>
@@ -158,22 +158,22 @@ export function Doctors() {
 
               {/* Body */}
               <div className="flex flex-1 flex-col p-5">
-                <h3 className="font-display text-base font-bold leading-snug text-pink-950">
+                <h3 className="font-display text-base font-bold leading-snug text-gray-900">
                   {doc.name}
                 </h3>
-                <p className="mt-1 text-sm font-medium text-pink-600">{doc.specialty}</p>
+                <p className="mt-1 text-sm font-medium text-gray-600">{doc.specialty}</p>
 
                 <div className="mt-4 space-y-2 text-xs text-foreground/65">
                   <p className="flex items-start gap-2">
-                    <GraduationCap className="mt-0.5 h-4 w-4 shrink-0 text-pink-500" />
+                    <GraduationCap className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
                     <span className="leading-relaxed">{doc.education}</span>
                   </p>
                   <p className="flex items-start gap-2">
-                    <Award className="mt-0.5 h-4 w-4 shrink-0 text-pink-500" />
+                    <Award className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
                     <span>{doc.experience} pengalaman klinis</span>
                   </p>
                   <p className="flex items-start gap-2">
-                    <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-pink-500" />
+                    <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-gray-500" />
                     <span>Praktik: {doc.avail}</span>
                   </p>
                 </div>
@@ -181,7 +181,7 @@ export function Doctors() {
                 <Button
                   asChild
                   variant="outline"
-                  className="mt-5 w-full rounded-full border-pink-200 bg-white text-pink-700 hover:bg-pink-50 hover:text-pink-800"
+                  className="mt-5 w-full rounded-full border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:text-gray-800"
                 >
                   <a href="#booking">Buat Janji</a>
                 </Button>

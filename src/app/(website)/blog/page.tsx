@@ -35,7 +35,7 @@ export default function BlogPage() {
     <main className="min-h-screen bg-gray-50">
       {/* Hero */}
       <section className="relative overflow-hidden pt-28 pb-12 lg:pt-32">
-        <div className="absolute inset-0 -z-10 mesh-gradient-animated" />
+        <div className="absolute inset-0 -z-10 bg-gray-50" />
         <div className="mx-auto max-w-5xl px-5 text-center lg:px-8">
           <BlogHero />
 
@@ -45,7 +45,7 @@ export default function BlogPage() {
               <Link
                 key={cat}
                 href={`/blog?category=${encodeURIComponent(cat)}`}
-                className="glass rounded-full px-4 py-1.5 text-xs font-bold text-pink-700 hover:bg-white/80"
+                className="glass rounded-full px-4 py-1.5 text-xs font-bold text-gray-700 hover:bg-white/80"
               >
                 {cat}
               </Link>
@@ -63,7 +63,7 @@ export default function BlogPage() {
 
       {/* All articles grid */}
       <section className="mx-auto max-w-5xl px-5 pb-16 lg:px-8">
-        <h2 className="mb-6 font-display text-2xl font-bold text-pink-950">Semua Artikel</h2>
+        <h2 className="mb-6 font-display text-2xl font-bold text-gray-900">Semua Artikel</h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {rest.map((post, i) => (
             <BlogCard key={post.slug} post={post} index={i} />
@@ -74,7 +74,7 @@ export default function BlogPage() {
       {/* CTA */}
       <section className="mx-auto max-w-5xl px-5 pb-20 lg:px-8">
         <div className="glass relative overflow-hidden rounded-3xl p-8 text-center shadow-soft-pink">
-          <h2 className="font-display text-2xl font-extrabold text-pink-950">
+          <h2 className="font-display text-2xl font-extrabold text-gray-900">
             Punya pertanyaan tentang kesehatan gigi?
           </h2>
           <p className="mt-2 text-sm text-foreground/65">
@@ -82,7 +82,7 @@ export default function BlogPage() {
           </p>
           <Link
             href="/#booking"
-            className="btn-magnetic mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-600 to-rose-500 px-6 py-3 text-sm font-bold text-white shadow-soft-pink"
+            className="btn-magnetic mt-5 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-600 to-gray-500 px-6 py-3 text-sm font-bold text-white shadow-soft-pink"
           >
             Buat Janji Konsultasi
             <ArrowRight className="h-4 w-4" />

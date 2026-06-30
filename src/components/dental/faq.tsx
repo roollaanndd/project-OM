@@ -48,7 +48,7 @@ const FAQS = [
 export function FAQ() {
   return (
     <section id="faq" className="relative py-20 lg:py-28">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-pink-50/40 to-white" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-gray-50/40 to-white" />
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
           {/* Left header */}
@@ -59,11 +59,11 @@ export function FAQ() {
             transition={{ duration: 0.7 }}
             className="lg:sticky lg:top-28 lg:self-start"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-pink-700">
+            <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-gray-700">
               <HelpCircle className="h-3.5 w-3.5" />
               Pertanyaan Umum
             </span>
-            <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-pink-950 sm:text-5xl">
+            <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">
               Hal yang sering
               <br />
               <span className="text-gradient-pink">ditanyakan pasien</span>
@@ -74,19 +74,19 @@ export function FAQ() {
               WhatsApp untuk respons cepat.
             </p>
 
-            <div className="mt-6 rounded-3xl border border-pink-100 bg-white p-5 shadow-sm">
+            <div className="mt-6 rounded-3xl border border-gray-100 bg-white p-5 shadow-sm">
               <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 text-white">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-gray-500 to-rose-600 text-white">
                   <MessageCircleQuestion className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-pink-950">Masih bingung?</div>
+                  <div className="text-sm font-bold text-gray-900">Masih bingung?</div>
                   <div className="text-xs text-foreground/60">Tim kami online 7 hari seminggu</div>
                 </div>
               </div>
               <Button
                 asChild
-                className="mt-4 w-full rounded-full bg-gradient-to-r from-pink-600 to-rose-500 text-white shadow-soft-pink hover:from-pink-700 hover:to-rose-600"
+                className="mt-4 w-full rounded-full bg-gradient-to-r from-pink-600 to-gray-500 text-white shadow-soft-pink hover:from-pink-700 hover:to-rose-600"
               >
                 <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer">
                   <PhoneCall className="mr-2 h-4 w-4" />
@@ -116,12 +116,12 @@ export function FAQ() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.05 }}
-                  className="overflow-hidden rounded-2xl border border-pink-100 bg-white shadow-sm transition-shadow hover:shadow-soft-pink"
+                  className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-soft-pink"
                 >
                   <AccordionItem value={`faq-${i}`} className="border-0">
-                    <AccordionTrigger className="px-5 py-4 text-left text-base font-semibold text-pink-950 hover:no-underline hover:bg-pink-50/40 [&[data-state=open]>svg]:rotate-45">
+                    <AccordionTrigger className="px-5 py-4 text-left text-base font-semibold text-gray-900 hover:no-underline hover:bg-gray-50/40 [&[data-state=open]>svg]:rotate-45">
                       <span className="flex items-start gap-3">
-                        <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-pink-100 text-xs font-bold text-pink-700">
+                        <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gray-100 text-xs font-bold text-gray-700">
                           {i + 1}
                         </span>
                         <span className="leading-snug">{item.q}</span>

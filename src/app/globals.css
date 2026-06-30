@@ -47,32 +47,32 @@
 :root {
   --radius: 0.875rem;
 
-  /* OMDC Dental Clinic — soft pink / magenta palette */
-  --background: oklch(0.985 0.012 350);
-  --foreground: oklch(0.22 0.04 350);
+  /* OMDC — Neutral-first palette with pink accent */
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.20 0 0);
 
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.04 350);
+  --card-foreground: oklch(0.20 0 0);
 
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.04 350);
+  --popover-foreground: oklch(0.20 0 0);
 
-  /* Primary: vibrant pink/magenta */
+  /* Primary: pink (used for buttons, icons, badges ONLY) */
   --primary: oklch(0.65 0.24 0);
   --primary-foreground: oklch(0.99 0 0);
 
-  --secondary: oklch(0.95 0.04 350);
-  --secondary-foreground: oklch(0.30 0.10 350);
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: oklch(0.26 0 0);
 
-  --muted: oklch(0.96 0.02 350);
-  --muted-foreground: oklch(0.55 0.04 350);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.50 0 0);
 
-  --accent: oklch(0.93 0.06 350);
-  --accent-foreground: oklch(0.30 0.10 350);
+  --accent: oklch(0.96 0 0);
+  --accent-foreground: oklch(0.26 0 0);
 
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.90 0.02 350);
-  --input: oklch(0.92 0.02 350);
+  --border: oklch(0.92 0 0);
+  --input: oklch(0.94 0 0);
   --ring: oklch(0.65 0.24 0);
 
   --chart-1: oklch(0.65 0.24 0);

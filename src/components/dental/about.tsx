@@ -14,9 +14,9 @@ export function About() {
   return (
     <section id="about" className="relative overflow-hidden py-20 lg:py-28">
       {/* Background variations */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-white via-pink-50/40 to-rose-50/30" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-white via-gray-50/40 to-gray-50/30" />
       <div className="absolute -right-32 top-0 -z-10 h-96 w-96 rounded-full bg-fuchsia-200/30 blur-3xl" />
-      <div className="absolute -left-32 bottom-0 -z-10 h-96 w-96 rounded-full bg-pink-200/30 blur-3xl" />
+      <div className="absolute -left-32 bottom-0 -z-10 h-96 w-96 rounded-full bg-gray-200/30 blur-3xl" />
       {/* Dot pattern */}
       <div
         className="absolute inset-0 -z-10 opacity-[0.03]"
@@ -40,8 +40,8 @@ export function About() {
               <div className="absolute -inset-6 -z-10 rounded-[40px] bg-gradient-to-br from-pink-200 via-rose-100 to-pink-100 blur-2xl opacity-70" />
 
               {/* Card 1 - main visual */}
-              <div className="relative rounded-[36px] border border-pink-100 bg-white p-6 shadow-soft-pink">
-                <div className="relative aspect-square overflow-hidden rounded-[28px] bg-gradient-to-br from-pink-50 via-rose-50 to-white">
+              <div className="relative rounded-[36px] border border-gray-100 bg-white p-6 shadow-soft-pink">
+                <div className="relative aspect-square overflow-hidden rounded-[28px] bg-gradient-to-br from-gray-50 via-gray-50 to-white">
                   <svg viewBox="0 0 400 400" className="h-full w-full" role="img" aria-label="Ilustrasi klinik gigi OMDC">
                     <defs>
                       <linearGradient id="ab-tooth" x1="0" y1="0" x2="1" y2="1">
@@ -102,12 +102,12 @@ export function About() {
                 </div>
 
                 {/* Floating badge */}
-                <div className="absolute -bottom-5 -left-5 flex items-center gap-3 rounded-2xl border border-pink-100 bg-white px-4 py-3 shadow-soft-pink">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 to-pink-600 text-white">
+                <div className="absolute -bottom-5 -left-5 flex items-center gap-3 rounded-2xl border border-gray-100 bg-white px-4 py-3 shadow-soft-pink">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-gray-500 to-pink-600 text-white">
                     <Award className="h-5 w-5" />
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-pink-950">9+ Tahun</div>
+                    <div className="text-sm font-bold text-gray-900">9+ Tahun</div>
                     <div className="text-xs text-foreground/60">Pengalaman Klinis</div>
                   </div>
                 </div>
@@ -119,13 +119,13 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.6 }}
-                className="absolute -right-3 top-8 flex items-center gap-3 rounded-2xl border border-pink-100 bg-white/95 px-4 py-3 shadow-soft-pink backdrop-blur lg:-right-8"
+                className="absolute -right-3 top-8 flex items-center gap-3 rounded-2xl border border-gray-100 bg-white/95 px-4 py-3 shadow-soft-pink backdrop-blur lg:-right-8"
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-pink-500 text-white">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-gray-500 text-white">
                   <HeartPulse className="h-5 w-5" />
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-pink-950">98% Puas</div>
+                  <div className="text-sm font-bold text-gray-900">98% Puas</div>
                   <div className="text-xs text-foreground/60">Dari 10rb+ pasien</div>
                 </div>
               </m.div>
@@ -140,10 +140,10 @@ export function About() {
             transition={{ duration: 0.7 }}
             className="order-1 lg:order-2"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-pink-700">
+            <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-gray-700">
               Tentang OMDC
             </span>
-            <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-pink-950 sm:text-5xl">
+            <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">
               Klinik gigi yang menempatkan
               <br />
               <span className="text-gradient-pink">kenyamanan Anda di atas segalanya</span>
@@ -165,10 +165,10 @@ export function About() {
               {STATS.map((s) => (
                 <div
                   key={s.label}
-                  className="rounded-2xl border border-pink-100 bg-white p-4 text-center transition-colors hover:border-pink-200 hover:bg-pink-50/40"
+                  className="rounded-2xl border border-gray-100 bg-white p-4 text-center transition-colors hover:border-gray-200 hover:bg-gray-50/40"
                 >
-                  <s.icon className="mx-auto h-5 w-5 text-pink-500" />
-                  <div className="mt-2 text-lg font-bold text-pink-950">{s.value}</div>
+                  <s.icon className="mx-auto h-5 w-5 text-gray-500" />
+                  <div className="mt-2 text-lg font-bold text-gray-900">{s.value}</div>
                   <div className="mt-0.5 text-[11px] leading-tight text-foreground/55">{s.label}</div>
                 </div>
               ))}

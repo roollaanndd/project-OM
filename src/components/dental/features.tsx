@@ -59,7 +59,7 @@ export function Features() {
   return (
     <section className="relative overflow-hidden py-20 lg:py-28">
       {/* Background: gradient + grid + blobs */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-pink-50/60 via-white to-rose-50/40" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-gray-50/60 via-white to-gray-50/40" />
       <div className="absolute right-1/4 top-0 -z-10 h-80 w-80 rounded-full bg-fuchsia-200/25 blur-3xl" />
       <div className="absolute left-1/4 bottom-0 -z-10 h-80 w-80 rounded-full bg-pink-200/25 blur-3xl" />
       {/* Grid pattern */}
@@ -83,10 +83,10 @@ export function Features() {
             transition={{ duration: 0.7 }}
             className="lg:sticky lg:top-28"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-pink-700">
+            <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-gray-700">
               Kenapa OMDC
             </span>
-            <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-pink-950 sm:text-5xl">
+            <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">
               Perawatan gigi yang
               <br />
               <span className="text-gradient-pink">aman, nyaman, &amp; terpercaya</span>
@@ -98,13 +98,13 @@ export function Features() {
             </p>
 
             {/* Highlight card */}
-            <div className="mt-8 rounded-3xl border border-pink-100 bg-white p-6 shadow-soft-pink">
+            <div className="mt-8 rounded-3xl border border-gray-100 bg-white p-6 shadow-soft-pink">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 text-white">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-gray-500 to-rose-600 text-white">
                   <ShieldCheck className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-pink-950">Jaminan Keamanan OMDC</h3>
+                  <h3 className="text-lg font-bold text-gray-900">Jaminan Keamanan OMDC</h3>
                   <p className="mt-1.5 text-sm leading-relaxed text-foreground/65">
                     Setiap perawatan di OMDC mengikuti protokol infeksi control berstandar
                     internasional. Instrumen disterilisasi dengan autoclave kelas rumah sakit dan
@@ -116,16 +116,16 @@ export function Features() {
 
             {/* mini stats */}
             <div className="mt-6 grid grid-cols-3 gap-3">
-              <div className="rounded-2xl bg-pink-50/60 p-4 text-center">
-                <div className="text-2xl font-bold text-pink-700">0</div>
+              <div className="rounded-2xl bg-gray-50/60 p-4 text-center">
+                <div className="text-2xl font-bold text-gray-700">0</div>
                 <div className="mt-1 text-[11px] text-foreground/60">Insiden Infeksi</div>
               </div>
-              <div className="rounded-2xl bg-pink-50/60 p-4 text-center">
-                <div className="text-2xl font-bold text-pink-700">100%</div>
+              <div className="rounded-2xl bg-gray-50/60 p-4 text-center">
+                <div className="text-2xl font-bold text-gray-700">100%</div>
                 <div className="mt-1 text-[11px] text-foreground/60">Alat Steril</div>
               </div>
-              <div className="rounded-2xl bg-pink-50/60 p-4 text-center">
-                <div className="text-2xl font-bold text-pink-700">ISO</div>
+              <div className="rounded-2xl bg-gray-50/60 p-4 text-center">
+                <div className="text-2xl font-bold text-gray-700">ISO</div>
                 <div className="mt-1 text-[11px] text-foreground/60">9001:2015</div>
               </div>
             </div>
@@ -140,14 +140,14 @@ export function Features() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: (i % 4) * 0.06 }}
-                className="group relative overflow-hidden rounded-3xl border border-pink-100 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-soft-pink"
+                className="group relative overflow-hidden rounded-3xl border border-gray-100 bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-soft-pink"
               >
-                <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-pink-100/60 transition-transform duration-300 group-hover:scale-150" />
+                <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-gray-100/60 transition-transform duration-300 group-hover:scale-150" />
                 <div className="relative">
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-pink-50 text-pink-700 transition-colors group-hover:bg-pink-600 group-hover:text-white">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gray-50 text-gray-700 transition-colors group-hover:bg-pink-600 group-hover:text-white">
                     <f.icon className="h-5 w-5" />
                   </div>
-                  <h3 className="mt-4 text-base font-bold text-pink-950">{f.title}</h3>
+                  <h3 className="mt-4 text-base font-bold text-gray-900">{f.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-foreground/65">{f.desc}</p>
                 </div>
               </m.div>

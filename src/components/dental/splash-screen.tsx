@@ -63,8 +63,8 @@ export function SplashScreen() {
           exit={{ opacity: 0, transition: { duration: 0.6, ease: "easeInOut" } }}
         >
           {/* Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100" />
-          <div className="absolute inset-0 bg-radial-pink opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-gray-50 to-pink-100" />
+          <div className="absolute inset-0 bg-gray-200/40 opacity-80" />
 
           {/* Floating decorative blobs */}
           <m.div
@@ -91,7 +91,7 @@ export function SplashScreen() {
               {[0, 1, 2].map((i) => (
                 <m.div
                   key={i}
-                  className="absolute inset-0 rounded-full border-2 border-pink-400/40"
+                  className="absolute inset-0 rounded-full border-2 border-gray-400/40"
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: [0.8, 1.6], opacity: [0.6, 0] }}
                   transition={{
@@ -167,14 +167,14 @@ export function SplashScreen() {
               <h1 className="font-display text-5xl font-extrabold tracking-tight">
                 <span className="text-gradient-pink">OMDC</span>
               </h1>
-              <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.32em] text-pink-700/80">
+              <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.32em] text-gray-700/80">
                 Oktri Manessa Dental Clinic
               </p>
             </m.div>
 
             {/* Tagline */}
             <m.p
-              className="mt-5 text-base italic text-pink-900/70"
+              className="mt-5 text-base italic text-gray-900/70"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
@@ -216,10 +216,10 @@ export function SplashScreen() {
                   />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-[10px] font-bold text-pink-700">{progress}</span>
+                  <span className="text-[10px] font-bold text-gray-700">{progress}</span>
                 </div>
               </div>
-              <span className="text-[11px] font-medium text-pink-700/70">
+              <span className="text-[11px] font-medium text-gray-700/70">
                 Menyiapkan senyum terbaik untuk Anda…
               </span>
             </m.div>

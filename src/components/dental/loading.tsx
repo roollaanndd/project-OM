@@ -53,7 +53,7 @@ export function LoadingSpinner({
       </div>
       {label && (
         <m.p
-          className="text-xs font-medium text-pink-700"
+          className="text-xs font-medium text-gray-700"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -71,7 +71,7 @@ export function FullScreenLoader({ visible, label }: { visible: boolean; label?:
   if (!visible) return null;
   return (
     <m.div
-      className="fixed inset-0 z-[150] flex items-center justify-center bg-pink-50/70 backdrop-blur-sm"
+      className="fixed inset-0 z-[150] flex items-center justify-center bg-gray-50/70 backdrop-blur-sm"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -86,14 +86,14 @@ export function FullScreenLoader({ visible, label }: { visible: boolean; label?:
  */
 export function SkeletonCard({ className }: { className?: string }) {
   return (
-    <div className={`rounded-3xl border border-pink-100 bg-white p-6 ${className ?? ""}`}>
-      <div className="h-12 w-12 animate-pulse rounded-2xl bg-pink-100" />
-      <div className="mt-5 h-4 w-3/4 animate-pulse rounded-full bg-pink-100" />
-      <div className="mt-2 h-3 w-full animate-pulse rounded-full bg-pink-100/70" />
-      <div className="mt-1.5 h-3 w-5/6 animate-pulse rounded-full bg-pink-100/70" />
-      <div className="mt-5 flex items-center justify-between border-t border-pink-100 pt-4">
-        <div className="h-6 w-20 animate-pulse rounded-full bg-pink-100" />
-        <div className="h-9 w-9 animate-pulse rounded-full bg-pink-100" />
+    <div className={`rounded-3xl border border-gray-100 bg-white p-6 ${className ?? ""}`}>
+      <div className="h-12 w-12 animate-pulse rounded-2xl bg-gray-100" />
+      <div className="mt-5 h-4 w-3/4 animate-pulse rounded-full bg-gray-100" />
+      <div className="mt-2 h-3 w-full animate-pulse rounded-full bg-gray-100/70" />
+      <div className="mt-1.5 h-3 w-5/6 animate-pulse rounded-full bg-gray-100/70" />
+      <div className="mt-5 flex items-center justify-between border-t border-gray-100 pt-4">
+        <div className="h-6 w-20 animate-pulse rounded-full bg-gray-100" />
+        <div className="h-9 w-9 animate-pulse rounded-full bg-gray-100" />
       </div>
     </div>
   );
@@ -124,7 +124,7 @@ export function ScrollProgress() {
   return (
     <div className="fixed inset-x-0 top-0 z-[60] h-1 bg-transparent">
       <m.div
-        className="h-full origin-left bg-gradient-to-r from-pink-600 via-rose-500 to-fuchsia-500"
+        className="h-full origin-left bg-gradient-to-r from-pink-600 via-gray-500 to-fuchsia-500"
         style={{ scaleX: progress / 100, transformOrigin: "left" }}
         transition={{ ease: "linear", duration: 0.1 }}
       />
