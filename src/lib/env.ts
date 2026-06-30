@@ -20,8 +20,8 @@ const envSchema = z.object({
   AUTH_ENABLED: z
     .string()
     .optional()
-    .transform((v) => v === "true")
-    .default("false"),
+    .default("false")
+    .transform((v) => v === "true"),
   NEXTAUTH_SECRET: z.string().optional(),
   NEXTAUTH_URL: z.string().url().optional(),
 
@@ -31,8 +31,8 @@ const envSchema = z.object({
   MIDTRANS_IS_PRODUCTION: z
     .string()
     .optional()
-    .transform((v) => v === "true")
-    .default("false"),
+    .default("false")
+    .transform((v) => v === "true"),
 
   // Notifications (FCM) — optional
   FCM_SERVER_KEY: z.string().optional(),

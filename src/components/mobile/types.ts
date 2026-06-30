@@ -41,6 +41,8 @@ export interface Appointment {
   price: number;
   clinic: string;
   address: string;
+  phone?: string;
+  patientPhone?: string;
 }
 
 export interface Prescription {

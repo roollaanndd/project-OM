@@ -10,7 +10,7 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 interface PermissionStatus extends EventTarget {
-  state: "granted" | "denied" | "prompt";
+  state: "granted" | "denied" | "prompt" | "default";
 }
 
 /**

@@ -125,7 +125,7 @@ async function dbClear(store: StoreName): Promise<void> {
 }
 
 /** Get items by index value */
-async function dbGetByIndex<T>(store: StoreName, indexName: string, value: unknown): Promise<T[]> {
+async function dbGetByIndex<T>(store: StoreName, indexName: string, value: IDBValidKey): Promise<T[]> {
   const db = await openDB();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(store, "readonly");
