@@ -99,39 +99,35 @@ export function KioskWelcome({ onSelect }: { onSelect: (mode: KioskMode) => void
         </motion.div>
       </div>
 
-      {/* Main options */}
+      {/* Main options — MIKA-style clean cards */}
       <div className="grid flex-1 grid-cols-3 gap-5 px-10 pb-8">
         {options.map((opt, i) => (
           <motion.button
             key={opt.id}
             onClick={() => onSelect(opt.id)}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 + i * 0.08, type: "spring", stiffness: 220, damping: 22 }}
-            whileHover={{ y: -8, scale: 1.02 }}
+            transition={{ delay: 0.1 + i * 0.08, type: "spring", stiffness: 220, damping: 22 }}
+            whileHover={{ y: -6 }}
             whileTap={{ scale: 0.98 }}
-            className={`group relative flex flex-col overflow-hidden rounded-3xl bg-gradient-to-br ${opt.bg} p-7 text-left shadow-lg ring-2 ${opt.ring} transition-shadow hover:shadow-2xl`}
+            className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white p-7 text-left shadow-sm transition-shadow hover:shadow-md"
           >
-            {/* Decorative circle */}
-            <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white/40 transition-transform duration-500 group-hover:scale-150" />
-            <div className="absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-white/30" />
-
             <div className="relative flex-1">
-              <div className={`inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br ${opt.color} text-white shadow-lg`}>
-                <opt.icon className="h-10 w-10" strokeWidth={2.2} />
+              <div className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${opt.color} text-white shadow-sm`}>
+                <opt.icon className="h-8 w-8" strokeWidth={2.2} />
               </div>
-              <div className="mt-5 text-xs font-bold uppercase tracking-wider text-pink-700">
+              <div className="mt-4 text-xs font-bold uppercase tracking-wider text-gray-500">
                 {opt.subtitle}
               </div>
-              <h2 className="mt-1 font-display text-2xl font-extrabold text-pink-950">
+              <h2 className="mt-1 font-display text-2xl font-extrabold text-gray-900">
                 {opt.title}
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-pink-950/65">
+              <p className="mt-2 text-sm leading-relaxed text-gray-500">
                 {opt.desc}
               </p>
             </div>
 
-            <div className={`relative mt-4 inline-flex items-center gap-2 self-start rounded-full bg-gradient-to-r ${opt.color} px-5 py-2.5 text-sm font-bold text-white shadow-md transition-transform group-hover:gap-3`}>
+            <div className={`relative mt-4 inline-flex items-center gap-2 self-start rounded-xl bg-gradient-to-r ${opt.color} px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-transform group-hover:gap-3`}>
               Mulai
               <ChevronRight className="h-4 w-4" />
             </div>
