@@ -5,15 +5,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { BranchSelector } from "@/components/shared/branch-selector";
 import { QRCodeDisplay } from "@/components/shared/qr-code-display";
-import { SERVICES, DOCTORS, TIME_SLOTS, formatCurrency, formatDate } from "../mock-data";
+import { SERVICES, DOCTORS, TIME_SLOTS, formatDate } from "../mock-data";
 import { ServiceIcon } from "../icons";
 import {
   ChevronLeft,
-  ChevronRight,
+
   Check,
   Star,
   Clock,
-  Calendar,
+
   Sparkles,
   PartyPopper,
   ArrowRight,
@@ -37,7 +37,6 @@ export function BookingScreen() {
   const doctor = DOCTORS.find((d) => d.id === doctorId);
 
   const today = new Date();
-  const todayISO = today.toISOString().split("T")[0];
 
   // Generate next 14 days for date selection
   const days = Array.from({ length: 14 }, (_, i) => {

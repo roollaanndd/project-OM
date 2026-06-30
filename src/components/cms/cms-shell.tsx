@@ -20,7 +20,7 @@ import {
   ChevronDown,
   Menu,
   X,
-  Sparkles,
+
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useAppStore } from "@/lib/app-store";
 import { MapPin, Phone, Clock, Edit3, Plus, Star, Building2 } from "lucide-react";
-import { cn } from "@/lib/utils";
+
 
 export function CmsBranches() {
   const { branches, doctors } = useAppStore();

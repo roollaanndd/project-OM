@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useAppStore } from "@/lib/app-store";
-import { Star, Plus, Settings as SettingsIcon, Calendar } from "lucide-react";
+import { Star, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function CmsDoctors() {

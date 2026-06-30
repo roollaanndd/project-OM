@@ -24,11 +24,9 @@ export function CmsDashboard() {
 
   const waitingCount = queue.filter((q) => q.status === "waiting").length;
   const servingCount = queue.filter((q) => q.status === "serving").length;
-  const completedToday = queue.filter((q) => q.status === "completed").length;
   const todayRevenue = transactions
     .filter((t) => t.date === new Date().toISOString().split("T")[0])
     .reduce((s, t) => s + t.amount, 0);
-  const totalRevenue = transactions.reduce((s, t) => s + t.amount, 0);
   const upcomingApts = appointments.filter((a) => a.status === "upcoming").length;
 
   const stats = [

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Calendar, Clock, ArrowRight, ArrowLeft, ChevronRight, User, Tag } from "lucide-react";
+import { Calendar, Clock, ArrowRight, ArrowLeft, ChevronRight, Tag } from "lucide-react";
 import { getAllPosts, getPostBySlug, getRelatedPosts } from "../posts-data";
 
 export function generateStaticParams() {

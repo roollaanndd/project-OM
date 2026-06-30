@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
-import { ArrowRight, Mail, Lock, Eye, EyeOff, Phone, User as UserIcon } from "lucide-react";
+import { ArrowRight, Mail, Lock, Eye, EyeOff, User as UserIcon } from "lucide-react";
 
 type Mode = "welcome" | "login" | "register";
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Clock, Check, ShieldCheck, Star } from "lucide-react";
-import { SERVICES, type ServiceDetail } from "../services-data";
+import { SERVICES } from "../services-data";
 
 export function generateStaticParams() {
   return SERVICES.map((s) => ({ service: s.slug }));

@@ -7,7 +7,7 @@ import {
   Clock,
   User,
   Sparkles,
-  Stethoscope,
+
   MapPin,
   Printer,
   Home as HomeIcon,
@@ -26,7 +26,7 @@ interface TicketData {
 }
 
 export function KioskTicket({ data, onDone }: { data: TicketData; onDone: () => void }) {
-  const { clinicSettings, queue } = useAppStore();
+  const { queue } = useAppStore();
   const nowServing = queue.find((q) => q.status === "serving");
   const waitingAhead = queue.filter((q) => q.status === "waiting" && q.number !== data.ticketNumber).length;
 

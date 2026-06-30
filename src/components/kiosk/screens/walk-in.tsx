@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { BranchSelector } from "@/components/shared/branch-selector";
-import { SERVICES, DOCTORS } from "@/components/mobile/mock-data";
+import { SERVICES } from "@/components/mobile/mock-data";
 import { ServiceIcon } from "@/components/mobile/icons";
 import {
   ChevronLeft,
@@ -46,7 +46,7 @@ export function KioskWalkIn({ onComplete, onBack }: { onComplete: (ticket: any) 
 
   const handleComplete = () => {
     // 1. Register walk-in patient
-    const patient = addWalkInPatient({
+    addWalkInPatient({
       name,
       phone,
       email: email || undefined,

@@ -13,14 +13,14 @@ import {
   ChevronLeft,
   CreditCard,
   Check,
-  Clock,
+
   CheckCircle2,
   Receipt,
   Plus,
   ChevronRight,
   PartyPopper,
   Wallet,
-  Copy,
+
   Lock,
   Zap,
 } from "lucide-react";

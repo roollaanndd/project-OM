@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { QrCode, Download, RefreshCw, CheckCircle2, Loader2 } from "lucide-react";
+import { QrCode, Download, CheckCircle2, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface QRCodeDisplayProps {

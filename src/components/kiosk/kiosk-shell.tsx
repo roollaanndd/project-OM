@@ -2,7 +2,7 @@
 
 import { useEffect, type ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAppStore } from "@/lib/app-store";
+
 import { Clock, Wifi, Signal, BatteryFull } from "lucide-react";
 
 /**

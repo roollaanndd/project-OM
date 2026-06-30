@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Menu, X, Phone, CalendarCheck, Smartphone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { OmdcLogo } from "./logo";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { useFocusTrap, useEscapeKey } from "@/lib/hooks/use-a11y";
 
 const NAV_ITEMS = [
   { label: "Beranda", href: "#home" },
@@ -22,6 +23,11 @@ export function Navbar() {
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
+
+  // Accessibility: focus trap + escape key for mobile drawer
+  useFocusTrap(drawerRef, open);
+  useEscapeKey(() => setOpen(false), open);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -107,6 +113,10 @@ export function Navbar() {
           onClick={() => setOpen(false)}
         />
         <div
+          ref={drawerRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu navigasi mobile"
           className={cn(
             "absolute right-0 top-0 h-full w-[80%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-out",
             open ? "translate-x-0" : "translate-x-full",

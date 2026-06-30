@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 
 // Mock the booking API validation logic
 // (Testing the actual route requires a running server, so we test the schema)

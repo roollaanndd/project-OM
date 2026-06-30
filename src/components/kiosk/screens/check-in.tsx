@@ -9,7 +9,7 @@ import {
   Search,
   Check,
   Calendar,
-  Clock,
+
   User,
   Sparkles,
   Camera,
@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 type Step = "input" | "found" | "not-found";
 
 export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any) => void; onBack: () => void }) {
-  const { appointments, addQueueEntry, queue, updateAppointmentStatus } = useAppStore();
+  const { appointments, addQueueEntry } = useAppStore();
   const [mode, setMode] = useState<"scan" | "code">("code");
   const [code, setCode] = useState("");
   const [step, setStep] = useState<Step>("input");

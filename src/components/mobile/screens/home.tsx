@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import {
   Search,
-  Bell,
+
   Clock,
-  MapPin,
+
   ChevronRight,
   Calendar,
   Sparkles,
@@ -16,7 +16,7 @@ import {
   Gift,
   Wallet,
   Zap,
-  ArrowRight,
+
 } from "lucide-react";
 import {
   formatCurrency,

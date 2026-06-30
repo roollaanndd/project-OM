@@ -4,11 +4,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { formatCurrency } from "@/components/mobile/mock-data";
-import { Search, Plus, Filter, ChevronRight, Phone, Mail, Calendar, Activity, X } from "lucide-react";
+import { Search, Plus, Filter, ChevronRight, Phone, Mail, Activity, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function CmsPatients() {
-  const { walkInPatients, user, records, queue } = useAppStore();
+  const { walkInPatients, user, records } = useAppStore();
   const [search, setSearch] = useState("");
   const [selectedPatient, setSelectedPatient] = useState<any>(null);
 

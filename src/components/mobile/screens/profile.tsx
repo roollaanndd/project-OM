@@ -15,7 +15,7 @@ import {
   LogOut,
   Heart,
   QrCode,
-  Star,
+
   Lock,
   Globe,
   Moon,

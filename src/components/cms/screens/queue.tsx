@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import {
-  Clock,
+
   Check,
   SkipForward,
   Play,
-  UserPlus,
+
   Bell,
   Volume2,
   Maximize2,
@@ -16,8 +16,8 @@ import {
 import { cn } from "@/lib/utils";
 
 export function CmsQueue() {
-  const { queue, updateQueueStatus, callNext, doctors, clinicSettings } = useAppStore();
-  const [nowServing, setNowServing] = useState<{ [counter: number]: string }>({});
+  const { queue, updateQueueStatus, callNext } = useAppStore();
+  // nowServing state removed (unused)
   const [autoAnnounce, setAutoAnnounce] = useState(true);
 
   const waiting = queue.filter((q) => q.status === "waiting");
@@ -27,7 +27,7 @@ export function CmsQueue() {
   const handleCallNext = (counter: number) => {
     const next = callNext(counter);
     if (next) {
-      setNowServing((s) => ({ ...s, [counter]: next.number }));
+// setNowServing removed
     }
   };
 

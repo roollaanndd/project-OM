@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
-import { formatCurrency, formatDate } from "@/components/mobile/mock-data";
-import { Calendar, Clock, Check, X, Plus, Filter, ChevronLeft, ChevronRight } from "lucide-react";
+import { formatCurrency } from "@/components/mobile/mock-data";
+import { Clock, Check, X, Plus, ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function CmsAppointments() {

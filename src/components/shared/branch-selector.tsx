@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppStore } from "@/lib/app-store";
-import { MapPin, ChevronDown, Check } from "lucide-react";
+import { MapPin, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Select,
