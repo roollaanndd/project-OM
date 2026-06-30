@@ -31,7 +31,7 @@ export function KioskTicket({ data, onDone }: { data: TicketData; onDone: () => 
   const waitingAhead = queue.filter((q) => q.status === "waiting" && q.number !== data.ticketNumber).length;
 
   return (
-    <div className="flex h-full flex-col bg-gradient-to-br from-pink-50 to-rose-50">
+    <div className="flex h-full flex-col bg-gray-50">
       <div className="flex-1 overflow-y-auto p-6">
         <div className="mx-auto max-w-xl">
           {/* Success header */}

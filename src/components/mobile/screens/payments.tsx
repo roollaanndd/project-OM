@@ -64,7 +64,7 @@ export function PaymentsScreen() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="sticky top-0 z-20 bg-pink-50/95 px-5 py-4 backdrop-blur-md">
+      <div className="sticky top-0 z-20 bg-white/95 px-5 py-4 backdrop-blur-md shadow-sm">
         <div className="flex items-center justify-between">
           <h1 className="font-display text-xl font-extrabold text-pink-950">Pembayaran</h1>
           <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-pink-700 shadow-sm" aria-label="Riwayat">
@@ -436,7 +436,7 @@ function PaymentFlow({
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="sticky top-0 z-20 bg-pink-50/95 px-5 py-4 backdrop-blur-md">
+      <div className="sticky top-0 z-20 bg-white/95 px-5 py-4 backdrop-blur-md shadow-sm">
         <div className="flex items-center justify-between">
           <button
             onClick={onClose}

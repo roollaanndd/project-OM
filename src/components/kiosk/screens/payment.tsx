@@ -81,7 +81,7 @@ export function KioskPayment({ onComplete, onBack }: { onComplete: () => void; o
   };
 
   return (
-    <div className="flex h-full flex-col bg-gradient-to-br from-rose-50 to-pink-50">
+    <div className="flex h-full flex-col bg-gray-50">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-pink-200 bg-white px-8 py-3">
         <button

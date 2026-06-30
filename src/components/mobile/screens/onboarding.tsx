@@ -21,7 +21,7 @@ export function Onboarding() {
 
   if (mode === "welcome") {
     return (
-      <div className="relative flex h-full flex-col overflow-hidden bg-gradient-to-b from-pink-100 via-rose-50 to-white">
+      <div className="relative flex h-full flex-col overflow-hidden bg-white">
         {/* Decorative blobs */}
         <motion.div
           className="absolute -right-12 -top-8 h-48 w-48 rounded-full bg-pink-300/40 blur-2xl"
@@ -139,7 +139,7 @@ export function Onboarding() {
 
   // Login / Register forms
   return (
-    <div className="relative flex h-full flex-col overflow-y-auto bg-gradient-to-b from-pink-50 to-white">
+    <div className="relative flex h-full flex-col overflow-y-auto bg-white">
       <div className="px-6 pt-6 pb-12">
         {/* Back */}
         <button

@@ -27,7 +27,7 @@ export function KioskShell({ children }: { children: ReactNode }) {
       </div>
 
       {/* Kiosk frame — landscape 16:9 ratio */}
-      <div className="relative aspect-[16/10] w-full max-w-7xl overflow-hidden rounded-[2rem] border-[10px] border-slate-800 bg-pink-50 shadow-[0_40px_120px_-20px_rgba(0,0,0,0.7)] sm:aspect-[16/9]">
+      <div className="relative aspect-[16/10] w-full max-w-7xl overflow-hidden rounded-[2rem] border-[10px] border-slate-800 bg-white shadow-[0_40px_120px_-20px_rgba(0,0,0,0.7)] sm:aspect-[16/9]">
         {/* Top status bar */}
         <div className="absolute inset-x-0 top-0 z-30 flex items-center justify-between bg-gradient-to-r from-pink-700 to-rose-600 px-6 py-2 text-white">
           <div className="flex items-center gap-2">

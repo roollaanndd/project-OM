@@ -59,7 +59,7 @@ export default async function ServiceDetailPage({
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-pink-50">
+    <main className="min-h-screen bg-gray-50">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 
       {/* Breadcrumb */}

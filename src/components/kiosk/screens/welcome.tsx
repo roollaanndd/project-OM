@@ -53,7 +53,7 @@ export function KioskWelcome({ onSelect }: { onSelect: (mode: KioskMode) => void
   ];
 
   return (
-    <div className="flex h-full flex-col bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100">
+    <div className="flex h-full flex-col bg-gray-50">
       {/* Hero header */}
       <div className="flex items-center justify-between px-10 pt-6 pb-4">
         <motion.div

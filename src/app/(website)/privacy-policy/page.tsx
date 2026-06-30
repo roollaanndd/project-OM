@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="min-h-screen mesh-gradient-1">
+    <main className="min-h-screen bg-gray-50">
       <article className="mx-auto max-w-3xl px-5 py-28 lg:px-8">
         <h1 className="font-display text-4xl font-extrabold text-pink-950">Kebijakan Privasi</h1>
         <p className="mt-2 text-sm text-pink-950/55">Terakhir diperbarui: 29 Juni 2025</p>

@@ -95,7 +95,7 @@ export function BookingScreen() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="sticky top-0 z-20 bg-pink-50/95 px-5 py-4 backdrop-blur-md">
+      <div className="sticky top-0 z-20 bg-white/95 px-5 py-4 backdrop-blur-md shadow-sm">
         <div className="flex items-center justify-between">
           <button
             onClick={handleBack}

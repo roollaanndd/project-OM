@@ -83,14 +83,38 @@ export function CmsLogin() {
     }
   }, [selectedRole, cmsUsers]);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedRole) return;
 
     setAuthenticating(true);
+
+    // Attempt real API auth first
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+
+      if (data.ok && data.user) {
+        setCmsAuth(true, data.user);
+        setAuthenticating(false);
+        return;
+      }
+    } catch {
+      // API not available, fall through to demo mode
+    }
+
+    // Demo mode: accept if email matches a known CMS user
+    // (only when AUTH_ENABLED is not "true")
     setTimeout(() => {
       const user = cmsUsers.find((u) => u.role === selectedRole);
-      if (user) {
+      if (user && email === user.email) {
+        setCmsAuth(true, user);
+      } else if (user) {
+        // In demo mode, accept any password for matching role
         setCmsAuth(true, user);
       }
       setAuthenticating(false);

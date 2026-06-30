@@ -65,7 +65,7 @@ const DOCTORS = [
 
 export default function DoctorsPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-pink-50">
+    <main className="min-h-screen bg-gray-50">
       <section className="mx-auto max-w-6xl px-5 py-14 lg:px-8 lg:py-20">
         <nav aria-label="Breadcrumb" className="mb-6 text-xs text-pink-950/55">
           <Link href="/" className="hover:text-pink-700">Beranda</Link>

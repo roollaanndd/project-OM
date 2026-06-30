@@ -32,7 +32,7 @@ export default function BlogPage() {
   const categories = [...new Set(posts.map((p) => p.category))];
 
   return (
-    <main className="min-h-screen mesh-gradient-1">
+    <main className="min-h-screen bg-gray-50">
       {/* Hero */}
       <section className="relative overflow-hidden pt-28 pb-12 lg:pt-32">
         <div className="absolute inset-0 -z-10 mesh-gradient-animated" />

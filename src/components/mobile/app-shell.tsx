@@ -39,19 +39,18 @@ export function AppShell({
 
   if (!hydrated) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-pink-100 via-rose-50 to-pink-50">
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
         <div className="h-12 w-12 animate-spin rounded-full border-4 border-pink-200 border-t-pink-600" />
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-pink-100 via-rose-50 to-pink-50 px-0 py-0 sm:p-6 lg:p-8">
-      {/* Background decoration (desktop) */}
+    <div className="flex min-h-screen w-full items-center justify-center bg-gray-50 px-0 py-0 sm:p-6 lg:p-8">
+      {/* Background decoration (desktop) — subtle, not pink-dominant */}
       <div className="pointer-events-none fixed inset-0 -z-10 hidden sm:block">
-        <div className="absolute left-[5%] top-[10%] h-72 w-72 rounded-full bg-pink-300/20 blur-3xl" />
-        <div className="absolute right-[10%] bottom-[15%] h-80 w-80 rounded-full bg-rose-300/20 blur-3xl" />
-        <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-fuchsia-200/20 blur-3xl" />
+        <div className="absolute left-[5%] top-[10%] h-72 w-72 rounded-full bg-pink-100/30 blur-3xl" />
+        <div className="absolute right-[10%] bottom-[15%] h-80 w-80 rounded-full bg-rose-50/40 blur-3xl" />
       </div>
 
       {/* Desktop side panel (brand info) */}
@@ -118,12 +117,12 @@ export function AppShell({
       </aside>
 
       {/* Phone frame */}
-      <div className="relative h-screen w-full overflow-hidden bg-pink-50 sm:h-[860px] sm:max-h-[90vh] sm:w-[420px] sm:rounded-[3rem] sm:border-[10px] sm:border-pink-950 sm:shadow-[0_40px_80px_-20px_rgba(157,23,77,0.5),0_0_0_2px_rgba(244,114,182,0.3)]">
+      <div className="relative h-screen w-full overflow-hidden bg-white sm:h-[860px] sm:max-h-[90vh] sm:w-[420px] sm:rounded-[3rem] sm:border-[10px] sm:border-gray-900 sm:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.3),0_0_0_2px_rgba(0,0,0,0.05)]">
         {/* Notch (desktop only) */}
         <div className="absolute left-1/2 top-0 z-50 hidden h-7 w-36 -translate-x-1/2 rounded-b-2xl bg-pink-950 sm:block" />
 
         {/* App content */}
-        <div className="relative flex h-full flex-col overflow-hidden bg-pink-50">
+        <div className="relative flex h-full flex-col overflow-hidden bg-white">
           <StatusBar />
 
           {/* Scrollable content */}

@@ -84,7 +84,7 @@ export default async function BlogDetailPage({
   };
 
   return (
-    <main className="min-h-screen mesh-gradient-1">
+    <main className="min-h-screen bg-gray-50">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 
       {/* Breadcrumb */}
