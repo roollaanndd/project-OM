@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useAppStore } from "@/lib/app-store";
 import { Star, Plus, Settings as SettingsIcon, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -53,7 +54,7 @@ export function CmsDoctors() {
             <div className="flex items-start gap-3">
               <div className={`relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br ${doc.gradient} text-base font-bold text-white`}>
                 {doc.photo ? (
-                  <img src={doc.photo} alt={doc.name} className="h-full w-full object-cover" />
+                  <Image src={doc.photo} alt={doc.name} fill className="object-cover" sizes="56px" />
                 ) : (
                   doc.initials
                 )}

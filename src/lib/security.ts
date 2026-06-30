@@ -179,7 +179,7 @@ export type AuditAction =
 
 /**
  * Write an audit log entry. In production, route to a dedicated log service
- * (Sentry, Datadog, or a separate audit table).
+ * (Sentry, Datadog, or a separate audit table). In development, use console.
  */
 export function auditLog(action: AuditAction, meta: Record<string, unknown> = {}): void {
   const entry = {
@@ -189,7 +189,12 @@ export function auditLog(action: AuditAction, meta: Record<string, unknown> = {}
   };
   // Never include raw PII in logs — sanitize first
   if (process.env.NODE_ENV === "production") {
-    console.log(JSON.stringify({ audit: entry }));
+    // In production, send to external logging service
+    // TODO: Replace with Sentry/Datadog when configured
+    if (typeof window === "undefined") {
+      // Server-side: use structured logging
+      process.stdout.write(JSON.stringify({ level: "audit", ...entry }) + "\n");
+    }
   } else {
     console.log(`[audit] ${action}`, meta);
   }

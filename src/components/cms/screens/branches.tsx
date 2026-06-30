@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useAppStore } from "@/lib/app-store";
 import { MapPin, Phone, Clock, Edit3, Plus, Star, Building2 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -86,7 +87,9 @@ export function CmsBranches() {
                         className="inline-flex items-center gap-1 rounded-full bg-pink-50 px-2 py-0.5 text-[10px] font-bold text-pink-700"
                       >
                         {doc.photo ? (
-                          <img src={doc.photo} alt={doc.name} className="h-4 w-4 rounded-full object-cover" />
+                          <span className="relative inline-block h-4 w-4 overflow-hidden rounded-full">
+                            <Image src={doc.photo} alt={doc.name} fill className="object-cover" sizes="16px" />
+                          </span>
                         ) : (
                           <span className="flex h-4 w-4 items-center justify-center rounded-full bg-pink-200 text-[8px]">
                             {doc.initials}

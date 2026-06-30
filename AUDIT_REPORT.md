@@ -1,124 +1,91 @@
-# OMDC Audit Report — v2.0.0 (Updated)
+# OMDC HONEST AUDIT REPORT — v2.1.0
 
-**Tanggal audit**: 2026-06-29
-**Versi audit**: v2.0.0 (after improvements)
-**Auditor**: CTO Review
+**Date**: 2026-06-30
+**Auditor**: CTO (self-audit, no sugar-coating)
+**Previous external score**: 3/10 (Codex)
 
-## 📊 Updated Score Summary
+## 📊 HONEST SCORING
 
-| Kategori | Skor Sebelum | Skor Sesudah | Status |
-|----------|-------------|-------------|--------|
-| Backend | 7/10 | 8.5/10 | ✅ Improved |
-| Frontend | 8/10 | 9.5/10 | ✅ Improved |
-| Security | 8.5/10 | 9.5/10 | ✅ Improved |
-| UI/UX | 7/10 | 9.5/10 | ✅ Improved |
-| PWA | 6/10 | 9/10 | ✅ Improved |
-| Performance | 7/10 | 9/10 | ✅ Improved |
-| SEO | 9/10 | 9.5/10 | ✅ Improved |
-| Accessibility | 6/10 | 9/10 | ✅ Improved |
+| Category | Score | Reason |
+|----------|-------|--------|
+| **TypeScript** | 7/10 | ✅ 0 errors now, but was hiding errors with ignoreBuildErrors |
+| **Backend** | 3/10 | ❌ Only 2 API routes, mock data, no real auth, no real DB ops |
+| **Frontend** | 5/10 | ⚠️ 9 files >300 lines, dead code (HubLauncher/view state), raw `<img>` |
+| **Security** | 6/10 | ⚠️ CSP exists but CMS login is fake, no real session management |
+| **SEO** | 7/10 | ✅ Sitemap/robots/JSON-LD exist, but only 2 API routes to index |
+| **UI/UX** | 7/10 | ✅ Good design, but inconsistent (some pages refined, others plain) |
+| **Performance** | 6/10 | ⚠️ 66 deps (many unused), no bundle analysis done, raw img tags |
+| **Accessibility** | 6/10 | ⚠️ Has skip link + ARIA, but only 1 error boundary, missing focus traps |
+| **Testing** | 0/10 | ❌ ZERO test files. Zero. This alone justifies 3/10. |
+| **CI/CD** | 0/10 | ❌ No GitHub Actions, no automated checks |
+| **Code Quality** | 4/10 | ❌ Dead code, console.log in prod, 500+ line components, no docs |
+| **Documentation** | 5/10 | ⚠️ Has README + DEPLOYMENT.md, but no API docs, no component docs |
 
-**Overall**: 9.2/10 — Production-ready ✅
+**Average**: 4.6/10
 
----
-
-## ✅ Improvements Applied (v2.0.0)
-
-### 🎨 UI/UX (7 → 9.5/10)
-- ✅ **Dark mode** — Full theme system with toggle, persist, CSS variables
-- ✅ **Glassmorphism cards** — backdrop-blur, semi-transparent
-- ✅ **Mesh gradients** — animated background (4 variants)
-- ✅ **Micro-interactions** — magnetic buttons, glow pulse, text shimmer
-- ✅ **Marquee trust strip** — infinite scroll
-- ✅ **3D card tilt** — perspective on hover
-- ✅ **Premium card** — gradient border on hover
-- ✅ **Versioning system** — v1.5.0/v2.0.0 switcher with rollback
-
-### 🔧 Frontend (8 → 9.5/10)
-- ✅ **next/image migration** — doctors & testimonials photos optimized (AVIF/WebP)
-- ✅ **Skeleton loaders** — SectionSkeleton, CardSkeleton, GridSkeleton, TableSkeleton
-- ✅ **Lazy loading** — below-fold sections with React.lazy + Suspense
-- ✅ **Code splitting** — per route
-- ✅ **Bundle analyzer** — @next/bundle-analyzer setup
-
-### 🔒 Security (8.5 → 9.5/10)
-- ✅ **CSP tightened** — production removes 'unsafe-eval', dev keeps it for HMR
-- ✅ **Session timeout** — CMS auto-logout after 30 min inactivity
-- ✅ **Rate limiting** — 5 req/min booking, 60 req/min API
-- ✅ **CSRF protection** — same-origin check
-- ✅ **Bot detection** — block sqlmap, nikto, nmap
-- ✅ **Input validation** — Zod schemas + whitelist
-- ✅ **SQL injection prevention** — Prisma parameterized queries
-- ✅ **Audit logging** — tracking sensitive actions
-- ✅ **Password hashing** — PBKDF2 via Web Crypto API
-
-### 📱 PWA (6 → 9/10)
-- ✅ **Service Worker re-enabled** — with proper cache-busting strategy
-- ✅ **SW version v1.2.0** — auto-cleanup old caches
-- ✅ **updateViaCache: 'none'** — always fetch fresh SW script
-- ✅ **Auto-apply updates** — SKIP_WAITING + auto-reload
-- ✅ **Manifest linked** — installable on all platforms
-- ✅ **Install prompt** — smart banner with dismiss memory
-- ✅ **Offline fallback** — /offline page
-- ✅ **Push notifications** — ready for FCM integration
-
-### ⚡ Performance (7 → 9/10)
-- ✅ **next/image** — automatic AVIF/WebP, lazy loading, responsive sizes
-- ✅ **Lazy loading** — below-fold sections
-- ✅ **Code splitting** — per route
-- ✅ **Bundle analyzer** — `bun run analyze`
-- ✅ **Font optimization** — display: swap, variable fonts
-- ✅ **Cache-Control** — immutable for icons (1 year)
-- ✅ **Compression** — enabled
-
-### 🔍 SEO (9 → 9.5/10)
-- ✅ **JSON-LD structured data** — Dentist, MedicalProcedure, WebSite schemas
-- ✅ **Dynamic metadata** — per-page title, description, canonical
-- ✅ **Sitemap.xml** — auto-generated with 10 URLs
-- ✅ **Robots.txt** — auto-generated
-- ✅ **OpenGraph + Twitter cards** — with OG image 1200x630
-- ✅ **Internal linking** — navbar + footer with proper hierarchy
-- ✅ **Breadcrumbs** — on all inner pages
-
-### ♿ Accessibility (6 → 9/10)
-- ✅ **Skip-to-content link** — keyboard users can bypass navigation
-- ✅ **Focus management** — visible focus ring for keyboard, hidden for mouse
-- ✅ **Reduced motion** — `prefers-reduced-motion` support
-- ✅ **ARIA labels** — on all interactive elements
-- ✅ **Semantic HTML** — `<main>`, `<nav>`, `<article>`, `<section>`
-- ✅ **Alt text** — descriptive alt for all images
-- ✅ **Keyboard navigation** — all elements accessible via Tab
-- ✅ **Screen reader** — sr-only text for status announcements
-
-### 🔧 Backend (7 → 8.5/10)
-- ✅ **Zod validation** — strict input schemas
-- ✅ **Whitelist validation** — service/doctor/time defense in depth
-- ✅ **Business logic** — no past date, max 90 days advance
-- ✅ **Error handling** — no stack trace leak
-- ✅ **Audit logging** — sensitive action tracking
-- ⚠️ Still needs: PostgreSQL, real auth, payment integration, WebSocket
+**Why Codex gave 3/10**: The combination of zero tests + hidden TS errors + dead code + fake auth + no CI/CD = legitimately bad code quality despite nice UI.
 
 ---
 
-## 📋 Remaining Items (for 10/10)
+## 🔴 CRITICAL ISSUES (must fix for 9/10)
 
-### Backend (8.5 → 10):
-- Migrate to PostgreSQL for production
-- Implement NextAuth with Google OAuth
-- Integrate Midtrans payment
-- Add WebSocket for real-time sync
-- Add file upload endpoint
-- Add background jobs (reminders)
+### 1. ZERO TESTS (Score: 0/10)
+- No unit tests, no integration tests, no E2E tests
+- No test framework installed
+- **Fix**: Setup Vitest + React Testing Library, write tests for critical paths
 
-### PWA (9 → 10):
-- Setup Web Push with VAPID keys
-- Better offline content strategy
+### 2. NO CI/CD (Score: 0/10)
+- No GitHub Actions
+- No automated lint/test/build on push
+- **Fix**: Create GitHub Actions workflow
 
-### Accessibility (9 → 10):
-- Add ARIA live regions for dynamic content
-- Add keyboard shortcuts documentation
-- Test with screen readers (NVDA, VoiceOver)
+### 3. DEAD CODE (Score: 2/10)
+- `HubLauncher` component: 287 lines, imported nowhere
+- `WebsiteView` component: 85 lines, imported nowhere
+- `view` state in Zustand store: still exists but routing uses next/navigation
+- `ViewMode` type: includes "hub" which is never used
+- **Fix**: Delete dead code, clean store
 
----
+### 4. RAW `<img>` TAGS (Score: 4/10)
+- CMS doctors page: raw `<img>` instead of `next/image`
+- CMS branches page: raw `<img>` instead of `next/image`
+- **Fix**: Migrate to next/image
 
-**Audit completed by CTO** — 2026-06-29
-**Status**: PRODUCTION-READY (9.2/10) ✅
+### 5. 66 DEPENDENCIES (MANY UNUSED) (Score: 4/10)
+- `@dnd-kit/*` — not used
+- `@mdxeditor/editor` — not used
+- `@tanstack/react-table` — not used
+- `react-syntax-highlighter` — not used
+- Many Radix UI packages may be unused
+- **Fix**: Audit and remove unused deps
+
+### 6. LARGE COMPONENTS (Score: 4/10)
+- `sidebar.tsx`: 726 lines (shadcn boilerplate, OK)
+- `booking.tsx` (mobile): 585 lines — needs splitting
+- `payments.tsx` (mobile): 540 lines — needs splitting
+- `profile.tsx` (mobile): 482 lines — needs splitting
+- `walk-in.tsx` (kiosk): 472 lines — needs splitting
+- `booking.tsx` (dental): 450 lines — needs splitting
+- **Fix**: Split into sub-components
+
+### 7. FAKE AUTHENTICATION (Score: 2/10)
+- CMS login accepts ANY credentials
+- No real session management
+- No password verification
+- **Fix**: At minimum, document clearly + add env-based auth check
+
+### 8. CONSOLE.LOG IN PRODUCTION (Score: 5/10)
+- `security.ts` uses console.log for audit logging
+- Should use proper logger
+- **Fix**: Replace with structured logger
+
+### 9. ONLY 2 API ROUTES (Score: 3/10)
+- `/api` — health check
+- `/api/booking` — booking creation
+- Missing: queue, payment, patients, doctors, branches APIs
+- **Fix**: Add API stubs with proper validation
+
+### 10. NO NESTED ERROR BOUNDARIES (Score: 5/10)
+- Only root `error.tsx`
+- Blog, services, app, kiosk, cms — no error boundaries
+- **Fix**: Add error.tsx to route groups
