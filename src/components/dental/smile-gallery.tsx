@@ -76,7 +76,7 @@ function SmileSvg({
   label: string;
 }) {
   // Generate teeth positions based on alignment
-  const teeth = [];
+  const teeth: React.ReactElement[] = [];
   const baseY = 60;
   const baseWidth = 22;
   const gap = 2;

@@ -94,7 +94,7 @@ async function dbGetAll<T>(store: StoreName): Promise<T[]> {
   });
 }
 
-async function dbPut<T extends { id: string }>(store: StoreName, value: T): Promise<void> {
+async function dbPut<T extends Record<string, unknown>>(store: StoreName, value: T): Promise<void> {
   const db = await openDB();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(store, "readwrite");
