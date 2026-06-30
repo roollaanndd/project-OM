@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
 import { useAppStore } from "@/lib/app-store";
 import { cn } from "@/lib/utils";
@@ -17,14 +17,14 @@ export function ThemeToggle({ className }: { className?: string }) {
       )}
       aria-label={theme === "light" ? "Aktifkan mode gelap" : "Aktifkan mode terang"}
     >
-      <motion.div
+      <m.div
         key={theme}
         initial={{ scale: 0, rotate: -90 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ type: "spring", stiffness: 260, damping: 18 }}
       >
         {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-      </motion.div>
+      </m.div>
     </button>
   );
 }

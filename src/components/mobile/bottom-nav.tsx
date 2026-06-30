@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import type { ScreenTab } from "./types";
 import { Home, CalendarPlus, FileText, CreditCard, User } from "lucide-react";
@@ -38,7 +38,7 @@ export function BottomNav() {
                   {/* Active background pill */}
                   <AnimatePresence>
                     {active && (
-                      <motion.div
+                      <m.div
                         layoutId="tab-pill"
                         className="absolute -top-0.5 h-9 w-14 rounded-2xl bg-gradient-to-br from-pink-100 to-rose-100"
                         initial={{ opacity: 0, scale: 0.6 }}
@@ -77,7 +77,7 @@ export function BottomNav() {
                   {/* Active indicator dot */}
                   <AnimatePresence>
                     {active && (
-                      <motion.div
+                      <m.div
                         className="absolute -bottom-0.5 h-1 w-1 rounded-full bg-pink-600"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}

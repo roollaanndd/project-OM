@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { GraduationCap, Award, Star, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -100,7 +100,7 @@ export function Doctors() {
         {/* Grid */}
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {DOCTORS.map((doc, i) => (
-            <motion.article
+            <m.article
               key={doc.name}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -186,7 +186,7 @@ export function Doctors() {
                   <a href="#booking">Buat Janji</a>
                 </Button>
               </div>
-            </motion.article>
+            </m.article>
           ))}
         </div>
 

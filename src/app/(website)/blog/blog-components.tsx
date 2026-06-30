@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Clock, ArrowRight, Sparkles } from "lucide-react";
@@ -49,7 +49,7 @@ export function BlogFeatured({ post }: { post: BlogPost }) {
 
 export function BlogCard({ post, index }: { post: BlogPost; index: number }) {
   return (
-    <motion.article
+    <m.article
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
@@ -92,13 +92,13 @@ export function BlogCard({ post, index }: { post: BlogPost; index: number }) {
           </div>
         </div>
       </Link>
-    </motion.article>
+    </m.article>
   );
 }
 
 export function BlogHero() {
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+    <m.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
       <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold text-pink-800 shadow-sm">
         <Sparkles className="h-3.5 w-3.5" />
         Blog OMDC
@@ -112,6 +112,6 @@ export function BlogHero() {
         Artikel ditulis oleh dokter gigi spesialis OMDC. Pelajari cara merawat gigi,
         pahami perawatan, dan dapatkan tips untuk senyum sehat seumur hidup.
       </p>
-    </motion.div>
+    </m.div>
   );
 }

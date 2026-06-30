@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, type ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import type { CmsRole } from "@/lib/app-store";
 import { useFocusTrap, useEscapeKey } from "@/lib/hooks/use-a11y";
@@ -203,7 +203,7 @@ export function CmsShell({
                   <p.icon className={cn("h-4 w-4", active ? "text-white" : "text-pink-950/50 group-hover:text-pink-700")} />
                   {p.label}
                   {active && (
-                    <motion.div
+                    <m.div
                       layoutId="cms-active"
                       className="absolute right-2 h-1.5 w-1.5 rounded-full bg-white"
                     />
@@ -293,7 +293,7 @@ export function CmsShell({
                 {showUserMenu && (
                   <>
                     <div className="fixed inset-0 z-10" onClick={() => setShowUserMenu(false)} />
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0, y: -8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -8 }}
@@ -320,7 +320,7 @@ export function CmsShell({
                           <LogOut className="h-4 w-4" /> Keluar
                         </button>
                       </div>
-                    </motion.div>
+                    </m.div>
                   </>
                 )}
               </AnimatePresence>
@@ -331,7 +331,7 @@ export function CmsShell({
         {/* Content */}
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={page}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -339,7 +339,7 @@ export function CmsShell({
               transition={{ duration: 0.25 }}
             >
               {children}
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </main>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { formatCurrency } from "@/components/mobile/mock-data";
 import {
@@ -79,7 +79,7 @@ export function CmsDashboard() {
   return (
     <div className="space-y-5">
       {/* Greeting */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         className="overflow-hidden rounded-3xl bg-gradient-to-br from-pink-600 via-rose-500 to-fuchsia-600 p-6 text-white shadow-soft-pink"
@@ -100,12 +100,12 @@ export function CmsDashboard() {
             <Sparkles className="h-16 w-16 text-white/40" />
           </div>
         </div>
-      </motion.div>
+      </m.div>
 
       {/* Stats grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat, i) => (
-          <motion.div
+          <m.div
             key={stat.label}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -128,13 +128,13 @@ export function CmsDashboard() {
               {stat.value}
             </div>
             <div className="text-xs text-pink-950/55">{stat.label}</div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
         {/* Weekly chart */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -155,7 +155,7 @@ export function CmsDashboard() {
             {weeklyData.map((d, i) => (
               <div key={d.day} className="group flex flex-1 flex-col items-center gap-2">
                 <div className="relative flex w-full flex-1 items-end">
-                  <motion.div
+                  <m.div
                     initial={{ height: 0 }}
                     animate={{ height: `${(d.value / maxVal) * 100}%` }}
                     transition={{ delay: 0.3 + i * 0.07, type: "spring", stiffness: 220, damping: 22 }}
@@ -164,16 +164,16 @@ export function CmsDashboard() {
                     <div className="absolute -top-6 left-1/2 -translate-x-1/2 rounded-md bg-pink-950 px-2 py-0.5 text-[10px] font-bold text-white opacity-0 transition-opacity group-hover:opacity-100">
                       {d.patients}
                     </div>
-                  </motion.div>
+                  </m.div>
                 </div>
                 <div className="text-[11px] font-semibold text-pink-950/60">{d.day}</div>
               </div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Live queue mini */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25 }}
@@ -229,12 +229,12 @@ export function CmsDashboard() {
             Lihat Semua Antrian
             <ChevronRight className="h-3.5 w-3.5" />
           </button>
-        </motion.div>
+        </m.div>
       </div>
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
         {/* Doctor status */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -265,10 +265,10 @@ export function CmsDashboard() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Upcoming appointments */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35 }}
@@ -299,11 +299,11 @@ export function CmsDashboard() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Walk-in registrations today */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
@@ -351,7 +351,7 @@ export function CmsDashboard() {
             </tbody>
           </table>
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

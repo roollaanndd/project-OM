@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 import { Clock, Wifi, Signal, BatteryFull } from "lucide-react";
 
@@ -60,7 +60,7 @@ export function KioskShell({ children }: { children: ReactNode }) {
         {/* Content area */}
         <div className="absolute inset-0 top-12 bottom-0 overflow-hidden">
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key="kiosk-content"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -69,7 +69,7 @@ export function KioskShell({ children }: { children: ReactNode }) {
               className="h-full"
             >
               {children}
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
       </div>

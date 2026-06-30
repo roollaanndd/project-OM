@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   ShieldCheck,
   Microscope,
@@ -76,7 +76,7 @@ export function Features() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           {/* Left copy */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -129,12 +129,12 @@ export function Features() {
                 <div className="mt-1 text-[11px] text-foreground/60">9001:2015</div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right grid */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {FEATURES.map((f, i) => (
-              <motion.div
+              <m.div
                 key={f.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -150,7 +150,7 @@ export function Features() {
                   <h3 className="mt-4 text-base font-bold text-pink-950">{f.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-foreground/65">{f.desc}</p>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

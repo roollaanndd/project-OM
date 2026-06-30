@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useEffect, useState } from "react";
 
 /**
@@ -30,7 +30,7 @@ export function LoadingSpinner({
           {/* Track */}
           <circle cx="24" cy="24" r="20" fill="none" stroke="#FBCFE8" strokeWidth="3.5" />
           {/* Spinning arc */}
-          <motion.circle
+          <m.circle
             cx="24"
             cy="24"
             r="20"
@@ -52,13 +52,13 @@ export function LoadingSpinner({
         </svg>
       </div>
       {label && (
-        <motion.p
+        <m.p
           className="text-xs font-medium text-pink-700"
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
         >
           {label}
-        </motion.p>
+        </m.p>
       )}
     </div>
   );
@@ -70,14 +70,14 @@ export function LoadingSpinner({
 export function FullScreenLoader({ visible, label }: { visible: boolean; label?: string }) {
   if (!visible) return null;
   return (
-    <motion.div
+    <m.div
       className="fixed inset-0 z-[150] flex items-center justify-center bg-pink-50/70 backdrop-blur-sm"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
       <LoadingSpinner size={64} label={label} />
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -123,7 +123,7 @@ export function ScrollProgress() {
 
   return (
     <div className="fixed inset-x-0 top-0 z-[60] h-1 bg-transparent">
-      <motion.div
+      <m.div
         className="h-full origin-left bg-gradient-to-r from-pink-600 via-rose-500 to-fuchsia-500"
         style={{ scaleX: progress / 100, transformOrigin: "left" }}
         transition={{ ease: "linear", duration: 0.1 }}

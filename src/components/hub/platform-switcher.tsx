@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import {
   Globe,
@@ -94,7 +94,7 @@ export function PlatformSwitcher() {
         {/* Expanded panel */}
         <AnimatePresence>
           {open && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 16, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 16, scale: 0.95 }}
@@ -162,12 +162,12 @@ export function PlatformSwitcher() {
               <div className="border-t border-pink-100 px-4 py-2 text-center text-[10px] text-pink-950/45 dark:border-pink-900/40 dark:text-pink-200/40">
                 💡 Akses cepat semua platform dari sini
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 
         {/* Toggle button */}
-        <motion.button
+        <m.button
           onClick={() => setOpen((v) => !v)}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.95 }}
@@ -178,10 +178,10 @@ export function PlatformSwitcher() {
             <current.icon className="h-4 w-4" />
           </div>
           <span className="text-xs font-bold">{current.label}</span>
-          <motion.div animate={{ rotate: open ? 180 : 0 }}>
+          <m.div animate={{ rotate: open ? 180 : 0 }}>
             <ChevronUp className="h-3.5 w-3.5 text-white/70" />
-          </motion.div>
-        </motion.button>
+          </m.div>
+        </m.button>
       </div>
     </>
   );

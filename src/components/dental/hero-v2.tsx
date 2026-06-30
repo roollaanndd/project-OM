@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Star, ShieldCheck, Sparkles, Phone, CalendarCheck, ArrowRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroIllustration } from "./hero-illustration";
@@ -39,17 +39,17 @@ export function HeroV2() {
       <div className="absolute inset-0 -z-10 mesh-gradient-animated" />
 
       {/* Decorative floating shapes */}
-      <motion.div
+      <m.div
         className="absolute left-10 top-20 -z-10 h-20 w-20 rounded-2xl bg-gradient-to-br from-pink-400 to-rose-500 opacity-30 blur-xl"
         animate={{ y: [0, -20, 0], rotate: [0, 90, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <m.div
         className="absolute right-20 top-1/3 -z-10 h-32 w-32 rounded-full bg-gradient-to-br from-fuchsia-400 to-pink-500 opacity-25 blur-2xl"
         animate={{ y: [0, 30, 0], x: [0, -10, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
-      <motion.div
+      <m.div
         className="absolute bottom-20 left-1/3 -z-10 h-24 w-24 rounded-3xl bg-gradient-to-br from-rose-400 to-fuchsia-500 opacity-20 blur-xl"
         animate={{ y: [0, -16, 0], rotate: [0, -45, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -57,14 +57,14 @@ export function HeroV2() {
 
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-8">
         {/* Left copy */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="relative z-10 text-center lg:text-left"
         >
           {/* Glassmorphism badge */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
@@ -78,7 +78,7 @@ export function HeroV2() {
                 <Star key={n} className="h-3 w-3 fill-amber-400 text-amber-400" />
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
           <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-pink-950 sm:text-6xl lg:text-7xl">
             Your Smile,
@@ -137,10 +137,10 @@ export function HeroV2() {
               Konsultasi 24/7 via WhatsApp
             </span>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Right illustration with glassmorphism frame */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
@@ -149,7 +149,7 @@ export function HeroV2() {
           {/* Glass frame around illustration */}
           <div className="glass relative rounded-[40px] p-6 shadow-soft-pink">
             {/* Floating badge */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
@@ -157,13 +157,13 @@ export function HeroV2() {
             >
               <Zap className="h-3.5 w-3.5" />
               PWA Ready
-            </motion.div>
+            </m.div>
 
             {/* soft halo behind */}
             <div className="absolute inset-0 -z-10 m-auto aspect-square w-[88%] rounded-full bg-gradient-to-br from-pink-200/60 to-rose-100/40 blur-2xl" />
             <HeroIllustration className="w-full h-auto" />
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Marquee trust strip */}

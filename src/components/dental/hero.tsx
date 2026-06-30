@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Star, ShieldCheck, Sparkles, Phone, CalendarCheck, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HeroIllustration } from "./hero-illustration";
@@ -51,7 +51,7 @@ export function Hero() {
 
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-8">
         {/* Left copy */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
@@ -123,10 +123,10 @@ export function Hero() {
               Konsultasi 24/7 via WhatsApp
             </span>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Right illustration */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
@@ -135,7 +135,7 @@ export function Hero() {
           {/* soft halo behind */}
           <div className="absolute inset-0 -z-10 m-auto aspect-square w-[88%] rounded-full bg-gradient-to-br from-pink-200/60 to-rose-100/40 blur-2xl" />
           <HeroIllustration className="w-full h-auto" />
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Marquee trust strip */}

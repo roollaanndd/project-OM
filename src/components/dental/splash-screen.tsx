@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 
 /**
  * Branded welcome splash screen.
@@ -56,7 +56,7 @@ export function SplashScreen() {
   return (
     <AnimatePresence>
       {visible && (
-        <motion.div
+        <m.div
           key="omdc-splash"
           className="fixed inset-0 z-[200] flex items-center justify-center"
           initial={{ opacity: 1 }}
@@ -67,17 +67,17 @@ export function SplashScreen() {
           <div className="absolute inset-0 bg-radial-pink opacity-80" />
 
           {/* Floating decorative blobs */}
-          <motion.div
+          <m.div
             className="absolute left-[10%] top-[15%] h-32 w-32 rounded-full bg-pink-300/40 blur-2xl"
             animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
-          <motion.div
+          <m.div
             className="absolute right-[12%] bottom-[18%] h-40 w-40 rounded-full bg-rose-300/40 blur-2xl"
             animate={{ y: [0, 16, 0], x: [0, -12, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           />
-          <motion.div
+          <m.div
             className="absolute right-[25%] top-[20%] h-24 w-24 rounded-full bg-fuchsia-300/30 blur-2xl"
             animate={{ y: [0, -16, 0], x: [0, -8, 0] }}
             transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
@@ -89,7 +89,7 @@ export function SplashScreen() {
             <div className="relative h-32 w-32">
               {/* Pulsing rings */}
               {[0, 1, 2].map((i) => (
-                <motion.div
+                <m.div
                   key={i}
                   className="absolute inset-0 rounded-full border-2 border-pink-400/40"
                   initial={{ scale: 0.8, opacity: 0 }}
@@ -104,7 +104,7 @@ export function SplashScreen() {
               ))}
 
               {/* Main shield-tooth mark */}
-              <motion.div
+              <m.div
                 className="absolute inset-0 flex items-center justify-center"
                 initial={{ scale: 0.4, rotate: -20, opacity: 0 }}
                 animate={{ scale: 1, rotate: 0, opacity: 1 }}
@@ -123,7 +123,7 @@ export function SplashScreen() {
                     </linearGradient>
                   </defs>
                   {/* Shield */}
-                  <motion.path
+                  <m.path
                     d="M48 4l36 12v28c0 24-16 40-36 48C28 84 12 68 12 44V16L48 4z"
                     fill="url(#splash-shield)"
                     initial={{ pathLength: 0 }}
@@ -136,7 +136,7 @@ export function SplashScreen() {
                     opacity="0.12"
                   />
                   {/* Tooth */}
-                  <motion.path
+                  <m.path
                     d="M48 24c-7 0-10 2.8-15 2.8-4 0-8 2-8 9.2 0 8 2.8 12 5 18.8 1.6 5.2 2.8 14.8 7.2 14.8 4 0 4.4-7 6-12 1.2-3.6 2.2-5.6 7-5.6s5.8 2 7 5.6c1.6 5 2 12 6 12 4.4 0 5.6-9.6 7.2-14.8C67 48 69.8 44 69.8 36c0-7.2-4-9.2-8-9.2-5 0-8-2.8-15-2.8z"
                     fill="url(#splash-tooth)"
                     initial={{ scale: 0, opacity: 0 }}
@@ -145,7 +145,7 @@ export function SplashScreen() {
                     style={{ transformOrigin: "48px 48px" }}
                   />
                   {/* Sparkle */}
-                  <motion.path
+                  <m.path
                     d="M68 28l1.6 4 4 1.6-4 1.6-1.6 4-1.6-4-4-1.6 4-1.6z"
                     fill="#FBBF24"
                     initial={{ scale: 0, rotate: -90 }}
@@ -154,11 +154,11 @@ export function SplashScreen() {
                     style={{ transformOrigin: "68px 32px" }}
                   />
                 </svg>
-              </motion.div>
+              </m.div>
             </div>
 
             {/* Wordmark */}
-            <motion.div
+            <m.div
               className="mt-7"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -170,20 +170,20 @@ export function SplashScreen() {
               <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.32em] text-pink-700/80">
                 Oktri Manessa Dental Clinic
               </p>
-            </motion.div>
+            </m.div>
 
             {/* Tagline */}
-            <motion.p
+            <m.p
               className="mt-5 text-base italic text-pink-900/70"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
             >
               Your Smile, Our Passion
-            </motion.p>
+            </m.p>
 
             {/* Progress ring + percentage */}
-            <motion.div
+            <m.div
               className="mt-7 flex flex-col items-center gap-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -199,7 +199,7 @@ export function SplashScreen() {
                     stroke="#FBCFE8"
                     strokeWidth="3"
                   />
-                  <motion.circle
+                  <m.circle
                     cx="18"
                     cy="18"
                     r="15"
@@ -222,9 +222,9 @@ export function SplashScreen() {
               <span className="text-[11px] font-medium text-pink-700/70">
                 Menyiapkan senyum terbaik untuk Anda…
               </span>
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

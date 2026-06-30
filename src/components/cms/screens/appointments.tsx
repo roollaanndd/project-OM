@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { formatCurrency } from "@/components/mobile/mock-data";
 import { Clock, Check, X, Plus, ChevronLeft, ChevronRight } from "lucide-react";
@@ -121,7 +121,7 @@ export function CmsAppointments() {
         {appointments.map((apt, i) => {
           const linkedQueue = queue.find((q) => q.bookingId === apt.id);
           return (
-            <motion.div
+            <m.div
               key={apt.id}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -179,7 +179,7 @@ export function CmsAppointments() {
                   </button>
                 </div>
               )}
-            </motion.div>
+            </m.div>
           );
         })}
       </div>

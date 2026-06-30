@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Accordion,
   AccordionContent,
@@ -52,7 +52,7 @@ export function FAQ() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
           {/* Left header */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -94,10 +94,10 @@ export function FAQ() {
                 </a>
               </Button>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Accordion */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -110,7 +110,7 @@ export function FAQ() {
               className="space-y-3"
             >
               {FAQS.map((item, i) => (
-                <motion.div
+                <m.div
                   key={item.q}
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -131,10 +131,10 @@ export function FAQ() {
                       <div className="pl-9">{item.a}</div>
                     </AccordionContent>
                   </AccordionItem>
-                </motion.div>
+                </m.div>
               ))}
             </Accordion>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

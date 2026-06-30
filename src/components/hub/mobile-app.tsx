@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { AppShell } from "@/components/mobile/app-shell";
 import { Onboarding } from "@/components/mobile/screens/onboarding";
@@ -17,7 +17,7 @@ export function MobileApp() {
     <AppShell activeTab={isAuthenticated ? activeTab : "onboarding"}>
       <AnimatePresence mode="wait">
         {!isAuthenticated ? (
-          <motion.div
+          <m.div
             key="onboarding"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -26,9 +26,9 @@ export function MobileApp() {
             className="h-full"
           >
             <Onboarding />
-          </motion.div>
+          </m.div>
         ) : (
-          <motion.div
+          <m.div
             key={activeTab}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ export function MobileApp() {
             {activeTab === "records" && <RecordsScreen />}
             {activeTab === "payments" && <PaymentsScreen />}
             {activeTab === "profile" && <ProfileScreen />}
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </AppShell>

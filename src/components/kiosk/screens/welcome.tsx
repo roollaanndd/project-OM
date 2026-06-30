@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import {
   UserPlus,
@@ -56,7 +56,7 @@ export function KioskWelcome({ onSelect }: { onSelect: (mode: KioskMode) => void
     <div className="flex h-full flex-col bg-gray-50">
       {/* Hero header */}
       <div className="flex items-center justify-between px-10 pt-6 pb-4">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
@@ -71,10 +71,10 @@ export function KioskWelcome({ onSelect }: { onSelect: (mode: KioskMode) => void
           <p className="mt-1 text-sm text-pink-950/60">
             Sentuh salah satu opsi di bawah untuk memulai
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Live queue indicator */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -96,13 +96,13 @@ export function KioskWelcome({ onSelect }: { onSelect: (mode: KioskMode) => void
             <div className="mt-1 font-display text-2xl font-extrabold text-amber-600">{waitingCount}</div>
             <div className="text-[10px] text-pink-950/50">dalam antrian</div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Main options — MIKA-style clean cards */}
       <div className="grid flex-1 grid-cols-3 gap-5 px-10 pb-8">
         {options.map((opt, i) => (
-          <motion.button
+          <m.button
             key={opt.id}
             onClick={() => onSelect(opt.id)}
             initial={{ opacity: 0, y: 20 }}
@@ -131,7 +131,7 @@ export function KioskWelcome({ onSelect }: { onSelect: (mode: KioskMode) => void
               Mulai
               <ChevronRight className="h-4 w-4" />
             </div>
-          </motion.button>
+          </m.button>
         ))}
       </div>
 

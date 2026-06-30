@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import {
   Check,
@@ -35,29 +35,29 @@ export function KioskTicket({ data, onDone }: { data: TicketData; onDone: () => 
       <div className="flex-1 overflow-y-auto p-6">
         <div className="mx-auto max-w-xl">
           {/* Success header */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <motion.div
+            <m.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 220, damping: 16, delay: 0.1 }}
               className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 text-white shadow-md"
             >
               <Check className="h-9 w-9" strokeWidth={3} />
-            </motion.div>
+            </m.div>
             <h2 className="mt-3 font-display text-2xl font-extrabold text-pink-950">
               {data.bookingId ? "Check-in Berhasil!" : "Pendaftaran Berhasil!"}
             </h2>
             <p className="mt-1 text-sm text-pink-950/55">
               Simpan nomor antrian Anda. Tim kami akan memanggil sesuai urutan.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Ticket */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ delay: 0.3, type: "spring", stiffness: 200, damping: 18 }}
@@ -81,14 +81,14 @@ export function KioskTicket({ data, onDone }: { data: TicketData; onDone: () => 
               </div>
               <div className="mt-4 text-center">
                 <div className="text-xs font-semibold uppercase tracking-wider text-white/80">Nomor Antrian</div>
-                <motion.div
+                <m.div
                   initial={{ scale: 0.5, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.5, type: "spring", stiffness: 220, damping: 16 }}
                   className="font-display text-7xl font-extrabold tracking-tight"
                 >
                   {data.ticketNumber}
-                </motion.div>
+                </m.div>
               </div>
             </div>
 
@@ -172,7 +172,7 @@ export function KioskTicket({ data, onDone }: { data: TicketData; onDone: () => 
                 {data.ticketNumber} · {data.patientName.toUpperCase().substring(0, 10)} · {new Date().getTime().toString().slice(-6)}
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Info notice */}
           <div className="mt-4 flex items-start gap-2 rounded-2xl border border-pink-200 bg-white p-3 text-xs text-pink-950/65">

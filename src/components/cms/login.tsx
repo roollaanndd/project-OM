@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import type { CmsRole } from "@/lib/app-store";
 import {
@@ -139,7 +139,7 @@ export function CmsLogin() {
         Kembali ke Website
       </a>
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -190,7 +190,7 @@ export function CmsLogin() {
         <div className="p-8 lg:p-10">
           <AnimatePresence mode="wait">
             {!selectedRole ? (
-              <motion.div
+              <m.div
                 key="role-select"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -207,7 +207,7 @@ export function CmsLogin() {
 
                 <div className="mt-6 grid grid-cols-2 gap-3">
                   {ROLES.map((role, i) => (
-                    <motion.button
+                    <m.button
                       key={role.id}
                       onClick={() => setSelectedRole(role.id)}
                       initial={{ opacity: 0, y: 12 }}
@@ -229,16 +229,16 @@ export function CmsLogin() {
                           </span>
                         ))}
                       </div>
-                    </motion.button>
+                    </m.button>
                   ))}
                 </div>
 
                 <div className="mt-6 rounded-2xl border border-pink-100 bg-pink-50/40 p-3 text-center text-xs text-pink-950/65">
                   💡 Demo: klik peran apapun, kredensial akan terisi otomatis
                 </div>
-              </motion.div>
+              </m.div>
             ) : (
-              <motion.div
+              <m.div
                 key="login-form"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -342,11 +342,11 @@ export function CmsLogin() {
                     </>
                   );
                 })()}
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { formatCurrency, formatDateShort, formatDate } from "../mock-data";
 import { ServiceIcon } from "../icons";
@@ -116,7 +116,7 @@ export function RecordsScreen() {
         <div className="space-y-3">
           <AnimatePresence>
             {filtered.map((rec, i) => (
-              <motion.button
+              <m.button
                 key={rec.id}
                 onClick={() => setSelectedId(rec.id)}
                 initial={{ opacity: 0, y: 12 }}
@@ -148,7 +148,7 @@ export function RecordsScreen() {
                     Selesai
                   </div>
                 </div>
-              </motion.button>
+              </m.button>
             ))}
           </AnimatePresence>
 
@@ -187,7 +187,7 @@ function RecordDetail({ record, onBack }: { record: MedicalRecord; onBack: () =>
 
       <div className="flex-1 overflow-y-auto px-5 pb-6">
         {/* Hero card */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           className="overflow-hidden rounded-3xl border border-pink-100 bg-white shadow-sm"
@@ -276,7 +276,7 @@ function RecordDetail({ record, onBack }: { record: MedicalRecord; onBack: () =>
               </button>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </div>
   );

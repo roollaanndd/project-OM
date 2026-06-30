@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { Star, Quote } from "lucide-react";
 
@@ -105,7 +105,7 @@ export function Testimonials() {
 
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {REVIEWS.map((r, i) => (
-            <motion.article
+            <m.article
               key={r.name}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -151,7 +151,7 @@ export function Testimonials() {
                   {r.service}
                 </span>
               </div>
-            </motion.article>
+            </m.article>
           ))}
         </div>
       </div>

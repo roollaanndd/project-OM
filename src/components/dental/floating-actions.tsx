@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ArrowUp, MessageCircle, X } from "lucide-react";
 
 /**
@@ -27,7 +27,7 @@ export function FloatingActions() {
       {/* Scroll to top */}
       <AnimatePresence>
         {showTop && (
-          <motion.button
+          <m.button
             key="scroll-top"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label="Kembali ke atas"
@@ -39,7 +39,7 @@ export function FloatingActions() {
             whileTap={{ scale: 0.92 }}
           >
             <ArrowUp className="h-5 w-5" />
-          </motion.button>
+          </m.button>
         )}
       </AnimatePresence>
 
@@ -47,7 +47,7 @@ export function FloatingActions() {
       <div className="relative">
         <AnimatePresence>
           {expanded && (
-            <motion.div
+            <m.div
               key="wa-card"
               className="absolute bottom-16 right-0 w-64 origin-bottom-right overflow-hidden rounded-2xl border border-pink-100 bg-white shadow-soft-pink"
               initial={{ opacity: 0, scale: 0.7, y: 10 }}
@@ -74,11 +74,11 @@ export function FloatingActions() {
                   Mulai Chat
                 </a>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 
-        <motion.button
+        <m.button
           onClick={() => setExpanded((v) => !v)}
           aria-label={expanded ? "Tutup chat WhatsApp" : "Buka chat WhatsApp"}
           className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-green-500 text-white shadow-soft-pink ring-4 ring-emerald-500/15"
@@ -89,7 +89,7 @@ export function FloatingActions() {
         >
           <AnimatePresence mode="wait" initial={false}>
             {expanded ? (
-              <motion.span
+              <m.span
                 key="x"
                 initial={{ rotate: -90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
@@ -97,9 +97,9 @@ export function FloatingActions() {
                 transition={{ duration: 0.2 }}
               >
                 <X className="h-6 w-6" />
-              </motion.span>
+              </m.span>
             ) : (
-              <motion.span
+              <m.span
                 key="msg"
                 initial={{ rotate: 90, opacity: 0 }}
                 animate={{ rotate: 0, opacity: 1 }}
@@ -107,10 +107,10 @@ export function FloatingActions() {
                 transition={{ duration: 0.2 }}
               >
                 <MessageCircle className="h-6 w-6" />
-              </motion.span>
+              </m.span>
             )}
           </AnimatePresence>
-        </motion.button>
+        </m.button>
       </div>
     </div>
   );

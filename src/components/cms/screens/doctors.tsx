@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { useAppStore } from "@/lib/app-store";
 import { Star, Plus } from "lucide-react";
@@ -44,7 +44,7 @@ export function CmsDoctors() {
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {doctors.map((doc, i) => (
-          <motion.div
+          <m.div
             key={doc.id}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,7 +107,7 @@ export function CmsDoctors() {
                 </button>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
     </div>

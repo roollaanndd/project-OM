@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   CalendarCheck,
   User,
@@ -170,7 +170,7 @@ export function Booking() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-12">
           {/* Left: info */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -227,10 +227,10 @@ export function Booking() {
                 Telepon Sekarang
               </a>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right: form */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -241,14 +241,14 @@ export function Booking() {
             <div className="rounded-[32px] border border-pink-100 bg-white p-6 shadow-soft-pink sm:p-8">
               {done ? (
                 <div className="flex flex-col items-center justify-center py-10 text-center">
-                  <motion.div
+                  <m.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 220, damping: 18 }}
                     className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-rose-600 text-white shadow-glow-pink"
                   >
                     <CheckCircle2 className="h-10 w-10" />
-                  </motion.div>
+                  </m.div>
                   <h3 className="mt-6 font-display text-2xl font-bold text-pink-950">
                     Janji Temu Berhasil Dibuat!
                   </h3>
@@ -419,7 +419,7 @@ export function Booking() {
                 </form>
               )}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

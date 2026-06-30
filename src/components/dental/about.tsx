@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { HeartPulse, Sparkles, Award, Users } from "lucide-react";
 
 const STATS = [
@@ -28,7 +28,7 @@ export function About() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Visual */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -114,7 +114,7 @@ export function About() {
               </div>
 
               {/* Floating card 2 */}
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -128,12 +128,12 @@ export function About() {
                   <div className="text-sm font-bold text-pink-950">98% Puas</div>
                   <div className="text-xs text-foreground/60">Dari 10rb+ pasien</div>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Copy */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -173,7 +173,7 @@ export function About() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

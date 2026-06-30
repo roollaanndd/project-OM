@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Sparkles, Star, ArrowRight, ArrowLeft, Wand2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -210,7 +210,7 @@ export function SmileGallery() {
         {/* Main showcase */}
         <div className="mt-14 grid gap-8 lg:grid-cols-[1.5fr_1fr]">
           {/* Before/After comparison */}
-          <motion.div
+          <m.div
             key={active.title}
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -250,7 +250,7 @@ export function SmileGallery() {
                 <div className="aspect-[16/10]">
                   <SmileSvg teethColor={active.after.teethColor} alignment={active.after.alignment} label="after" />
                 </div>
-                <motion.div
+                <m.div
                   className="absolute right-2 top-9 inline-flex items-center gap-1 rounded-full bg-amber-400 px-2 py-0.5 text-[10px] font-bold text-amber-950 shadow"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
@@ -258,7 +258,7 @@ export function SmileGallery() {
                 >
                   <Sparkles className="h-3 w-3" />
                   Hasil
-                </motion.div>
+                </m.div>
               </div>
             </div>
 
@@ -296,13 +296,13 @@ export function SmileGallery() {
                 <ArrowRight className="h-3.5 w-3.5" />
               </button>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Thumbnails */}
           <div className="space-y-3">
             <h3 className="font-display text-lg font-bold text-pink-950">Kasus Lainnya</h3>
             {CASES.map((c, i) => (
-              <motion.button
+              <m.button
                 key={c.title}
                 onClick={() => setActiveIdx(i)}
                 initial={{ opacity: 0, x: 20 }}
@@ -330,12 +330,12 @@ export function SmileGallery() {
                   <div className="mt-1 truncate text-sm font-bold text-pink-950">{c.title}</div>
                 </div>
                 {i === activeIdx && (
-                  <motion.div
+                  <m.div
                     layoutId="active-case"
                     className="h-8 w-1 rounded-full bg-gradient-to-b from-pink-500 to-rose-500"
                   />
                 )}
-              </motion.button>
+              </m.button>
             ))}
 
             <Button

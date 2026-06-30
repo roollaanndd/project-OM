@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { BranchSelector } from "@/components/shared/branch-selector";
 import { QRCodeDisplay } from "@/components/shared/qr-code-display";
@@ -138,7 +138,7 @@ export function BookingScreen() {
         <AnimatePresence mode="wait">
           {/* Step 1: Service */}
           {step === 1 && (
-            <motion.div
+            <m.div
               key="step1"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -194,7 +194,7 @@ export function BookingScreen() {
 
               <div className="mt-3 grid grid-cols-2 gap-3">
                 {SERVICES.map((s, i) => (
-                  <motion.button
+                  <m.button
                     key={s.id}
                     onClick={() => setServiceId(s.id)}
                     initial={{ opacity: 0, y: 12 }}
@@ -209,13 +209,13 @@ export function BookingScreen() {
                     )}
                   >
                     {serviceId === s.id && (
-                      <motion.div
+                      <m.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full bg-pink-500 text-white"
                       >
                         <Check className="h-3 w-3" strokeWidth={3} />
-                      </motion.div>
+                      </m.div>
                     )}
                     <div className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${s.color} text-white shadow-sm`}>
                       <ServiceIcon name={s.icon} className="h-5 w-5" />
@@ -228,15 +228,15 @@ export function BookingScreen() {
                       <Clock className="h-2.5 w-2.5" />
                       {s.duration}
                     </div>
-                  </motion.button>
+                  </m.button>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           )}
 
           {/* Step 2: Doctor */}
           {step === 2 && (
-            <motion.div
+            <m.div
               key="step2"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -266,7 +266,7 @@ export function BookingScreen() {
                 </button>
 
                 {DOCTORS.map((doc, i) => (
-                  <motion.button
+                  <m.button
                     key={doc.id}
                     onClick={() => setDoctorId(doc.id)}
                     initial={{ opacity: 0, y: 12 }}
@@ -294,23 +294,23 @@ export function BookingScreen() {
                       </div>
                     </div>
                     {doctorId === doc.id && (
-                      <motion.div
+                      <m.div
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         className="flex h-6 w-6 items-center justify-center rounded-full bg-pink-500 text-white"
                       >
                         <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                      </motion.div>
+                      </m.div>
                     )}
-                  </motion.button>
+                  </m.button>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           )}
 
           {/* Step 3: Date & Time */}
           {step === 3 && (
-            <motion.div
+            <m.div
               key="step3"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -379,12 +379,12 @@ export function BookingScreen() {
                   Pilih tanggal terlebih dahulu untuk melihat slot waktu
                 </div>
               )}
-            </motion.div>
+            </m.div>
           )}
 
           {/* Step 4: Confirmation */}
           {step === 4 && (
-            <motion.div
+            <m.div
               key="step4"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -444,12 +444,12 @@ export function BookingScreen() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
 
           {/* Step 5: Success */}
           {step === 5 && (
-            <motion.div
+            <m.div
               key="step5"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -458,7 +458,7 @@ export function BookingScreen() {
             >
               {/* Confetti emojis */}
               {[...Array(8)].map((_, i) => (
-                <motion.div
+                <m.div
                   key={i}
                   className="absolute text-2xl"
                   initial={{ opacity: 0, y: -20, x: 0 }}
@@ -472,24 +472,24 @@ export function BookingScreen() {
                   style={{ left: "50%", top: "10%" }}
                 >
                   {["🎉", "✨", "🦷", "⭐", "💖", "🎈", "🌟", "🎊"][i]}
-                </motion.div>
+                </m.div>
               ))}
 
-              <motion.div
+              <m.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 220, damping: 16, delay: 0.2 }}
                 className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-rose-500 text-white shadow-glow-pink"
               >
                 <Check className="h-12 w-12" strokeWidth={3} />
-                <motion.div
+                <m.div
                   className="absolute inset-0 rounded-full border-4 border-pink-300"
                   animate={{ scale: [1, 1.4], opacity: [1, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 />
-              </motion.div>
+              </m.div>
 
-              <motion.h2
+              <m.h2
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
@@ -497,18 +497,18 @@ export function BookingScreen() {
               >
                 <PartyPopper className="h-6 w-6 text-pink-500" />
                 Booking Berhasil!
-              </motion.h2>
+              </m.h2>
 
-              <motion.p
+              <m.p
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
                 className="mt-2 max-w-xs text-sm text-pink-950/60"
               >
                 Janji temu Anda telah terjadwal. Kami akan mengirim pengingat 1 jam sebelumnya.
-              </motion.p>
+              </m.p>
 
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
@@ -520,10 +520,10 @@ export function BookingScreen() {
                   <Row label="Tanggal" value={date ? formatDate(date, { weekday: "long", day: "numeric", month: "long" }) : ""} />
                   <Row label="Waktu" value={time ? `${time} WIB` : ""} />
                 </div>
-              </motion.div>
+              </m.div>
 
               {/* QR Code for check-in */}
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.65 }}
@@ -551,9 +551,9 @@ export function BookingScreen() {
                     }}
                   />
                 </div>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
@@ -579,8 +579,8 @@ export function BookingScreen() {
                 >
                   Booking Lagi
                 </button>
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

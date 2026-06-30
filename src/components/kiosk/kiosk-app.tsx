@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { KioskShell } from "./kiosk-shell";
 import { KioskWelcome } from "./screens/welcome";
 import { KioskWalkIn } from "./screens/walk-in";
@@ -110,14 +110,14 @@ export function KioskApp() {
       {/* Idle warning modal */}
       <AnimatePresence>
         {showIdleWarning && mode !== "welcome" && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="absolute inset-0 z-[60] flex items-center justify-center bg-pink-950/70 backdrop-blur-sm"
             onClick={recordActivity}
           >
-            <motion.div
+            <m.div
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
@@ -138,8 +138,8 @@ export function KioskApp() {
               >
                 Saya masih di sini
               </button>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </KioskShell>

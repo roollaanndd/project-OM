@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import {
   Search,
@@ -109,7 +109,7 @@ export function HomeScreen() {
       <div className="px-4 pt-4">
         <div className="grid grid-cols-4 gap-2">
           {QUICK_ACTIONS.map((action, i) => (
-            <motion.button
+            <m.button
               key={action.id}
               onClick={() => useAppStore.getState().setActiveTab(action.tab)}
               initial={{ opacity: 0, y: 8 }}
@@ -122,7 +122,7 @@ export function HomeScreen() {
                 <action.icon className="h-5 w-5" />
               </div>
               <span className="text-[10px] font-semibold text-gray-700">{action.label}</span>
-            </motion.button>
+            </m.button>
           ))}
         </div>
       </div>
@@ -192,7 +192,7 @@ export function HomeScreen() {
         </div>
         <div className="grid grid-cols-4 gap-2 px-4">
           {SERVICE_GRID.map((s, i) => (
-            <motion.button
+            <m.button
               key={s.id}
               onClick={() => useAppStore.getState().setActiveTab("booking")}
               initial={{ opacity: 0, y: 8 }}
@@ -207,7 +207,7 @@ export function HomeScreen() {
               <span className="text-center text-[9px] font-medium leading-tight text-gray-700 line-clamp-2">
                 {s.name}
               </span>
-            </motion.button>
+            </m.button>
           ))}
         </div>
       </div>
@@ -225,7 +225,7 @@ export function HomeScreen() {
             { icon: "🥗", title: "Makanan Sehat", desc: "Kurangi gula & asam", color: "from-amber-400 to-pink-500" },
             { icon: "💧", title: "Air Putih", desc: "Bilas sisa makanan", color: "from-cyan-400 to-blue-500" },
           ].map((tip, i) => (
-            <motion.div
+            <m.div
               key={i}
               initial={{ opacity: 0, x: 16 }}
               animate={{ opacity: 1, x: 0 }}
@@ -239,7 +239,7 @@ export function HomeScreen() {
                 <div className="text-xs font-bold text-gray-900">{tip.title}</div>
                 <div className="mt-0.5 text-[10px] text-gray-500">{tip.desc}</div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

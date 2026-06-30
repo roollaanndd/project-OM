@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import {
 
@@ -74,7 +74,7 @@ export function CmsQueue() {
             {[1, 2, 3].map((counter) => {
               const servingHere = serving.find((s) => s.counter === counter);
               return (
-                <motion.div
+                <m.div
                   key={counter}
                   layout
                   className={cn(
@@ -133,14 +133,14 @@ export function CmsQueue() {
                       </button>
                     </div>
                   )}
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
 
           {/* Currently serving big display */}
           {serving.length > 0 && (
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               className="overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-500 to-green-600 p-5 text-white shadow-md"
@@ -158,7 +158,7 @@ export function CmsQueue() {
                 </div>
                 <Bell className="h-12 w-12 text-white/40" />
               </div>
-            </motion.div>
+            </m.div>
           )}
         </div>
 
@@ -170,7 +170,7 @@ export function CmsQueue() {
           <div className="max-h-[600px] space-y-2 overflow-y-auto rounded-2xl border border-pink-100 bg-white p-3 shadow-sm">
             <AnimatePresence>
               {waiting.map((q, i) => (
-                <motion.div
+                <m.div
                   key={q.id}
                   layout
                   initial={{ opacity: 0, x: 20 }}
@@ -197,7 +197,7 @@ export function CmsQueue() {
                   )}>
                     {q.source === "booking" ? "Booking" : "Walk-in"}
                   </span>
-                </motion.div>
+                </m.div>
               ))}
             </AnimatePresence>
             {waiting.length === 0 && (

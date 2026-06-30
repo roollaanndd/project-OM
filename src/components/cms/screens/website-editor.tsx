@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import {
   Upload,
@@ -72,7 +72,7 @@ export function CmsWebsiteEditor() {
       </div>
 
       {tab === "branding" && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           className="grid grid-cols-1 gap-4 lg:grid-cols-2"
@@ -186,11 +186,11 @@ export function CmsWebsiteEditor() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       )}
 
       {tab === "content" && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           className="rounded-2xl border border-pink-100 bg-white p-5 shadow-sm"
@@ -223,11 +223,11 @@ export function CmsWebsiteEditor() {
               />
             </div>
           </div>
-        </motion.div>
+        </m.div>
       )}
 
       {tab === "services" && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           className="rounded-2xl border border-pink-100 bg-white p-5 shadow-sm"
@@ -268,11 +268,11 @@ export function CmsWebsiteEditor() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       )}
 
       {tab === "preview" && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           className="rounded-2xl border border-pink-100 bg-white p-5 shadow-sm"
@@ -314,7 +314,7 @@ export function CmsWebsiteEditor() {
               </button>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </div>
   );

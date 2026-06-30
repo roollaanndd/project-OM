@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { formatDate } from "../mock-data";
 import {
@@ -91,7 +91,7 @@ export function ProfileScreen() {
 
       {/* Loyalty card overlapping */}
       <div className="px-5 -mt-12">
-        <motion.button
+        <m.button
           onClick={() => setSubView("loyalty")}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -116,7 +116,7 @@ export function ProfileScreen() {
             </div>
             <ChevronRight className="h-5 w-5 text-pink-950/30" />
           </div>
-        </motion.button>
+        </m.button>
       </div>
 
       {/* Stats */}
@@ -245,7 +245,7 @@ function SubProfileView({ view, onBack }: { view: SubView; onBack: () => void })
       <div className="flex-1 overflow-y-auto px-5 py-4">
         <AnimatePresence mode="wait">
           {view === "loyalty" && (
-            <motion.div key="loyalty" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+            <m.div key="loyalty" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
               {/* Tier progress */}
               <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-pink-600 via-rose-500 to-fuchsia-600 p-5 text-white shadow-soft-pink">
                 <div className="flex items-center justify-between">
@@ -262,7 +262,7 @@ function SubProfileView({ view, onBack }: { view: SubView; onBack: () => void })
                   {user.pointsToNextTier} poin lagi untuk naik ke Platinum
                 </div>
                 <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-white/20">
-                  <motion.div
+                  <m.div
                     className="h-full rounded-full bg-white"
                     initial={{ width: 0 }}
                     animate={{ width: `${(user.points / (user.points + user.pointsToNextTier)) * 100}%` }}
@@ -329,11 +329,11 @@ function SubProfileView({ view, onBack }: { view: SubView; onBack: () => void })
                   );
                 })}
               </div>
-            </motion.div>
+            </m.div>
           )}
 
           {view === "family" && (
-            <motion.div key="family" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+            <m.div key="family" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
               <div className="space-y-3">
                 {/* Main user */}
                 <div className="flex items-center gap-3 rounded-2xl border-2 border-pink-200 bg-white p-4 shadow-sm">
@@ -350,7 +350,7 @@ function SubProfileView({ view, onBack }: { view: SubView; onBack: () => void })
                 </div>
 
                 {user.familyMembers.map((fam, i) => (
-                  <motion.div
+                  <m.div
                     key={fam.id}
                     initial={{ opacity: 0, x: 12 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -367,7 +367,7 @@ function SubProfileView({ view, onBack }: { view: SubView; onBack: () => void })
                     <button className="flex h-8 w-8 items-center justify-center rounded-full bg-pink-50 text-pink-700">
                       <Edit3 className="h-3.5 w-3.5" />
                     </button>
-                  </motion.div>
+                  </m.div>
                 ))}
 
                 <button className="flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-pink-200 bg-pink-50/40 py-4 text-sm font-bold text-pink-700 transition-colors hover:bg-pink-100/60">
@@ -381,11 +381,11 @@ function SubProfileView({ view, onBack }: { view: SubView; onBack: () => void })
                   mereka. Maksimal 5 anggota per akun.
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
 
           {view === "qr" && (
-            <motion.div
+            <m.div
               key="qr"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -434,11 +434,11 @@ function SubProfileView({ view, onBack }: { view: SubView; onBack: () => void })
                   Bagikan QR
                 </button>
               </div>
-            </motion.div>
+            </m.div>
           )}
 
           {view === "settings" && (
-            <motion.div key="settings" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
+            <m.div key="settings" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
               <div className="space-y-2">
                 {[
                   { label: "Notifikasi Push", value: "On", icon: Bell },
@@ -473,7 +473,7 @@ function SubProfileView({ view, onBack }: { view: SubView; onBack: () => void })
                 <LogOut className="h-4 w-4" />
                 Keluar dari Akun
               </button>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

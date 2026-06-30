@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { formatCurrency } from "@/components/mobile/mock-data";
 import { Search, Plus, Filter, ChevronRight, Phone, Mail, Activity, X } from "lucide-react";
@@ -79,7 +79,7 @@ export function CmsPatients() {
             </thead>
             <tbody>
               {filtered.map((p, i) => (
-                <motion.tr
+                <m.tr
                   key={p.id}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -132,7 +132,7 @@ export function CmsPatients() {
                       <ChevronRight className="h-4 w-4" />
                     </button>
                   </td>
-                </motion.tr>
+                </m.tr>
               ))}
             </tbody>
           </table>
@@ -143,7 +143,7 @@ export function CmsPatients() {
       {selectedPatient && (
         <div className="fixed inset-0 z-50 flex justify-end">
           <div className="absolute inset-0 bg-pink-950/30 backdrop-blur-sm" onClick={() => setSelectedPatient(null)} />
-          <motion.div
+          <m.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -205,7 +205,7 @@ export function CmsPatients() {
                 </button>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       )}
     </div>

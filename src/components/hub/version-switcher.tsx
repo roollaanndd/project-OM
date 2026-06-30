@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore, type AppVersion } from "@/lib/app-store";
 import { GitBranch, Check, ChevronUp, X, Sparkles, History } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -56,7 +56,7 @@ export function VersionSwitcher() {
       {/* Expanded panel */}
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 16, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.95 }}
@@ -163,12 +163,12 @@ export function VersionSwitcher() {
             <div className="border-t border-pink-100 px-4 py-2 text-center text-[10px] text-pink-950/45">
               💡 Switch version akan reload halaman untuk apply changes
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* Toggle button */}
-      <motion.button
+      <m.button
         onClick={() => setOpen((v) => !v)}
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.95 }}
@@ -184,10 +184,10 @@ export function VersionSwitcher() {
           <GitBranch className="h-4 w-4" />
         </div>
         <span className="font-mono text-xs font-bold text-pink-950">{current.label}</span>
-        <motion.div animate={{ rotate: open ? 180 : 0 }}>
+        <m.div animate={{ rotate: open ? 180 : 0 }}>
           <ChevronUp className="h-3.5 w-3.5 text-pink-950/50" />
-        </motion.div>
-      </motion.button>
+        </m.div>
+      </m.button>
     </div>
   );
 }

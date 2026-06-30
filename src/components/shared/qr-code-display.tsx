@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { QrCode, Download, CheckCircle2, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -122,7 +122,7 @@ export function QRCodeDisplay({
   }
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ type: "spring", stiffness: 220, damping: 18 }}
@@ -139,14 +139,14 @@ export function QRCodeDisplay({
           className="rounded-lg"
         />
         {/* Success badge */}
-        <motion.div
+        <m.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.3, type: "spring", stiffness: 240 }}
           className="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white shadow-md"
         >
           <CheckCircle2 className="h-5 w-5" />
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Code label */}
@@ -175,6 +175,6 @@ export function QRCodeDisplay({
         <br />
         QR berlaku selama 24 jam.
       </p>
-    </motion.div>
+    </m.div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import {
   formatCurrency,
@@ -98,7 +98,7 @@ export function PaymentsScreen() {
       <div className="flex-1 overflow-y-auto px-5 py-4">
         <AnimatePresence mode="wait">
           {view === "main" && (
-            <motion.div
+            <m.div
               key="main"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -142,7 +142,7 @@ export function PaymentsScreen() {
                   {unpaidBills.map((bill, i) => {
                     const isOverdue = bill.status === "overdue";
                     return (
-                      <motion.div
+                      <m.div
                         key={bill.id}
                         initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -186,7 +186,7 @@ export function PaymentsScreen() {
                             </button>
                           </div>
                         </div>
-                      </motion.div>
+                      </m.div>
                     );
                   })}
                 </div>
@@ -199,11 +199,11 @@ export function PaymentsScreen() {
                   <div className="mt-1 text-xs text-pink-950/55">Tidak ada tagihan aktif</div>
                 </div>
               )}
-            </motion.div>
+            </m.div>
           )}
 
           {view === "history" && (
-            <motion.div
+            <m.div
               key="history"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -219,11 +219,11 @@ export function PaymentsScreen() {
                   <TransactionItem key={trx.id} trx={trx} index={i} />
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           )}
 
           {view === "methods" && (
-            <motion.div
+            <m.div
               key="methods"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -242,7 +242,7 @@ export function PaymentsScreen() {
 
               <div className="space-y-3">
                 {MOCK_PAYMENT_METHODS.map((pm, i) => (
-                  <motion.div
+                  <m.div
                     key={pm.id}
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -269,7 +269,7 @@ export function PaymentsScreen() {
                       )}
                     </div>
                     <ChevronRight className="h-4 w-4 text-pink-950/30" />
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
 
@@ -282,7 +282,7 @@ export function PaymentsScreen() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>
@@ -292,7 +292,7 @@ export function PaymentsScreen() {
 
 function TransactionItem({ trx, index }: { trx: Transaction; index: number }) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.04 }}
@@ -314,7 +314,7 @@ function TransactionItem({ trx, index }: { trx: Transaction; index: number }) {
         <div className="text-sm font-bold text-pink-950">{formatCurrency(trx.amount)}</div>
         <div className="text-[10px] font-semibold text-emerald-600">Berhasil</div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -362,7 +362,7 @@ function PaymentFlow({
       <div className="flex h-full flex-col items-center justify-center px-6 text-center">
         {/* Confetti */}
         {[...Array(6)].map((_, i) => (
-          <motion.div
+          <m.div
             key={i}
             className="absolute text-2xl"
             initial={{ opacity: 0, y: -20 }}
@@ -376,18 +376,18 @@ function PaymentFlow({
             style={{ left: "50%", top: "20%" }}
           >
             {["🎉", "✨", "💰", "⭐", "💖", "🎈"][i]}
-          </motion.div>
+          </m.div>
         ))}
 
-        <motion.div
+        <m.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 220, damping: 16 }}
           className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-green-600 text-white shadow-[0_20px_50px_-10px_rgba(16,185,129,0.5)]"
         >
           <Check className="h-12 w-12" strokeWidth={3} />
-        </motion.div>
-        <motion.h2
+        </m.div>
+        <m.h2
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -395,16 +395,16 @@ function PaymentFlow({
         >
           <PartyPopper className="h-6 w-6 text-emerald-500" />
           Pembayaran Berhasil!
-        </motion.h2>
-        <motion.p
+        </m.h2>
+        <m.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
           className="mt-2 text-sm text-pink-950/60"
         >
           {formatCurrency(bill.amount)} berhasil dibayarkan
-        </motion.p>
-        <motion.div
+        </m.p>
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
@@ -428,7 +428,7 @@ function PaymentFlow({
             <span className="text-pink-950/55">Status</span>
             <span className="font-bold text-emerald-600">Berhasil</span>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     );
   }

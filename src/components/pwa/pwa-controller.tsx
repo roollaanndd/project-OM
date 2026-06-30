@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Download, X, Smartphone, RefreshCw, WifiOff, Bell } from "lucide-react";
 
 interface BeforeInstallPromptEvent extends Event {
@@ -183,7 +183,7 @@ export function PwaController() {
       {/* Offline banner */}
       <AnimatePresence>
         {showOffline && (
-          <motion.div
+          <m.div
             initial={{ y: -60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -60, opacity: 0 }}
@@ -193,14 +193,14 @@ export function PwaController() {
               <WifiOff className="h-3.5 w-3.5" />
               Anda sedang offline. Beberapa fitur mungkin tidak tersedia.
             </span>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* Update available banner */}
       <AnimatePresence>
         {updateWaiting && (
-          <motion.div
+          <m.div
             initial={{ y: -60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -60, opacity: 0 }}
@@ -216,14 +216,14 @@ export function PwaController() {
             >
               Update sekarang
             </button>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* Install prompt */}
       <AnimatePresence>
         {showInstall && installEvent && !isStandalone && (
-          <motion.div
+          <m.div
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
@@ -263,7 +263,7 @@ export function PwaController() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
@@ -272,7 +272,7 @@ export function PwaController() {
         {notifPerm === "default" &&
           !sessionStorage.getItem("omdc-notif-dismissed") &&
           isStandalone && (
-            <motion.div
+            <m.div
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
@@ -308,7 +308,7 @@ export function PwaController() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
       </AnimatePresence>
     </>

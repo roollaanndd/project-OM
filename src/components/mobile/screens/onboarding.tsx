@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { ArrowRight, Mail, Lock, Eye, EyeOff, User as UserIcon } from "lucide-react";
 
@@ -23,12 +23,12 @@ export function Onboarding() {
     return (
       <div className="relative flex h-full flex-col overflow-hidden bg-white">
         {/* Decorative blobs */}
-        <motion.div
+        <m.div
           className="absolute -right-12 -top-8 h-48 w-48 rounded-full bg-pink-300/40 blur-2xl"
           animate={{ y: [0, -10, 0], x: [0, -6, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
+        <m.div
           className="absolute -left-10 top-1/3 h-40 w-40 rounded-full bg-rose-300/40 blur-2xl"
           animate={{ y: [0, 12, 0], x: [0, 8, 0] }}
           transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
@@ -36,7 +36,7 @@ export function Onboarding() {
 
         <div className="relative flex flex-1 flex-col items-center justify-center px-8 pb-8 text-center">
           {/* Animated logo */}
-          <motion.div
+          <m.div
             className="relative"
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -44,7 +44,7 @@ export function Onboarding() {
           >
             {/* Pulsing rings */}
             {[0, 1, 2].map((i) => (
-              <motion.div
+              <m.div
                 key={i}
                 className="absolute inset-0 rounded-full border-2 border-pink-400/40"
                 animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
@@ -63,26 +63,26 @@ export function Onboarding() {
               <path d="M48 12c-7 0-10 2.8-15 2.8-4 0-8 2-8 9.2 0 8 2.8 12 5 18.8 1.6 5.2 2.8 14.8 7.2 14.8 4 0 4.4-7 6-12 1.2-3.6 2.2-5.6 7-5.6s5.8 2 7 5.6c1.6 5 2 12 6 12 4.4 0 5.6-9.6 7.2-14.8C67 36 69.8 32 69.8 24c0-7.2-4-9.2-8-9.2-5 0-8-2.8-15-2.8z" fill="#FFFFFF" />
               <path d="M68 28l1.6 4 4 1.6-4 1.6-1.6 4-1.6-4-4-1.6 4-1.6z" fill="#FBBF24" />
             </svg>
-          </motion.div>
+          </m.div>
 
-          <motion.h1
+          <m.h1
             className="mt-8 font-display text-4xl font-extrabold tracking-tight"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             <span className="text-gradient-pink">OMDC</span>
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             className="mt-1 text-[10px] font-semibold uppercase tracking-[0.32em] text-pink-700/80"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
             Oktri Manessa Dental Clinic
-          </motion.p>
+          </m.p>
 
-          <motion.h2
+          <m.h2
             className="mt-6 font-display text-2xl font-bold leading-tight text-pink-950"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -91,8 +91,8 @@ export function Onboarding() {
             Your Smile,
             <br />
             Our Passion
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             className="mt-3 max-w-xs text-sm leading-relaxed text-pink-950/65"
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -100,9 +100,9 @@ export function Onboarding() {
           >
             Kelola kesehatan gigi Anda dengan mudah — booking, rekam medis, dan pembayaran dalam
             satu aplikasi.
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             className="mt-10 w-full max-w-xs space-y-3"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -121,9 +121,9 @@ export function Onboarding() {
             >
               Daftar Akun Baru
             </button>
-          </motion.div>
+          </m.div>
 
-          <motion.button
+          <m.button
             onClick={handleLogin}
             className="mt-5 text-xs font-medium text-pink-700/60 underline-offset-2 hover:underline"
             initial={{ opacity: 0 }}
@@ -131,7 +131,7 @@ export function Onboarding() {
             transition={{ delay: 1 }}
           >
             Lanjut sebagai tamu (Demo)
-          </motion.button>
+          </m.button>
         </div>
       </div>
     );
@@ -151,7 +151,7 @@ export function Onboarding() {
         </button>
 
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={mode}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -269,7 +269,7 @@ export function Onboarding() {
                 {mode === "login" ? "Daftar di sini" : "Masuk"}
               </button>
             </p>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
     </div>

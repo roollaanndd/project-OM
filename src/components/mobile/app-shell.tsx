@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { StatusBar } from "./status-bar";
 import { BottomNav } from "./bottom-nav";
@@ -47,7 +47,7 @@ export function AppShell({
       {/* Scrollable content */}
       <div className="relative flex-1 overflow-y-auto overflow-x-hidden pb-20">
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeTab + (isAuthenticated ? "-auth" : "-guest")}
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export function AppShell({
             className="min-h-full"
           >
             {children}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
 

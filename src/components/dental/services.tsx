@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   Sparkles,
   Smile,
@@ -118,7 +118,7 @@ export function Services() {
         {/* Grid */}
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES.map((s, i) => (
-            <motion.article
+            <m.article
               key={s.title}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -162,7 +162,7 @@ export function Services() {
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
               </div>
-            </motion.article>
+            </m.article>
           ))}
         </div>
 

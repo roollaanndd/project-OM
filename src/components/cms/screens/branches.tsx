@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { useAppStore } from "@/lib/app-store";
 import { MapPin, Phone, Clock, Edit3, Plus, Star, Building2 } from "lucide-react";
@@ -39,7 +39,7 @@ export function CmsBranches() {
         {branches.map((branch, i) => {
           const branchDoctors = doctors.filter((d) => d.branchIds?.includes(branch.id));
           return (
-            <motion.div
+            <m.div
               key={branch.id}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -111,7 +111,7 @@ export function CmsBranches() {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           );
         })}
       </div>

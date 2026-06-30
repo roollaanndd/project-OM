@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Check, Sparkles, Crown, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -94,7 +94,7 @@ export function Pricing() {
 
         <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-3">
           {PLANS.map((plan, i) => (
-            <motion.div
+            <m.div
               key={plan.name}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -162,7 +162,7 @@ export function Pricing() {
                   {plan.popular ? "Pilih Paket Ini" : "Pilih Paket"}
                 </a>
               </Button>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 

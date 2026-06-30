@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { formatCurrency, formatDateShort } from "@/components/mobile/mock-data";
 import {
@@ -73,7 +73,7 @@ export function CmsFinance() {
       {/* Stats */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {stats.map((s, i) => (
-          <motion.div
+          <m.div
             key={s.label}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -91,12 +91,12 @@ export function CmsFinance() {
             </div>
             <div className="mt-3 font-display text-xl font-extrabold text-pink-950">{s.value}</div>
             <div className="text-xs text-pink-950/55">{s.label}</div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
 
       {/* Revenue chart */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
@@ -116,7 +116,7 @@ export function CmsFinance() {
           {monthlyData.map((d, i) => (
             <div key={d.month} className="group flex flex-1 flex-col items-center gap-2">
               <div className="relative flex w-full flex-1 items-end">
-                <motion.div
+                <m.div
                   initial={{ height: 0 }}
                   animate={{ height: `${(d.value / maxVal) * 100}%` }}
                   transition={{ delay: 0.3 + i * 0.07, type: "spring", stiffness: 220, damping: 22 }}
@@ -125,13 +125,13 @@ export function CmsFinance() {
                   <div className="absolute -top-6 left-1/2 -translate-x-1/2 rounded-md bg-pink-950 px-2 py-0.5 text-[10px] font-bold text-white opacity-0 transition-opacity group-hover:opacity-100">
                     Rp {d.value}jt
                   </div>
-                </motion.div>
+                </m.div>
               </div>
               <div className="text-[11px] font-semibold text-pink-950/60">{d.month}</div>
             </div>
           ))}
         </div>
-      </motion.div>
+      </m.div>
 
       {/* Outstanding bills */}
       {bills.filter((b) => b.status !== "paid").length > 0 && (

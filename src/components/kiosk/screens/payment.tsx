@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { formatCurrency } from "@/components/mobile/mock-data";
 import {
@@ -99,7 +99,7 @@ export function KioskPayment({ onComplete, onBack }: { onComplete: () => void; o
         <div className="mx-auto max-w-2xl">
           <AnimatePresence mode="wait">
             {step === "input" && (
-              <motion.div key="i" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
+              <m.div key="i" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }}>
                 <div className="text-center">
                   <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-rose-500 to-pink-700 text-white shadow-md">
                     <CreditCard className="h-7 w-7" />
@@ -133,20 +133,20 @@ export function KioskPayment({ onComplete, onBack }: { onComplete: () => void; o
                     💡 <span className="font-bold">Demo:</span> Coba kode <code className="rounded bg-white px-1.5 py-0.5 font-mono font-bold text-pink-700">bill-001</code> atau <code className="rounded bg-white px-1.5 py-0.5 font-mono font-bold text-pink-700">001</code>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             )}
 
             {step === "found" && foundBill && (
-              <motion.div key="f" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
+              <m.div key="f" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
                 <div className="text-center">
-                  <motion.div
+                  <m.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 220, damping: 16 }}
                     className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 text-white shadow-md"
                   >
                     <Check className="h-7 w-7" strokeWidth={3} />
-                  </motion.div>
+                  </m.div>
                   <h2 className="mt-3 font-display text-2xl font-extrabold text-pink-950">Tagihan Ditemukan</h2>
                   <p className="mt-1 text-sm text-pink-950/55">Konfirmasi detail tagihan</p>
                 </div>
@@ -185,11 +185,11 @@ export function KioskPayment({ onComplete, onBack }: { onComplete: () => void; o
                 >
                   Lanjut ke Pembayaran
                 </button>
-              </motion.div>
+              </m.div>
             )}
 
             {step === "method" && (
-              <motion.div key="m" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+              <m.div key="m" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
                 <div className="text-center">
                   <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-rose-500 text-white shadow-md">
                     <Wallet className="h-7 w-7" />
@@ -199,29 +199,29 @@ export function KioskPayment({ onComplete, onBack }: { onComplete: () => void; o
                 </div>
 
                 <div className="mt-6 grid grid-cols-2 gap-4">
-                  {PAYMENT_METHODS.map((m) => (
+                  {PAYMENT_METHODS.map((pm) => (
                     <button
-                      key={m.id}
-                      onClick={() => setMethod(m.id)}
+                      key={pm.id}
+                      onClick={() => setMethod(pm.id)}
                       className={cn(
                         "relative flex flex-col items-start gap-2 rounded-2xl border-2 bg-white p-5 text-left transition-all",
-                        method === m.id ? "border-pink-500 shadow-md ring-4 ring-pink-200" : "border-pink-100",
+                        method === pm.id ? "border-pink-500 shadow-md ring-4 ring-pink-200" : "border-pink-100",
                       )}
                     >
-                      {method === m.id && (
-                        <motion.div
+                      {method === pm.id && (
+                        <m.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-pink-500 text-white"
                         >
                           <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                        </motion.div>
+                        </m.div>
                       )}
-                      <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${m.color} text-white shadow-sm`}>
-                        <m.icon className="h-6 w-6" />
+                      <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${pm.color} text-white shadow-sm`}>
+                        <pm.icon className="h-6 w-6" />
                       </div>
-                      <div className="text-sm font-bold text-pink-950">{m.label}</div>
-                      <div className="text-xs text-pink-950/55">{m.desc}</div>
+                      <div className="text-sm font-bold text-pink-950">{pm.label}</div>
+                      <div className="text-xs text-pink-950/55">{pm.desc}</div>
                     </button>
                   ))}
                 </div>
@@ -239,22 +239,22 @@ export function KioskPayment({ onComplete, onBack }: { onComplete: () => void; o
                   <Lock className="h-5 w-5" />
                   Bayar {formatCurrency(foundBill?.amount ?? 0)}
                 </button>
-              </motion.div>
+              </m.div>
             )}
 
             {step === "processing" && (
-              <motion.div key="p" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col items-center justify-center py-16">
+              <m.div key="p" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col items-center justify-center py-16">
                 <svg className="h-20 w-20 animate-spin text-pink-500" viewBox="0 0 24 24" fill="none">
                   <circle cx="12" cy="12" r="10" stroke="currentColor" strokeOpacity="0.2" strokeWidth="3" />
                   <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
                 </svg>
                 <h2 className="mt-6 font-display text-xl font-bold text-pink-950">Memproses Pembayaran...</h2>
                 <p className="mt-2 text-sm text-pink-950/55">Mohon tunggu, jangan tinggalkan kiosk</p>
-              </motion.div>
+              </m.div>
             )}
 
             {step === "success" && (
-              <motion.div
+              <m.div
                 key="s"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -262,7 +262,7 @@ export function KioskPayment({ onComplete, onBack }: { onComplete: () => void; o
               >
                 {/* Confetti */}
                 {[...Array(8)].map((_, i) => (
-                  <motion.div
+                  <m.div
                     key={i}
                     className="absolute text-2xl"
                     initial={{ opacity: 0, y: -20 }}
@@ -276,17 +276,17 @@ export function KioskPayment({ onComplete, onBack }: { onComplete: () => void; o
                     style={{ left: "50%", top: "10%" }}
                   >
                     {["🎉", "✨", "💰", "⭐", "💖", "🎈", "🌟", "🎊"][i]}
-                  </motion.div>
+                  </m.div>
                 ))}
 
-                <motion.div
+                <m.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 220, damping: 16 }}
                   className="flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-green-600 text-white shadow-[0_20px_50px_-10px_rgba(16,185,129,0.5)]"
                 >
                   <Check className="h-12 w-12" strokeWidth={3} />
-                </motion.div>
+                </m.div>
                 <h2 className="mt-6 flex items-center gap-2 font-display text-2xl font-extrabold text-pink-950">
                   <PartyPopper className="h-6 w-6 text-emerald-500" />
                   Pembayaran Berhasil!
@@ -308,11 +308,11 @@ export function KioskPayment({ onComplete, onBack }: { onComplete: () => void; o
                     <span className="font-bold text-pink-950">{new Date().toLocaleTimeString("id-ID")}</span>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             )}
 
             {step === "not-found" && (
-              <motion.div key="nf" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
+              <m.div key="nf" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
                 <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-red-100 text-red-600">
                   <X className="h-7 w-7" />
                 </div>
@@ -327,7 +327,7 @@ export function KioskPayment({ onComplete, onBack }: { onComplete: () => void; o
                 >
                   Coba Lagi
                 </button>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>

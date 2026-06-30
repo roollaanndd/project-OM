@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { BranchSelector } from "@/components/shared/branch-selector";
 import { SERVICES } from "@/components/mobile/mock-data";
@@ -124,7 +124,7 @@ export function KioskWalkIn({ onComplete, onBack }: { onComplete: (ticket: any) 
           <AnimatePresence mode="wait">
             {/* Step 1: Personal info */}
             {step === 1 && (
-              <motion.div
+              <m.div
                 key="s1"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -210,12 +210,12 @@ export function KioskWalkIn({ onComplete, onBack }: { onComplete: (ticket: any) 
                     </button>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             )}
 
             {/* Step 2: Service */}
             {step === 2 && (
-              <motion.div
+              <m.div
                 key="s2"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -249,13 +249,13 @@ export function KioskWalkIn({ onComplete, onBack }: { onComplete: (ticket: any) 
                       )}
                     >
                       {serviceId === s.id && (
-                        <motion.div
+                        <m.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-pink-500 text-white"
                         >
                           <Check className="h-4 w-4" strokeWidth={3} />
-                        </motion.div>
+                        </m.div>
                       )}
                       <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${s.color} text-white shadow-sm`}>
                         <ServiceIcon name={s.icon} className="h-6 w-6" />
@@ -267,12 +267,12 @@ export function KioskWalkIn({ onComplete, onBack }: { onComplete: (ticket: any) 
                     </button>
                   ))}
                 </div>
-              </motion.div>
+              </m.div>
             )}
 
             {/* Step 3: Doctor */}
             {step === 3 && (
-              <motion.div
+              <m.div
                 key="s3"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -336,12 +336,12 @@ export function KioskWalkIn({ onComplete, onBack }: { onComplete: (ticket: any) 
                     </button>
                   ))}
                 </div>
-              </motion.div>
+              </m.div>
             )}
 
             {/* Step 4: Confirm */}
             {step === 4 && (
-              <motion.div
+              <m.div
                 key="s4"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -395,7 +395,7 @@ export function KioskWalkIn({ onComplete, onBack }: { onComplete: (ticket: any) 
                     ℹ️ Setelah konfirmasi, Anda akan menerima nomor antrian
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>

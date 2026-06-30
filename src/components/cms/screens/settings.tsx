@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import { Save, Check, Users, Shield, Bell, Globe, Database } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -40,7 +40,7 @@ export function CmsSettings() {
       </div>
 
       {tab === "clinic" && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           className="rounded-2xl border border-pink-100 bg-white p-5 shadow-sm"
@@ -76,11 +76,11 @@ export function CmsSettings() {
             {saved ? <Check className="h-4 w-4" /> : <Save className="h-4 w-4" />}
             {saved ? "Tersimpan!" : "Simpan Perubahan"}
           </button>
-        </motion.div>
+        </m.div>
       )}
 
       {tab === "users" && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           className="rounded-2xl border border-pink-100 bg-white p-5 shadow-sm"
@@ -156,11 +156,11 @@ export function CmsSettings() {
               </table>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       )}
 
       {tab === "system" && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           className="space-y-3"
@@ -247,7 +247,7 @@ export function CmsSettings() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </div>
   );

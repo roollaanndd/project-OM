@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import {
   ChevronLeft,
@@ -116,7 +116,7 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
         <div className="mx-auto max-w-2xl">
           <AnimatePresence mode="wait">
             {step === "input" && (
-              <motion.div
+              <m.div
                 key="input"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -159,7 +159,7 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                 </div>
 
                 {mode === "code" ? (
-                  <motion.div
+                  <m.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     className="mt-6"
@@ -190,9 +190,9 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                     <div className="mt-4 rounded-2xl border border-pink-200 bg-pink-50 p-3 text-center text-xs text-pink-950/65">
                       💡 <span className="font-bold">Demo:</span> Coba kode <code className="rounded bg-white px-1.5 py-0.5 font-mono font-bold text-pink-700">apt-001</code> atau <code className="rounded bg-white px-1.5 py-0.5 font-mono font-bold text-pink-700">001</code>
                     </div>
-                  </motion.div>
+                  </m.div>
                 ) : (
-                  <motion.div
+                  <m.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     className="mt-6"
@@ -207,7 +207,7 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                           <div className="absolute bottom-0 left-0 h-8 w-8 border-b-4 border-l-4 border-pink-400" />
                           <div className="absolute bottom-0 right-0 h-8 w-8 border-b-4 border-r-4 border-pink-400" />
                           {/* Scanning line */}
-                          <motion.div
+                          <m.div
                             className="absolute inset-x-0 h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-transparent"
                             animate={{ top: ["0%", "100%", "0%"] }}
                             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
@@ -264,26 +264,26 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                       <Camera className="h-4 w-4" />
                       Scan QR Booking (Demo)
                     </button>
-                  </motion.div>
+                  </m.div>
                 )}
-              </motion.div>
+              </m.div>
             )}
 
             {step === "found" && foundApt && (
-              <motion.div
+              <m.div
                 key="found"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
               >
                 <div className="text-center">
-                  <motion.div
+                  <m.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 220, damping: 16 }}
                     className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 text-white shadow-md"
                   >
                     <Check className="h-7 w-7" strokeWidth={3} />
-                  </motion.div>
+                  </m.div>
                   <h2 className="mt-3 font-display text-2xl font-extrabold text-pink-950">
                     Booking Ditemukan!
                   </h2>
@@ -351,11 +351,11 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                   <Check className="h-5 w-5" strokeWidth={3} />
                   Konfirmasi & Ambil Nomor Antrian
                 </button>
-              </motion.div>
+              </m.div>
             )}
 
             {step === "not-found" && (
-              <motion.div
+              <m.div
                 key="not-found"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -379,7 +379,7 @@ export function KioskCheckIn({ onComplete, onBack }: { onComplete: (ticket: any)
                 >
                   Coba Lagi
                 </button>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
