@@ -1,8 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// OMDC Prisma Schema — Production-ready models
+// learn more: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -13,6 +10,191 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ============ Authentication ============
+
+model CmsUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String?
+  role         String   @default("receptionist") // admin | doctor | receptionist | finance
+  initials     String   @default("")
+  gradient     String   @default("from-pink-500 to-rose-500")
+  lastActive   DateTime @default(now())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  auditLogs AuditLog[]
+}
+
+// ============ Patients ============
+
+model Patient {
+  id          String   @id @default(cuid())
+  name        String
+  phone       String
+  email       String?
+  age         Int?
+  address     String?
+  isFirstVisit Boolean  @default(true)
+  branchId    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  bookings    Booking[]
+  payments    Payment[]
+}
+
+// ============ Bookings / Appointments ============
+
+model Booking {
+  id        String   @id @default(cuid())
+  patientId String?
+  name      String
+  phone     String
+  email     String?
+  service   String
+  doctor    String?
+  branchId  String?
+  date      DateTime
+  notes     String?
+  status    String   @default("pending") // pending | confirmed | completed | cancelled
+  source    String   @default("website") // website | mobile-app | kiosk
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  patient   Patient? @relation(fields: [patientId], references: [id])
+  payments  Payment[]
+}
+
+// ============ Queue ============
+
+model QueueEntry {
+  id           String    @id @default(cuid())
+  number       String    // e.g., "A-024"
+  patientName  String
+  patientPhone String?
+  service      String
+  doctorId     String?
+  doctorName   String?
+  status       String    @default("waiting") // waiting | serving | completed | skipped
+  source       String    @default("walk-in") // walk-in | booking
+  bookingId    String?
+  counter      Int?
+  checkInTime  DateTime  @default(now())
+  calledTime   DateTime?
+  completedTime DateTime?
+  branchId     String?
+  createdAt    DateTime  @default(now())
+
+  @@index([status])
+  @@index([branchId])
+}
+
+// ============ Doctors ============
+
+model Doctor {
+  id           String   @id @default(cuid())
+  name         String
+  specialty    String
+  initials     String
+  gradient     String   @default("from-pink-500 to-rose-500")
+  rating       Float    @default(4.8)
+  status       String   @default("available") // available | busy | off
+  patientsToday Int     @default(0)
+  photo        String?
+  avail        String   @default("Sen, Sel, Rab, Kam, Jum")
+  branchIds    String?  // JSON array of branch IDs
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// ============ Branches ============
+
+model Branch {
+  id         String  @id @default(cuid())
+  name       String
+  area       String
+  address    String
+  phone      String
+  openHours  String
+  isPrimary  Boolean @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// ============ Payments ============
+
+model Payment {
+  id          String   @id @default(cuid())
+  patientId   String?
+  bookingId   String?
+  description String
+  amount      Float
+  method      String   @default("cash") // cash | card | qris | ewallet
+  status      String   @default("pending") // pending | success | failed
+  invoiceId   String?
+  date        DateTime @default(now())
+  createdAt   DateTime @default(now())
+
+  patient     Patient? @relation(fields: [patientId], references: [id])
+  booking     Booking? @relation(fields: [bookingId], references: [id])
+
+  @@index([status])
+  @@index([patientId])
+}
+
+// ============ Blog ============
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String
+  description String
+  category    String
+  author      String
+  authorRole  String
+  date        DateTime @default(now())
+  readingTime String
+  image       String
+  imageAlt    String
+  tags        String   // JSON array
+  keywords    String   // JSON array
+  content     String   // JSON array of sections
+  faqs        String?  // JSON array
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([category])
+  @@index([published])
+}
+
+// ============ Audit Log ============
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String
+  userId    String?
+  meta      String?  // JSON
+  timestamp DateTime @default(now())
+
+  user      CmsUser? @relation(fields: [userId], references: [id])
+
+  @@index([action])
+  @@index([userId])
+}
+
+// ============ Clinic Settings ============
+
+model ClinicSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+}
+
+// Keep existing models for backwards compat
 model User {
   id        String   @id @default(cuid())
   email     String   @unique
@@ -27,20 +209,6 @@ model Post {
   content   String?
   published Boolean  @default(false)
   authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Booking {
-  id        String   @id @default(cuid())
-  name      String
-  phone     String
-  email     String?
-  service   String
-  doctor    String?
-  date      DateTime
-  notes     String?
-  status    String   @default("pending")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

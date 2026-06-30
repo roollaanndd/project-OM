@@ -17,7 +17,6 @@ import {
   MOCK_TRANSACTIONS,
 } from "@/components/mobile/mock-data";
 
-export type ViewMode = "hub" | "website" | "app" | "kiosk" | "cms";
 
 export type CmsRole = "admin" | "doctor" | "receptionist" | "finance";
 
@@ -120,8 +119,6 @@ export type AppVersion = "v1.5.0" | "v2.0.0";
 export type ThemeMode = "light" | "dark";
 
 interface AppState {
-  // Top-level view
-  view: ViewMode;
 
   // App version (for rollback capability)
   appVersion: AppVersion;
@@ -165,7 +162,6 @@ interface AppState {
   toasts: { id: string; title: string; desc?: string; variant: "default" | "success" | "error" }[];
 
   // Actions
-  setView: (v: ViewMode) => void;
   setAppVersion: (v: AppVersion) => void;
   setAuthenticated: (v: boolean) => void;
   setActiveTab: (t: AppState["activeTab"]) => void;
@@ -343,7 +339,6 @@ let queueCounter = 6;
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
-  view: "website",
   appVersion: "v2.0.0",
   theme: "light",
   setTheme: (t) => set({ theme: t }),
@@ -372,7 +367,6 @@ export const useAppStore = create<AppState>()(
   selectedBranchId: "b1",
   toasts: [],
 
-  setView: (v) => set({ view: v }),
   setAppVersion: (v) => set({ appVersion: v }),
   setAuthenticated: (v) => set({ isAuthenticated: v }),
   setActiveTab: (t) => set((s) => ({ previousTab: s.activeTab, activeTab: t })),
@@ -471,7 +465,6 @@ export const useAppStore = create<AppState>()(
 
   reset: () =>
     set({
-      view: "website",
       appVersion: "v2.0.0",
       isAuthenticated: false,
       activeTab: "home",
@@ -529,7 +522,7 @@ export const useAppStore = create<AppState>()(
       // Migrate from older versions
       migrate: (persistedState: any, version: number) => {
         if (version < 2 && persistedState) {
-          persistedState.view = "website";
+    
         }
         if (version < 3 && persistedState) {
           persistedState.doctors = undefined;
