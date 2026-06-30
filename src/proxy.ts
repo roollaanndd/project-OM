@@ -53,7 +53,7 @@ if (typeof globalThis !== "undefined") {
 }
 
 // ============ Security headers ============
-function buildSecurityHeaders(req: NextRequest) {
+function buildSecurityHeaders() {
   const isProd = process.env.NODE_ENV === "production";
   const cspDirectives = [
     `default-src 'self'`,

@@ -349,7 +349,7 @@ function SubProfileView({ view, onBack }: { view: SubView; onBack: () => void })
                   </div>
                 </div>
 
-                {user.familyMembers.map((fam, i) => (
+                {user.familyMembers.map((fam) => (
                   <motion.div
                     key={fam.id}
                     initial={{ opacity: 0, x: 12 }}
@@ -448,7 +448,7 @@ function SubProfileView({ view, onBack }: { view: SubView; onBack: () => void })
                   { label: "Mode Gelap", value: "Off", icon: Moon },
                   { label: "Ubah Kata Sandi", value: "", icon: Lock },
                   { label: "Autentikasi 2-Langkah", value: "Off", icon: Shield },
-                ].map((s, i) => (
+                ].map((s) => (
                   <button
                     key={s.label}
                     className="flex w-full items-center gap-3 rounded-2xl border border-pink-100 bg-white p-3.5 shadow-sm"
