@@ -83,7 +83,7 @@ export function Features() {
             transition={{ duration: 0.7 }}
             className="lg:sticky lg:top-28"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-gray-700">
+            <span className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-pink-700">
               Kenapa OMDC
             </span>
             <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">

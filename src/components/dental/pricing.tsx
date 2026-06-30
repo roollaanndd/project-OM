@@ -77,7 +77,7 @@ export function Pricing() {
 
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-gray-700">
+          <span className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-pink-700">
             Paket Membership
           </span>
           <h2 className="mt-4 font-display text-4xl font-extrabold leading-tight text-gray-900 sm:text-5xl">
@@ -126,7 +126,7 @@ export function Pricing() {
               <p className="mt-2 text-sm leading-relaxed text-foreground/60">{plan.desc}</p>
 
               <div className="mt-5 flex items-end gap-2">
-                <span className="font-display text-4xl font-extrabold text-gray-900">
+                <span className="font-display text-4xl font-extrabold text-pink-700">
                   {plan.price}
                 </span>
                 <span className="mb-1 text-xs text-foreground/55">{plan.period}</span>

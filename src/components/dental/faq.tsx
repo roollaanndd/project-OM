@@ -59,7 +59,7 @@ export function FAQ() {
             transition={{ duration: 0.7 }}
             className="lg:sticky lg:top-28 lg:self-start"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-gray-700">
+            <span className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-pink-700">
               <HelpCircle className="h-3.5 w-3.5" />
               Pertanyaan Umum
             </span>
