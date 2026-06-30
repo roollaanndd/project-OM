@@ -3,30 +3,31 @@
 import { motion } from "framer-motion";
 import { useAppStore } from "@/lib/app-store";
 import {
-  Bell,
   Search,
-  CalendarPlus,
-  FileText,
-  CreditCard,
-  MessageCircle,
+  Bell,
   Clock,
   MapPin,
   ChevronRight,
-  Award,
-  TrendingUp,
-  Gift,
-  Zap,
+  Calendar,
   Sparkles,
+  TrendingUp,
+  Heart,
+  Award,
+  Gift,
+  Wallet,
+  Zap,
+  ArrowRight,
 } from "lucide-react";
 import {
   formatCurrency,
   formatDate,
   getGreeting,
-  HEALTH_TIPS,
 } from "../mock-data";
+import { ServiceIcon } from "../icons";
+import { SERVICES } from "../mock-data";
 
 export function HomeScreen() {
-  const { user, appointments, setActiveTab, bills } = useAppStore();
+  const { user, appointments, bills } = useAppStore();
   if (!user) return null;
 
   const greeting = getGreeting();
@@ -34,269 +35,233 @@ export function HomeScreen() {
   const unpaidBills = bills.filter((b) => b.status !== "paid");
   const totalUnpaid = unpaidBills.reduce((sum, b) => sum + b.amount, 0);
 
-  // Days until next appointment
-  const daysLeft = upcoming
-    ? Math.ceil((new Date(upcoming.date).getTime() - Date.now()) / (1000 * 60 * 60 * 24))
-    : 0;
-
+  // Quick actions (Gojek-style grid)
   const QUICK_ACTIONS = [
-    { id: "booking", label: "Booking", icon: CalendarPlus, color: "from-pink-500 to-rose-500", tab: "booking" as const },
-    { id: "records", label: "Rekam Medis", icon: FileText, color: "from-rose-500 to-fuchsia-600", tab: "records" as const },
-    { id: "payments", label: "Bayar", icon: CreditCard, color: "from-fuchsia-500 to-pink-600", tab: "payments" as const },
-    { id: "chat", label: "Chat Dokter", icon: MessageCircle, color: "from-pink-400 to-rose-400", tab: "home" as const },
+    { id: "booking", label: "Booking", icon: Calendar, color: "from-pink-500 to-rose-500", tab: "booking" as const },
+    { id: "records", label: "Rekam Medis", icon: Sparkles, color: "from-rose-500 to-fuchsia-600", tab: "records" as const },
+    { id: "payments", label: "Bayar", icon: Wallet, color: "from-fuchsia-500 to-pink-600", tab: "payments" as const },
+    { id: "chat", label: "Chat Dokter", icon: Heart, color: "from-pink-400 to-rose-400", tab: "home" as const },
   ];
 
+  // Dental services grid (Gojek-style 4 columns)
+  const SERVICE_GRID = SERVICES.slice(0, 8);
+
   return (
-    <div className="px-5 pt-4 pb-4">
-      {/* Header */}
-      <div className="flex items-center justify-between">
+    <div className="bg-white pb-4">
+      {/* === Gojek-style top bar === */}
+      <div className="sticky top-0 z-20 bg-white/95 px-4 pb-3 pt-2 backdrop-blur-md shadow-sm">
         <div className="flex items-center gap-3">
-          <div className={`relative flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br ${user.gradient} text-sm font-bold text-white shadow-md`}>
-            {user.initials}
-            <span className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-emerald-500" />
+          {/* Search bar */}
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <input
+              placeholder="Cari layanan, dokter..."
+              className="w-full rounded-xl border border-gray-200 bg-gray-50 py-2.5 pl-10 pr-4 text-sm text-gray-900 placeholder:text-gray-400 focus:border-pink-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-pink-100"
+            />
           </div>
-          <div>
-            <div className="text-[11px] font-medium text-pink-950/55">
-              {greeting.emoji} {greeting.text}
+          {/* Profile avatar */}
+          <button className="relative shrink-0" aria-label="Profil">
+            <div className={`flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br ${user.gradient} text-xs font-bold text-white shadow-sm`}>
+              {user.initials}
             </div>
-            <div className="text-sm font-bold text-pink-950">{user.name.split(" ")[0]}!</div>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <button className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white text-pink-700 shadow-sm" aria-label="Cari">
-            <Search className="h-5 w-5" />
-          </button>
-          <button className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white text-pink-700 shadow-sm" aria-label="Notifikasi">
-            <Bell className="h-5 w-5" />
-            <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500" />
+            <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-white bg-emerald-500" />
           </button>
         </div>
       </div>
 
-      {/* Loyalty card */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="relative mt-5 overflow-hidden rounded-3xl bg-gradient-to-br from-pink-600 via-rose-500 to-fuchsia-600 p-5 text-white shadow-soft-pink"
-      >
-        {/* Decorative circles */}
-        <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/10" />
-        <div className="absolute -bottom-12 -left-6 h-32 w-32 rounded-full bg-white/10" />
-
-        <div className="relative flex items-start justify-between">
-          <div>
-            <div className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/80">
-              <Award className="h-3.5 w-3.5" />
-              Member {user.memberTier}
-            </div>
-            <div className="mt-1 font-display text-3xl font-extrabold">
-              {user.points.toLocaleString("id-ID")}
-              <span className="ml-1 text-sm font-medium text-white/80">poin</span>
-            </div>
-            <div className="mt-1 text-xs text-white/70">
-              {user.pointsToNextTier} poin lagi ke Platinum 🎉
-            </div>
-          </div>
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm">
-            <Gift className="h-6 w-6" />
-          </div>
-        </div>
-
-        {/* Progress bar */}
-        <div className="relative mt-4 h-2 w-full overflow-hidden rounded-full bg-white/20">
-          <motion.div
-            className="h-full rounded-full bg-white"
-            initial={{ width: 0 }}
-            animate={{ width: `${(user.points / (user.points + user.pointsToNextTier)) * 100}%` }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-          />
-        </div>
-
-        <button
-          onClick={() => setActiveTab("profile")}
-          className="relative mt-4 inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1.5 text-xs font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/30"
-        >
-          <Sparkles className="h-3.5 w-3.5" />
-          Tukar Poin
-        </button>
-      </motion.div>
-
-      {/* Quick actions */}
-      <div className="mt-6 grid grid-cols-4 gap-2">
-        {QUICK_ACTIONS.map((action, i) => (
-          <motion.button
-            key={action.id}
-            onClick={() => setActiveTab(action.tab)}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 + i * 0.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex flex-col items-center gap-1.5"
-          >
-            <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${action.color} text-white shadow-md`}>
-              <action.icon className="h-6 w-6" />
-            </div>
-            <span className="text-[11px] font-semibold text-pink-950">{action.label}</span>
-          </motion.button>
-        ))}
+      {/* === Greeting (compact, Gojek-style) === */}
+      <div className="px-4 pt-3">
+        <p className="text-xs text-gray-500">{greeting.emoji} {greeting.text},</p>
+        <h1 className="font-display text-xl font-extrabold text-gray-900">{user.name.split(" ")[0]}! 👋</h1>
       </div>
 
-      {/* Outstanding bill alert */}
+      {/* === Wallet bar (Gojek-style slim bar) === */}
+      <div className="px-4 pt-3">
+        <div className="flex items-center justify-between rounded-2xl border border-gray-100 bg-white px-4 py-3 shadow-sm">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 text-white">
+              <Gift className="h-4.5 w-4.5" />
+            </div>
+            <div>
+              <div className="text-[10px] font-medium text-gray-500">OMDC Points</div>
+              <div className="font-display text-base font-extrabold text-gray-900">
+                {user.points.toLocaleString("id-ID")}
+              </div>
+            </div>
+          </div>
+          <div className="h-8 w-px bg-gray-100" />
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
+              <Award className="h-4.5 w-4.5" />
+            </div>
+            <div>
+              <div className="text-[10px] font-medium text-gray-500">Tier</div>
+              <div className="text-sm font-bold text-gray-900">{user.memberTier}</div>
+            </div>
+          </div>
+          <button className="rounded-lg bg-pink-50 px-3 py-1.5 text-[11px] font-bold text-pink-700">
+            Tukar
+          </button>
+        </div>
+      </div>
+
+      {/* === Quick actions grid (Gojek-style 4 columns) === */}
+      <div className="px-4 pt-4">
+        <div className="grid grid-cols-4 gap-2">
+          {QUICK_ACTIONS.map((action, i) => (
+            <motion.button
+              key={action.id}
+              onClick={() => useAppStore.getState().setActiveTab(action.tab)}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex flex-col items-center gap-1.5"
+            >
+              <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${action.color} text-white shadow-sm`}>
+                <action.icon className="h-5 w-5" />
+              </div>
+              <span className="text-[10px] font-semibold text-gray-700">{action.label}</span>
+            </motion.button>
+          ))}
+        </div>
+      </div>
+
+      {/* === Unpaid bills alert (if any) === */}
       {unpaidBills.length > 0 && (
-        <motion.button
-          onClick={() => setActiveTab("payments")}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35 }}
-          whileTap={{ scale: 0.99 }}
-          className="mt-5 flex w-full items-center gap-3 rounded-2xl border border-red-200 bg-red-50 p-4 text-left"
-        >
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-red-500 text-white">
-            <CreditCard className="h-5 w-5" />
-          </div>
-          <div className="flex-1">
-            <div className="text-xs font-semibold text-red-700">
-              {unpaidBills.length} tagihan menunggu
+        <div className="px-4 pt-4">
+          <button
+            onClick={() => useAppStore.getState().setActiveTab("payments")}
+            className="flex w-full items-center gap-3 rounded-2xl border border-red-100 bg-red-50 p-3 text-left"
+          >
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-red-500 text-white">
+              <Wallet className="h-4 w-4" />
             </div>
-            <div className="text-sm font-bold text-red-900">
-              {formatCurrency(totalUnpaid)}
+            <div className="flex-1">
+              <div className="text-xs font-semibold text-red-700">{unpaidBills.length} tagihan menunggu</div>
+              <div className="text-sm font-bold text-red-900">{formatCurrency(totalUnpaid)}</div>
             </div>
-          </div>
-          <div className="flex items-center gap-1 rounded-full bg-red-500 px-3 py-1.5 text-xs font-bold text-white">
-            Bayar
-            <ChevronRight className="h-3.5 w-3.5" />
-          </div>
-        </motion.button>
+            <ChevronRight className="h-4 w-4 text-red-400" />
+          </button>
+        </div>
       )}
 
-      {/* Next appointment */}
+      {/* === Next appointment card (Gojek-style quick booking) === */}
       {upcoming && (
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mt-5"
-        >
-          <div className="mb-2 flex items-center justify-between">
-            <h2 className="font-display text-base font-bold text-pink-950">
-              Janji Temu Berikutnya
-            </h2>
-            <button
-              onClick={() => setActiveTab("records")}
-              className="text-xs font-semibold text-pink-600"
-            >
-              Lihat Semua
-            </button>
-          </div>
-
-          <div className="overflow-hidden rounded-3xl border border-pink-100 bg-white shadow-sm">
-            {/* Top strip with countdown */}
-            <div className="flex items-center justify-between bg-gradient-to-r from-pink-500 to-rose-500 px-5 py-2 text-white">
+        <div className="px-4 pt-4">
+          <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+            <div className="flex items-center justify-between bg-gradient-to-r from-pink-600 to-rose-500 px-4 py-2 text-white">
               <span className="flex items-center gap-1.5 text-xs font-bold">
                 <Clock className="h-3.5 w-3.5" />
-                {daysLeft === 0 ? "Hari ini!" : daysLeft === 1 ? "Besok!" : `${daysLeft} hari lagi`}
+                Janji Temu Berikutnya
               </span>
-              <span className="text-xs font-medium text-white/80">
-                {formatDate(upcoming.date, { weekday: "long", day: "numeric", month: "short" })} · {upcoming.time}
+              <span className="text-[10px] text-white/80">
+                {Math.ceil((new Date(upcoming.date).getTime() - Date.now()) / (1000 * 60 * 60 * 24))} hari lagi
               </span>
             </div>
-
-            <div className="p-5">
+            <div className="p-4">
               <div className="flex items-start gap-3">
-                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${upcoming.doctorGradient} text-sm font-bold text-white shadow-md`}>
+                <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${upcoming.doctorGradient} text-xs font-bold text-white`}>
                   {upcoming.doctorInitials}
                 </div>
                 <div className="flex-1">
-                  <div className="font-display text-base font-bold text-pink-950">
-                    {upcoming.service}
+                  <div className="text-sm font-bold text-gray-900">{upcoming.service}</div>
+                  <div className="mt-0.5 text-xs text-gray-500">{upcoming.doctor}</div>
+                  <div className="mt-2 flex items-center gap-3 text-[11px] text-gray-500">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      {formatDate(upcoming.date, { weekday: "short", day: "numeric", month: "short" })}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      {upcoming.time}
+                    </span>
                   </div>
-                  <div className="mt-0.5 text-xs text-pink-950/60">
-                    {upcoming.doctor}
-                  </div>
                 </div>
-              </div>
-
-              <div className="mt-4 space-y-2 border-t border-pink-100 pt-4 text-xs text-pink-950/70">
-                <div className="flex items-center gap-2">
-                  <Clock className="h-3.5 w-3.5 text-pink-500" />
-                  <span>{upcoming.time} WIB · {upcoming.duration}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-3.5 w-3.5 text-pink-500" />
-                  <span className="flex-1">{upcoming.clinic}</span>
-                </div>
-              </div>
-
-              <div className="mt-4 flex gap-2">
-                <button className="flex-1 rounded-full bg-pink-50 py-2.5 text-xs font-bold text-pink-700 transition-colors hover:bg-pink-100">
-                  Reschedule
-                </button>
-                <button className="flex-1 rounded-full bg-gradient-to-r from-pink-600 to-rose-500 py-2.5 text-xs font-bold text-white shadow-sm">
-                  Lihat Detail
-                </button>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       )}
 
-      {/* Health tips carousel */}
-      <div className="mt-6">
-        <div className="mb-2 flex items-center justify-between">
-          <h2 className="font-display text-base font-bold text-pink-950">
-            Tips Gigi Sehat
-          </h2>
+      {/* === Services grid (Gojek-style 4 columns, scrollable) === */}
+      <div className="pt-5">
+        <div className="flex items-center justify-between px-4 pb-3">
+          <h2 className="text-sm font-bold text-gray-900">Layanan Klinik</h2>
           <button className="text-xs font-semibold text-pink-600">Lihat Semua</button>
         </div>
-
-        <div className="-mx-5 flex gap-3 overflow-x-auto px-5 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {HEALTH_TIPS.map((tip, i) => (
-            <motion.div
-              key={tip.id}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.05 * i }}
-              className="min-w-[240px] max-w-[240px] flex-1 overflow-hidden rounded-3xl border border-pink-100 bg-white shadow-sm"
+        <div className="grid grid-cols-4 gap-2 px-4">
+          {SERVICE_GRID.map((s, i) => (
+            <motion.button
+              key={s.id}
+              onClick={() => useAppStore.getState().setActiveTab("booking")}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.04 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex flex-col items-center gap-1.5"
             >
-              <div className={`flex h-24 items-center justify-center bg-gradient-to-br ${tip.color} text-5xl`}>
+              <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${s.color} text-white shadow-sm`}>
+                <ServiceIcon name={s.icon} className="h-5 w-5" />
+              </div>
+              <span className="text-center text-[9px] font-medium leading-tight text-gray-700 line-clamp-2">
+                {s.name}
+              </span>
+            </motion.button>
+          ))}
+        </div>
+      </div>
+
+      {/* === Health tips (Gojek-style "Pilihan buat kamu") === */}
+      <div className="pt-5">
+        <div className="flex items-center justify-between px-4 pb-3">
+          <h2 className="text-sm font-bold text-gray-900">Tips Gigi Sehat</h2>
+          <button className="text-xs font-semibold text-pink-600">Lihat Semua</button>
+        </div>
+        <div className="-mx-0 flex gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {[
+            { icon: "🪥", title: "Sikat Gigi Benar", desc: "2x sehari, 2 menit", color: "from-pink-400 to-rose-500" },
+            { icon: "🦷", title: "Benang Gigi", desc: "Setiap hari, sebelum tidur", color: "from-rose-400 to-fuchsia-500" },
+            { icon: "🥗", title: "Makanan Sehat", desc: "Kurangi gula & asam", color: "from-amber-400 to-pink-500" },
+            { icon: "💧", title: "Air Putih", desc: "Bilas sisa makanan", color: "from-cyan-400 to-blue-500" },
+          ].map((tip, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: 16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.05 }}
+              className="min-w-[160px] max-w-[160px] overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm"
+            >
+              <div className={`flex h-20 items-center justify-center bg-gradient-to-br ${tip.color} text-4xl`}>
                 {tip.icon}
               </div>
-              <div className="p-4">
-                <div className="font-display text-sm font-bold text-pink-950">{tip.title}</div>
-                <p className="mt-1 text-xs leading-relaxed text-pink-950/65">{tip.desc}</p>
-                <button className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-pink-600">
-                  Baca selengkapnya
-                  <ChevronRight className="h-3.5 w-3.5" />
-                </button>
+              <div className="p-3">
+                <div className="text-xs font-bold text-gray-900">{tip.title}</div>
+                <div className="mt-0.5 text-[10px] text-gray-500">{tip.desc}</div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Stats row */}
-      <div className="mt-6 grid grid-cols-2 gap-3">
-        <div className="rounded-2xl border border-pink-100 bg-white p-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-pink-100 text-pink-600">
-              <TrendingUp className="h-4 w-4" />
-            </div>
-            <span className="text-xs font-semibold text-pink-950/60">Total Kunjungan</span>
+      {/* === Stats row (compact, Gojek-style) === */}
+      <div className="px-4 pt-4">
+        <div className="grid grid-cols-3 gap-2">
+          <div className="rounded-xl border border-gray-100 bg-white p-3 text-center shadow-sm">
+            <TrendingUp className="mx-auto h-4 w-4 text-pink-500" />
+            <div className="mt-1.5 font-display text-lg font-extrabold text-gray-900">12</div>
+            <div className="text-[9px] text-gray-500">Kunjungan</div>
           </div>
-          <div className="mt-2 font-display text-2xl font-bold text-pink-950">12</div>
-          <div className="text-[11px] text-pink-950/50">Sepanjang 2025</div>
-        </div>
-
-        <div className="rounded-2xl border border-pink-100 bg-white p-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600">
-              <Zap className="h-4 w-4" />
-            </div>
-            <span className="text-xs font-semibold text-pink-950/60">Skor Kesehatan</span>
+          <div className="rounded-xl border border-gray-100 bg-white p-3 text-center shadow-sm">
+            <Zap className="mx-auto h-4 w-4 text-emerald-500" />
+            <div className="mt-1.5 font-display text-lg font-extrabold text-emerald-600">92</div>
+            <div className="text-[9px] text-gray-500">Skor Gigi</div>
           </div>
-          <div className="mt-2 font-display text-2xl font-bold text-emerald-600">92<span className="text-base text-pink-950/50">/100</span></div>
-          <div className="text-[11px] text-pink-950/50">Sangat Baik ↑</div>
+          <div className="rounded-xl border border-gray-100 bg-white p-3 text-center shadow-sm">
+            <Award className="mx-auto h-4 w-4 text-amber-500" />
+            <div className="mt-1.5 font-display text-lg font-extrabold text-gray-900">{user.points}</div>
+            <div className="text-[9px] text-gray-500">Poin</div>
+          </div>
         </div>
       </div>
     </div>
