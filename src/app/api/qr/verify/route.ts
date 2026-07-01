@@ -1,25 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
 import { verifyQR } from "@/lib/qr-system";
 import { db } from "@/lib/db";
 
-const VerifySchema = z.object({
-  qr: z.string().min(1),
-});
-
-// POST /api/qr/verify — verify a scanned QR code and return associated data
+/**
+ * POST /api/qr/verify
+ * Body: { qr: string } OR { payload: QRPayload }
+ * Verifies a scanned QR code and returns associated data.
+ */
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const parsed = VerifySchema.safeParse(body);
-    if (!parsed.success) {
+
+    // Accept either { qr: "json string" } or { payload: {...} }
+    let qrString: string;
+    if (typeof body.qr === "string") {
+      qrString = body.qr;
+    } else if (body.payload && typeof body.payload === "object") {
+      qrString = JSON.stringify(body.payload);
+    } else if (typeof body === "string") {
+      qrString = body;
+    } else {
       return NextResponse.json(
-        { ok: false, error: "QR string required" },
+        { ok: false, error: "QR data required (send { qr: string } or { payload: object })" },
         { status: 400 },
       );
     }
 
-    const result = verifyQR(parsed.data.qr);
+    const result = verifyQR(qrString);
 
     if (!result.valid) {
       return NextResponse.json(
