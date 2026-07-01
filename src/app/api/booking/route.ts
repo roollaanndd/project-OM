@@ -97,7 +97,9 @@ function escapeForLog(s: string): string {
 function isFutureDate(date: string, time: string): boolean {
   const now = new Date();
   const input = new Date(`${date}T${time}:00`);
-  return input.getTime() > now.getTime();
+  // Allow same-day bookings as long as the time hasn't passed yet
+  // Also allow a 1-hour grace period (user might be booking while at the clinic)
+  return input.getTime() > (now.getTime() - 60 * 60 * 1000);
 }
 
 function isWithinBookingWindow(date: string): boolean {

@@ -362,8 +362,11 @@ export function Booking() {
                         onChange={(e) => update("date", e.target.value)}
                         type="date"
                         min={today}
-                        className="rounded-xl border-gray-200 bg-white focus:border-gray-500 focus:ring-gray-500/30"
+                        className="rounded-xl border-gray-200 bg-white focus:border-pink-500 focus:ring-pink-500/30"
                       />
+                      {!form.date && (
+                        <p className="mt-1 text-[11px] text-amber-600">Klik untuk memilih tanggal</p>
+                      )}
                     </Field>
                     <Field label="Waktu Janji" icon={<Clock className="h-4 w-4" />} required>
                       <Select value={form.time} onValueChange={(v) => update("time", v)}>
