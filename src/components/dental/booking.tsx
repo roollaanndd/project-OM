@@ -15,6 +15,7 @@ import {
   CheckCircle2,
   Loader2,
   MapPin,
+  ShieldCheck,
   PhoneCall,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -98,11 +99,20 @@ export function Booking() {
     notes: "",
   });
 
+  // OTP Verification state
+  const [otpStep, setOtpStep] = useState<"form" | "otp" | "success">("form");
+  const [otpMethod, setOtpMethod] = useState<"whatsapp" | "email">("whatsapp");
+  const [otpCode, setOtpCode] = useState("");
+  const [otpSending, setOtpSending] = useState(false);
+  const [otpVerifying, setOtpVerifying] = useState(false);
+  const [debugCode, setDebugCode] = useState<string | null>(null);
+
   const today = new Date().toISOString().split("T")[0];
 
   const update = (key: keyof typeof form, value: string) =>
     setForm((prev) => ({ ...prev, [key]: value }));
 
+  // Step 1: Send OTP
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -110,45 +120,44 @@ export function Booking() {
     setSubmitting(true);
 
     try {
-      const res = await fetch("/api/booking", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-
-      if (!res.ok || !data.ok) {
-        if (data.errors) {
-          const firstError = Object.values(data.errors)[0] as string;
-          toast({
-            title: "Form belum lengkap",
-            description: firstError,
-            variant: "destructive",
-          });
-        } else {
-          toast({
-            title: "Gagal mengirim",
-            description: data.message ?? "Terjadi kesalahan. Coba lagi ya.",
-            variant: "destructive",
-          });
-        }
+      // Determine OTP method: WhatsApp if phone, Email if email provided
+      const identifier = otpMethod === "whatsapp" ? form.phone : form.email;
+      if (!identifier || identifier.length < 5) {
+        toast({
+          title: "Data tidak lengkap",
+          description: otpMethod === "whatsapp" ? "Nomor telepon wajib diisi." : "Email wajib diisi untuk verifikasi email.",
+          variant: "destructive",
+        });
+        setSubmitting(false);
         return;
       }
 
-      setDone(true);
-      toast({
-        title: "Janji temu terkirim!",
-        description: "Tim OMDC akan menghubungi Anda dalam 15 menit.",
+      // Send OTP
+      const otpRes = await fetch("/api/otp/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ identifier, method: otpMethod }),
       });
-      setForm({
-        name: "",
-        phone: "",
-        email: "",
-        service: "",
-        doctor: "",
-        date: "",
-        time: "",
-        notes: "",
+      const otpData = await otpRes.json();
+
+      if (!otpData.ok) {
+        toast({
+          title: "Gagal mengirim kode",
+          description: otpData.message ?? "Coba lagi ya.",
+          variant: "destructive",
+        });
+        setSubmitting(false);
+        return;
+      }
+
+      // Move to OTP verification step
+      setOtpStep("otp");
+      if (otpData.debugCode) {
+        setDebugCode(otpData.debugCode);
+      }
+      toast({
+        title: "Kode verifikasi terkirim!",
+        description: otpData.message,
       });
     } catch (err) {
       toast({
@@ -158,6 +167,89 @@ export function Booking() {
       });
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  // Step 2: Verify OTP + Submit booking
+  const handleVerifyAndSubmit = async () => {
+    if (otpVerifying) return;
+    setOtpVerifying(true);
+
+    try {
+      const identifier = otpMethod === "whatsapp" ? form.phone : form.email;
+
+      // Verify OTP
+      const verifyRes = await fetch("/api/otp/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ identifier, method: otpMethod, code: otpCode }),
+      });
+      const verifyData = await verifyRes.json();
+
+      if (!verifyData.ok) {
+        toast({
+          title: "Verifikasi gagal",
+          description: verifyData.message ?? "Kode salah.",
+          variant: "destructive",
+        });
+        setOtpVerifying(false);
+        return;
+      }
+
+      // OTP verified — now submit booking
+      const bookingRes = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, verified: true }),
+      });
+      const bookingData = await bookingRes.json();
+
+      if (!bookingData.ok) {
+        toast({
+          title: "Gagal membuat booking",
+          description: bookingData.message ?? "Coba lagi ya.",
+          variant: "destructive",
+        });
+        setOtpVerifying(false);
+        return;
+      }
+
+      // Success!
+      setOtpStep("success");
+      setDone(true);
+      toast({
+        title: "Janji temu terkirim!",
+        description: "Tim OMDC akan menghubungi Anda dalam 15 menit.",
+      });
+    } catch (err) {
+      toast({
+        title: "Gagal verifikasi",
+        description: "Periksa koneksi internet dan coba lagi.",
+        variant: "destructive",
+      });
+    } finally {
+      setOtpVerifying(false);
+    }
+  };
+
+  const handleResendOTP = async () => {
+    setOtpSending(true);
+    try {
+      const identifier = otpMethod === "whatsapp" ? form.phone : form.email;
+      const res = await fetch("/api/otp/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ identifier, method: otpMethod }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        toast({ title: "Kode baru terkirim!", description: data.message });
+        if (data.debugCode) setDebugCode(data.debugCode);
+      }
+    } catch {
+      toast({ title: "Gagal", description: "Coba lagi.", variant: "destructive" });
+    } finally {
+      setOtpSending(false);
     }
   };
 
@@ -239,7 +331,100 @@ export function Booking() {
           >
             <div className="absolute -inset-3 -z-10 rounded-[36px] bg-gradient-to-br from-gray-200/60 to-gray-100/50 blur-2xl" />
             <div className="rounded-[32px] border border-gray-100 bg-white p-6 shadow-soft-pink sm:p-8">
-              {done ? (
+              {otpStep === "otp" ? (
+                /* === OTP Verification Step === */
+                <div className="flex flex-col items-center py-8 text-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500 to-rose-500 text-white shadow-md">
+                    {otpMethod === "whatsapp" ? (
+                      <svg viewBox="0 0 24 24" className="h-8 w-8" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    ) : (
+                      <Mail className="h-8 w-8" />
+                    )}
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-bold text-gray-900">Verifikasi {otpMethod === "whatsapp" ? "WhatsApp" : "Email"}</h3>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Kode 4-digit telah dikirim ke{" "}
+                    <span className="font-bold">{otpMethod === "whatsapp" ? form.phone : form.email}</span>
+                  </p>
+
+                  {/* Debug code display (development only) */}
+                  {debugCode && (
+                    <div className="mt-3 rounded-xl bg-amber-50 border border-amber-200 px-4 py-2 text-sm">
+                      <span className="font-bold text-amber-700">[DEV] Kode Anda: </span>
+                      <span className="font-mono text-lg font-extrabold text-amber-900">{debugCode}</span>
+                    </div>
+                  )}
+
+                  {/* OTP Input */}
+                  <input
+                    type="text"
+                    value={otpCode}
+                    onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 4))}
+                    placeholder="••••"
+                    maxLength={4}
+                    className="mt-5 w-40 rounded-2xl border-2 border-gray-200 bg-white py-4 text-center font-display text-3xl font-extrabold tracking-[0.5em] text-gray-900 focus:border-pink-500 focus:outline-none focus:ring-4 focus:ring-pink-200"
+                  />
+
+                  {/* Verify Button */}
+                  <button
+                    onClick={handleVerifyAndSubmit}
+                    disabled={otpCode.length !== 4 || otpVerifying}
+                    className={cn(
+                      "mt-4 flex w-full max-w-xs items-center justify-center gap-2 rounded-full py-3.5 text-base font-bold transition-all",
+                      otpCode.length === 4 && !otpVerifying
+                        ? "bg-gradient-to-r from-pink-600 to-rose-500 text-white shadow-soft-pink active:scale-[0.98]"
+                        : "cursor-not-allowed bg-gray-100 text-gray-400",
+                    )}
+                  >
+                    {otpVerifying ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Memverifikasi...
+                      </>
+                    ) : (
+                      <>
+                        <ShieldCheck className="h-5 w-5" />
+                        Verifikasi & Kirim Booking
+                      </>
+                    )}
+                  </button>
+
+                  {/* Resend + Back */}
+                  <div className="mt-4 flex items-center gap-4 text-xs">
+                    <button
+                      onClick={handleResendOTP}
+                      disabled={otpSending}
+                      className="font-semibold text-pink-600 hover:underline"
+                    >
+                      {otpSending ? "Mengirim..." : "Kirim ulang kode"}
+                    </button>
+                    <span className="text-gray-300">|</span>
+                    <button
+                      onClick={() => {
+                        setOtpStep("form");
+                        setOtpCode("");
+                        setDebugCode(null);
+                      }}
+                      className="font-semibold text-gray-500 hover:text-gray-700"
+                    >
+                      Ubah data
+                    </button>
+                  </div>
+
+                  {/* Switch method */}
+                  <div className="mt-3 text-xs text-gray-400">
+                    {otpMethod === "whatsapp" && form.email ? (
+                      <button onClick={() => { setOtpMethod("email"); setOtpCode(""); }} className="hover:text-pink-600">
+                        Kirim via Email sebagai gantinya
+                      </button>
+                    ) : otpMethod === "email" ? (
+                      <button onClick={() => { setOtpMethod("whatsapp"); setOtpCode(""); }} className="hover:text-pink-600">
+                        Kirim via WhatsApp sebagai gantinya
+                      </button>
+                    ) : null}
+                  </div>
+                </div>
+              ) : done ? (
                 <div className="flex flex-col items-center justify-center py-10 text-center">
                   <m.div
                     initial={{ scale: 0 }}
