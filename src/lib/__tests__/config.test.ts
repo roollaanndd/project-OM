@@ -8,7 +8,7 @@ describe("Config", () => {
       expect(config).toBeDefined();
       expect(config.app).toBeDefined();
       expect(config.app.name).toBe("OMDC");
-      expect(config.app.version).toBe("2.0.0");
+      expect(config.app.version).toBe("2.1.0");
     });
 
     it("should have storage keys", () => {

@@ -15,8 +15,8 @@ const VERSIONS: {
   color: string;
 }[] = [
   {
-    id: "v2.0.0",
-    label: "v2.0.0",
+    id: "v2.1.0",
+    label: "v2.1.0",
     desc: "Creative Refresh — Glassmorphism, mesh gradients, micro-interactions",
     features: [
       "✨ Glassmorphism cards",
@@ -108,7 +108,7 @@ export function VersionSwitcher() {
                           v.color,
                         )}
                       >
-                        {v.id === "v2.0.0" ? (
+                        {v.id === "v2.1.0" ? (
                           <Sparkles className="h-5 w-5" />
                         ) : (
                           <History className="h-5 w-5" />

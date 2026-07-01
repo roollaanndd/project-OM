@@ -47,9 +47,10 @@ export function BookingStep3({ date, setDate, time, setTime }: Step3Props) {
 
       <div className="mt-4 grid grid-cols-4 gap-2">
         {TIME_SLOTS.map((t, i) => {
-          const unavailable = i % 7 === 3 || i % 11 === 5;
+          // Only disable 1-2 slots for demo (not most of them)
+          const unavailable = i === 6 || i === 8;
           return (
-            <button key={t} disabled={unavailable || !date} onClick={() => setTime(t)} className={cn("rounded-xl border-2 py-2.5 text-xs font-bold transition-all", unavailable ? "cursor-not-allowed border-pink-50 bg-pink-50/50 text-gray-300 line-through" : time === t ? "border-pink-500 bg-pink-500 text-white shadow-sm" : "border-pink-100 bg-white text-gray-900 hover:border-pink-300")}>
+            <button key={t} disabled={unavailable || !date} onClick={() => setTime(t)} className={cn("rounded-xl border-2 py-2.5 text-xs font-bold transition-all", unavailable ? "cursor-not-allowed border-gray-100 bg-gray-50 text-gray-300 line-through" : time === t ? "border-pink-500 bg-pink-500 text-white shadow-sm" : "border-gray-100 bg-white text-gray-900 hover:border-pink-300")}>
               {t}
             </button>
           );

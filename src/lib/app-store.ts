@@ -115,7 +115,7 @@ export interface DoctorWithPhoto {
   branchIds?: string[]; // which branches this doctor works at
 }
 
-export type AppVersion = "v1.5.0" | "v2.0.0";
+export type AppVersion = "v1.5.0" | "v2.0.0" | "v2.1.0";
 export type ThemeMode = "light" | "dark";
 
 interface AppState {
@@ -339,7 +339,7 @@ let queueCounter = 6;
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
-  appVersion: "v2.0.0",
+  appVersion: "v2.1.0",
   theme: "light",
   setTheme: (t) => set({ theme: t }),
   toggleTheme: () => set((s) => ({ theme: s.theme === "light" ? "dark" : "light" })),
@@ -465,7 +465,7 @@ export const useAppStore = create<AppState>()(
 
   reset: () =>
     set({
-      appVersion: "v2.0.0",
+      appVersion: "v2.1.0",
       isAuthenticated: false,
       activeTab: "home",
       previousTab: null,
@@ -487,7 +487,7 @@ export const useAppStore = create<AppState>()(
     }),
     }),
     {
-      name: "omdc-store-v4",
+      name: "omdc-store-v5",
       storage: createJSONStorage(() => {
         // Guard for SSR — return a noop storage on server
         if (typeof window === "undefined") {
@@ -515,7 +515,7 @@ export const useAppStore = create<AppState>()(
         records: state.records,
         selectedBranchId: state.selectedBranchId,
       }),
-      version: 4,
+      version: 5,
       // Skip auto-hydration to prevent SSR mismatch.
       // Hydration is handled manually via useHasHydrated hook.
       skipHydration: true,
@@ -530,7 +530,10 @@ export const useAppStore = create<AppState>()(
           persistedState.selectedBranchId = "b1";
         }
         if (version < 4 && persistedState) {
-          persistedState.appVersion = "v2.0.0";
+          persistedState.appVersion = "v2.1.0";
+        }
+                if (version < 5 && persistedState) {
+          persistedState.appVersion = "v2.1.0";
         }
         return persistedState;
       },
